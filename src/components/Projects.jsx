@@ -12,7 +12,7 @@ const clients = [
       "ScaleX seamlessly integrated with our team, making them an invaluable partner in expanding our remote coaching platform.",
     tags: ["Branding", "Development", "Animation", "Illustration"],
     stats: { followers: "200K+", engagement: "350%", return: "5X" },
-    video: "../assets/forge.mp4",
+    video: "https://res.cloudinary.com/drj8voqyf/video/upload/v1741641974/Third_15_secs_rr6vt2.mp4",
   },
   {
     category: "SEO Optimization",
@@ -34,7 +34,7 @@ const clients = [
       "Their insights amaze me weekly, revealing new possibilities I can't wait to act on.",
     tags: ["Branding", "Development", "Animation", "Illustration"],
     stats: { followers: "200K+", engagement: "350%", return: "5X" },
-    video: "../assets/forge.mp4",
+    video: "https://res.cloudinary.com/drj8voqyf/video/upload/v1741641975/Render_Me_2nd_version_v8qfjd.mp4",
   },
 ];
 
@@ -102,11 +102,11 @@ export default function ClientResults() {
       </div>
 
       {/* Video Modal */}
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed inset-0 flex items-center justify-center bg-black/90 bg-opacity-30 z-150">
         <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full">
           <button className="absolute top-7 right-7 text-white" onClick={() => setIsOpen(false)}>✕</button>
           {currentVideo && (
-            <video controls className="w-full rounded-lg">
+            <video controls className="w-full rounded-lg" autoPlay>
               <source src={currentVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>

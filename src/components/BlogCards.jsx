@@ -2,17 +2,17 @@ import React from "react";
 
 const BlogSection = () => {
   return (
-    <section className="py-16 px-20 bg-gradient-to-b from-white to-green-100">
+    <section className="py-16 px-8 md:px-20 bg-gradient-to-b from-white to-green-100">
       <div className="mx-auto text-left">
-        <div className="flex flex-row">
+        <div className="flex flex-col lg:flex-row">
           <div>
-            <h2 className="text-[48px] font-medium mb-4 text-black">
+            <h2 className="lg:text-[48px] text-[35px] font-medium mb-4 text-black">
               Digital Marketing & SEO Services That Grow Traffic & Increase
               Revenue
             </h2>
           </div>
           <div>
-            <p className="text-gray-500 mb-8">
+            <p className="text-gray-500 mt-3 mb-8">
               We are the top digital marketing agency for branding corp. We
               offer a full range of services to help clients improve their
               search engine rankings and drive more traffic to their websites.
@@ -22,8 +22,9 @@ const BlogSection = () => {
             </button>
           </div>
         </div>
+
         {/* Blog Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
           {/* Card 1 */}
           <div className="bg-black rounded-2xl p-6 relative overflow-hidden">
             {/* Top section for the dot and text */}
@@ -40,16 +41,16 @@ const BlogSection = () => {
             </h3>
 
             {/* Content and button */}
-            <div className="flex flex-row items-end justify-between mb-4">
+            <div className="flex flex-col md:flex-row items-end justify-between mb-4">
               {/* Paragraph with 70% width */}
-              <p className="text-gray-400 w-[70%]">
+              <p className="text-gray-400 w-full md:w-[70%]">
                 We are the top digital marketing agency for branding corp. We
                 offer a full range of services to help improve search engine
                 rankings...
               </p>
 
               {/* Button with 30% width */}
-              <button className="bg-white  text-black px-4 py-3 border-black border-1 rounded-full hover:bg-gray-200 transition w-[20%]">
+              <button className="bg-white text-black px-4 py-3 border-black border-1 rounded-full hover:bg-gray-200 transition w-[20%] mt-4 md:mt-0">
                 →
               </button>
             </div>
@@ -71,16 +72,16 @@ const BlogSection = () => {
             </h3>
 
             {/* Content and button */}
-            <div className="flex flex-row items-end justify-between mb-4">
+            <div className="flex flex-col md:flex-row items-end justify-between mb-4">
               {/* Paragraph with 70% width */}
-              <p className="text-black w-[70%]">
+              <p className="text-black w-full md:w-[70%]">
                 Working with this digital marketing agency has been a true
                 partnership. They have taken our online presence to the next
                 level...
               </p>
 
               {/* Button with 30% width */}
-              <button className="bg-white  text-black px-4 py-3 border-black border-1 rounded-full hover:bg-gray-200 transition w-[20%]">
+              <button className="bg-white text-black px-4 py-3 border-black border-1 rounded-full hover:bg-gray-200 transition w-[20%] mt-4 md:mt-0">
                 →
               </button>
             </div>
@@ -102,15 +103,15 @@ const BlogSection = () => {
             </h3>
 
             {/* Content and button */}
-            <div className="flex flex-row items-end justify-between mb-4">
+            <div className="flex flex-col md:flex-row items-end justify-between mb-4">
               {/* Paragraph with 70% width */}
-              <p className="text-gray-300 w-[70%]">
+              <p className="text-gray-300 w-full md:w-[70%]">
                 What sets this digital marketing agency apart is their
                 commitment to transparency and delivering measurable results...
               </p>
 
               {/* Button with 30% width */}
-              <button className="bg-primary-green text-black px-4 py-3 border-black border-1 rounded-full hover:bg-green-300 transition w-[20%]">
+              <button className="bg-primary-green text-black px-4 py-3 border-black border-1 rounded-full hover:bg-green-300 transition w-[20%] mt-4 md:mt-0">
                 →
               </button>
             </div>

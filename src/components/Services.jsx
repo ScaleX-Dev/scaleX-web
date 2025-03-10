@@ -161,14 +161,15 @@ const Services = () => {
         </div>
 
         {/* Design & Development Services Column */}
+
         <div
-          className={`relative transition-all duration-500 ease-in-out px-10 pt-10 border-y-1 border-black overflow-hidden 
+          className={`relative transition-all duration-500 ease-in-out px-10 pt-10 border-y-1 border-r-1 border-black overflow-hidden 
           ${
             activeSection === "design"
-              ? "w-full sm:w-[80%]"
+              ? "w-full sm:w-[80%] min-h-100"
               : activeSection === "marketing"
-              ? "w-full sm:w-[20%] bg-primary-green"
-              : "w-full sm:w-[50%]"
+              ? "w-full sm:w-[20%] bg-primary-green min-h-100"
+              : "w-full sm:w-[50%] min-h-100"
           }`}
         >
           {/* Background Animation */}
@@ -220,7 +221,7 @@ const Services = () => {
                 : "max-h-0 opacity-0"
             }`}
           >
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-6 mb-15">
               {/* Creative & Motion Design */}
               <div className="flex flex-col rounded-xl p-6 bg-gradient-to-br from-gray-100 to-gray-200 w-full sm:w-[calc(50%-1.5rem)]">
                 <div className="flex items-center gap-x-4 mb-4">

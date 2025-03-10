@@ -15,7 +15,10 @@ const Hero = () => {
           muted
           playsInline
         >
-          <source src="https://res.cloudinary.com/drj8voqyf/video/upload/v1739041553/de1pkql2knh0vfgg0x2g.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/drj8voqyf/video/upload/v1739041553/de1pkql2knh0vfgg0x2g.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
 
@@ -42,7 +45,7 @@ const Hero = () => {
         <Navbar />
 
         {/* Main content */}
-        <div className="text-center z-30 px-4 py-16 md:px-16 md:py-48 relative">
+        <div className="text-center z-30 px-4 py-32 md:px-16 md:py-48 relative">
           <motion.button
             className="mb-6 md:mb-8 bg-gray-800/50 text-white px-4 py-1 rounded-full border-gray-700 hover:bg-gray-700 transition text-sm md:text-base inline-block"
             initial={{ opacity: 0 }}
@@ -100,21 +103,27 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
-            <img
-              src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
-              alt="dot"
-              className="w-7 h-7 rounded-full bg-white"
-            />
-            <img
-              src="https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg"
-              alt="dot"
-              className="w-7 h-7 -ml-4 rounded-full bg-white"
-            />
-            <img
-              src="https://www.shutterstock.com/image-photo/young-handsome-man-beard-wearing-600nw-1768126784.jpg"
-              alt="dot"
-              className="w-7 h-7 -ml-4 rounded-full bg-white"
-            />
+            <div
+              className="w-7 h-7 rounded-full bg-white bg-center bg-cover"
+              style={{
+                backgroundImage:
+                  "url(https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg)",
+              }}
+            ></div>
+            <div
+              className="w-7 h-7 -ml-4 rounded-full bg-white bg-center bg-cover"
+              style={{
+                backgroundImage:
+                  "url(https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg)",
+              }}
+            ></div>
+            <div
+              className="w-7 h-7 -ml-4 rounded-full bg-white bg-center bg-cover"
+              style={{
+                backgroundImage:
+                  "url(https://www.shutterstock.com/image-photo/young-handsome-man-beard-wearing-600nw-1768126784.jpg)",
+              }}
+            ></div>
             <span>
               ★★★★★ <span className="text-white">(4.9/5 Rating Stars)</span>
             </span>

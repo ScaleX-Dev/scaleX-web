@@ -14,17 +14,17 @@ const Footer = () => {
 
       <div className="mx-auto z-20">
         {/* Top Section: "Ready to work with us?" */}
-        <div className="flex flex-row justify-between items-center  py-12 px-20">
-          <h2 className="text-[80px] text-black font-semibold mb-4">
+        <div className="flex flex-col lg:flex-row justify-between items-center py-12 px-6 md:px-20">
+          <h2 className="text-[50px] md:text-[80px] text-black font-semibold mb-4 text-center lg:text-left">
             Ready to work with us?
           </h2>
-          <button className="bg-black text-[20px]  text-primary-green py-5  px-15 rounded-full hover:bg-green-400 hover:text-black transition">
+          <button className="bg-black text-[20px] text-primary-green py-5 px-8 md:px-15 rounded-full hover:bg-green-400 hover:text-black transition">
             Get Started →
           </button>
         </div>
         <div className="bg-black">
           {/* Footer Links */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8  py-12 px-20">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12 px-6 md:px-20">
             {/* ScaleX Column */}
             <div>
               <h3 className="text-lg font-bold mb-4">ScaleX</h3>

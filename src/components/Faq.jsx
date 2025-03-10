@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const FAQ = () => {
-  // Sample FAQ data (replace with your actual data)
   const faqs = [
     {
       question: "Why is digital marketing important for my business?",
@@ -9,75 +9,83 @@ const FAQ = () => {
         "Digital marketing allows businesses to reach and engage with a wider audience, generate leads, drive website traffic, and increase brand visibility. It provides measurable results, allows for targeted marketing efforts, and enables businesses to adapt and optimize their strategies based on data and insights.",
     },
     {
-      question:
-        "How can digital marketing help improve my website’s visibility?",
+      question: "What services does Scalex offer?",
       answer:
-        "Through SEO, content marketing, and social media strategies, digital marketing can enhance your website’s visibility on search engines and social platforms, driving more organic traffic and improving user engagement.",
+        "ScaleX provides data-driven digital solutions designed for B2B success. Our services include digital strategy, performance marketing, SEO, PPC, marketing automation, AI-driven campaigns, web development, and conversion optimization. We help businesses attract high-quality leads, enhance digital performance, and drive sustainable growth with precision.",
     },
     {
-      question:
-        "How long does it take to see results from digital marketing efforts?",
+      question: "How is Scalex different from other digital consultancies?",
       answer:
-        "Results can vary, but typically, you may start seeing improvements in 3-6 months, depending on the strategy, industry, and consistency of efforts.",
+        "Our approach is data-driven, human-led, and agile. We blend AI-powered insights with expert-led execution to deliver measurable growth for our clients with precision.",
     },
     {
-      question:
-        "How do you measure the success of digital marketing campaigns?",
+      question: "How does the Scale-X process work?",
       answer:
-        "We measure success through metrics like website traffic, conversion rates, ROI, engagement rates, and lead generation, using tools like Google Analytics and marketing dashboards.",
+        "We start with a free discovery call to understand your goals and how our experts can help achieve them. From there, we develop a customized strategy tailored to your business needs. Our agile approach ensures execution happens in focused sprints, allowing for flexibility, faster turnaround times, and continuous optimization. This way, we stay aligned with your vision while delivering measurable impact without delays.",
+    },
+    {
+      question: "What industries does Scalex work with?",
+      answer:
+        "We partner with businesses across technology, finance, e-commerce, real estate, and professional services, delivering tailored digital solutions. Our expertise spans 8 countries across 3 continents, enabling us to drive global impact while adapting to regional market dynamics.",
+    },
+    {
+      question: "How can I get started with Scalex?",
+      answer:
+        "Simply book a free discovery call, and let’s explore how we can drive growth for your business.",
     },
   ];
 
   const [openIndex, setOpenIndex] = useState(null);
 
-  // Toggle FAQ item open/closed
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="mx-auto p-20 px-20 flex flex-col md:flex-row justify-between items-start gap-8">
-      <div className="md:w-1/2">
-        <h2 className="text-[48px] font-medium text-black mb-6">ScaleX FAQs</h2>
-        <p className="text-gray-600 mb-8 max-w-2xl">
-          As a digital marketing agency, we are dedicated to providing
-          comprehensive educational resources and answering frequently asked
-          questions to help our clients.
-        </p>
-
-        <div className="mt-8 flex items-center gap-8">
-          <button className="bg-primary-green border-1 border-black text-black px-4 py-2 rounded-full hover:bg-theme-main/90 transition">
-            More Questions
-          </button>
-          <button className="text-black hover:text-theme-main transition underline">
-            Contact Us
-          </button>
-        </div>
-      </div>
-
-      <div className="md:w-1/2 space-y-4 mt-8 md:mt-0">
-        {faqs.map((faq, index) => (
-          <div key={index} className="border-b border-gray-300">
-            <button
-              onClick={() => handleToggle(index)}
-              className={`w-full text-left py-4 px-5 flex justify-between items-center text-black text-[24px] font-medium hover:text-theme-main transition ${
-                openIndex === index
-                  ? "bg-black text-white" // Apply black background and white text if open
-                  : ""
-              }`}
-            >
-              <span>{faq.question}</span>
-              <span className="text-theme-main">
-                {openIndex === index ? "−" : "+"}
-              </span>
-            </button>
-            {openIndex === index && (
-              <div className="py-4 px-5 text-gray-400 bg-black">
-                <p>{faq.answer}</p>
-              </div>
-            )}
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        {/* Left Section */}
+        <div className="w-full lg:w-5/12 flex-shrink-0">
+          <h2 className="text-4xl sm:text-5xl font-semibold text-black mb-4 sm:mb-6">
+            ScaleX FAQs
+          </h2>
+          <p className="text-gray-600 text-base sm:text-lg mb-6 sm:mb-8">
+            As a digital marketing agency, we are dedicated to providing
+            comprehensive educational resources and answering frequently asked
+            questions to help our clients.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <Link to="/contact">
+              <button className="bg-primary-green border border-black text-black px-4 sm:px-6 py-2 rounded-full hover:bg-theme-main/90 transition text-base sm:text-lg w-full sm:w-auto">
+                More Questions? Contact Us
+              </button>
+            </Link>
           </div>
-        ))}
+        </div>
+
+        {/* Right Section (FAQ List) */}
+        <div className="w-full lg:w-7/12 space-y-4">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-gray-300">
+              <button
+                onClick={() => handleToggle(index)}
+                className={`w-full text-left py-3 sm:py-4 px-4 sm:px-5 flex justify-between items-center text-black text-lg sm:text-xl font-medium hover:text-theme-main transition ${
+                  openIndex === index ? "bg-black text-white" : ""
+                }`}
+              >
+                <span>{faq.question}</span>
+                <span className="text-theme-main text-xl">
+                  {openIndex === index ? "−" : "+"}
+                </span>
+              </button>
+              {openIndex === index && (
+                <div className="py-3 sm:py-4 px-4 sm:px-5 text-gray-400 bg-black text-sm sm:text-base">
+                  <p>{faq.answer}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
