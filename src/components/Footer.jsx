@@ -5,6 +5,7 @@ import {
   FaLinkedinIn,
   FaInstagram,
 } from "react-icons/fa"; // Import Font Awesome icons
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,9 +19,9 @@ const Footer = () => {
           <h2 className="text-[50px] md:text-[80px] text-black font-semibold mb-4 text-center lg:text-left">
             Ready to work with us?
           </h2>
-          <button className="bg-black text-[20px] text-primary-green py-5 px-8 md:px-15 rounded-full hover:bg-green-400 hover:text-black transition">
-            Get Started →
-          </button>
+            <a href="/schedule" target="_blank" className="bg-black text-[15px] lg:text-[20px] text-primary-green py-5 px-5 md:px-12 rounded-full hover:bg-green-400 hover:text-black transition">
+              Book A Free Call →
+            </a>
         </div>
         <div className="bg-black">
           {/* Footer Links */}
