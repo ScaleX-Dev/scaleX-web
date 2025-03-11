@@ -23,7 +23,7 @@ const AppointmentScheduler = () => {
 
       {/* Appointment Scheduler */}
       <div className="flex justify-center items-center flex-1 p-4">
-        <div className="w-full max-w-4xl rounded-2xl p-6">
+        <div className="w-full rounded-2xl p-6">
           <h2 className="text-4xl font-medium text-center mt-25 mb-4">
             Make a 30min Discovery Call
           </h2>
