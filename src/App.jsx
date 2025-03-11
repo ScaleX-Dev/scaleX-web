@@ -6,7 +6,7 @@ import BlogPage from "./pages/Blogs";
 import Blog from "./pages/Blog";
 import ProjectsPage from "./pages/Projects";
 import ContactPage from "./pages/Contact";
-import AppointmentScheduler from "./pages/schedule";
+import Services from './pages/Services';
 import Login from "./pages/Login";
 import BlogEditor from "./pages/BlogEditor";
 import PrivateRoute from "./PrivateRoute";
@@ -23,7 +23,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/schedule" element={<AppointmentScheduler />} />
+          <Route path="/schedule" element={<Services />} />
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>
             <Route path="/editor" element={<BlogEditor />} />
