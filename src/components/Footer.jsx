@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="text-white relative">
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-transparent opacity-50 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-transparent opacity-50 -z-10"></div>
 
       <div className="mx-auto z-20">
         {/* Top Section: "Ready to work with us?" */}
@@ -19,9 +19,11 @@ const Footer = () => {
           <h2 className="text-[50px] md:text-[80px] text-black font-semibold mb-4 text-center lg:text-left">
             Ready to work with us?
           </h2>
-            <a href="/schedule" target="_blank" className="bg-black text-[15px] lg:text-[20px] text-primary-green py-5 px-5 md:px-12 rounded-full hover:bg-green-400 hover:text-black transition">
+          <a href="/appointments" target="_blank">
+            <button className="bg-black text-[15px] lg:text-[20px] text-primary-green py-5 px-5 md:px-12 rounded-full hover:bg-green-400 hover:text-black transition">
               Book A Free Call →
-            </a>
+            </button>
+          </a>
         </div>
         <div className="bg-black">
           {/* Footer Links */}
