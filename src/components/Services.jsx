@@ -36,7 +36,7 @@ const Services = () => {
 
           <button
             onClick={() => toggleSection("marketing")}
-            className="relative w-full flex justify-between items-center text-3xl font-semibold text-gray-800 mb-4 focus:outline-none"
+            className={`relative w-full flex justify-between items-center text-3xl font-semibold text-gray-800 mb-4 focus:outline-none`}
           >
             <span
               className={`transform transition-transform duration-300 ${

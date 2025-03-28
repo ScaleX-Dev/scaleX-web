@@ -8,6 +8,11 @@ const Hero = () => {
       {/* Full-width black content container */}
       <div className="w-full bg-black text-white relative">
         {/* Background Video */}
+        <image
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="../assets/scalex_bg.jpg"
+          alt="background"
+        />
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
           autoPlay
@@ -16,7 +21,7 @@ const Hero = () => {
           playsInline
         >
           <source
-            src="https://res.cloudinary.com/drj8voqyf/video/upload/v1739041553/de1pkql2knh0vfgg0x2g.mp4"
+            src="https://res.cloudinary.com/drj8voqyf/video/upload/v1743158159/scalex_bg_1_qjohfe.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
