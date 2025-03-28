@@ -99,7 +99,7 @@ const Hero = () => {
             </motion.button>
           </div>
 
-          <motion.div
+          {/* <motion.div
             className="flex items-center justify-center space-x-2 text-primary-green text-xs md:text-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ const Hero = () => {
             <span>
               ★★★★★ <span className="text-white">(4.9/5 Rating Stars)</span>
             </span>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </div>
