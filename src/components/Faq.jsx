@@ -4,11 +4,6 @@ import { Link } from "react-router-dom";
 const FAQ = () => {
   const faqs = [
     {
-      question: "Why is digital marketing important for my business?",
-      answer:
-        "Digital marketing allows businesses to reach and engage with a wider audience, generate leads, drive website traffic, and increase brand visibility. It provides measurable results, allows for targeted marketing efforts, and enables businesses to adapt and optimize their strategies based on data and insights.",
-    },
-    {
       question: "What services does Scalex offer?",
       answer:
         "ScaleX provides data-driven digital solutions designed for B2B success. Our services include digital strategy, performance marketing, SEO, PPC, marketing automation, AI-driven campaigns, web development, and conversion optimization. We help businesses attract high-quality leads, enhance digital performance, and drive sustainable growth with precision.",

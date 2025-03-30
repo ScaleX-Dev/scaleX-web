@@ -24,8 +24,10 @@ const Services = () => {
               ? "w-full sm:w-[20%] bg-primary-green min-h-100"
               : "w-full sm:w-[50%] bg-primary-green min-h-100"
           }`}
+          onMouseEnter={() => setActiveSection("marketing")}
+          onMouseLeave={() => setActiveSection(null)}
         >
-          {(activeSection === null) && (
+          {activeSection === null && (
             <Lottie
               loop
               animationData={marketingAnimation}
@@ -51,7 +53,11 @@ const Services = () => {
             </span>
             <svg
               className={`w-6 h-6 transition-transform duration-300 ${
-                activeSection === "marketing" ? "rotate-180" : activeSection === null ? "" : "opacity-0"
+                activeSection === "marketing"
+                  ? "rotate-180"
+                  : activeSection === null
+                  ? ""
+                  : "opacity-0"
               }`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -130,6 +136,32 @@ const Services = () => {
               </div>
 
               {/* SEO & Content */}
+              <div className="flex flex-col rounded-xl p-6 bg-gradient-to-br from-gray-100 to-gray-200 w-full sm:w-[calc(50%-1.5rem)]">
+                <div className="flex items-center gap-x-4 mb-4">
+                  <svg
+                    className="size-7  text-gray-800"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M3 3h18v18H3zM21 9H3M21 15H3M9 21V3" />
+                  </svg>
+                  <h3 className="text-xl font-semibold  text-gray-800">
+                    SEO & Content
+                  </h3>
+                </div>
+                <p className=" text-gray-600">
+                  Optimize your marketing funnel with content that drives
+                  website traffic, boosts awareness, and converts visitors into
+                  loyal customers through targeted strategies.
+                </p>
+              </div>
               <div className="flex flex-col rounded-xl p-6 bg-gradient-to-br from-black/80 to-black  w-full sm:w-[calc(50%-1.5rem)]">
                 <div className="flex items-center gap-x-4 mb-4">
                   <svg
@@ -147,13 +179,12 @@ const Services = () => {
                     <path d="M3 3h18v18H3zM21 9H3M21 15H3M9 21V3" />
                   </svg>
                   <h3 className="text-xl font-semibold text-white">
-                    SEO & Content
+                    Experience simplicity in partnership
                   </h3>
                 </div>
                 <p className="text-gray-300">
-                  Optimize your marketing funnel with content that drives
-                  website traffic, boosts awareness, and converts visitors into
-                  loyal customers through targeted strategies.
+                  Our easy-to-follow, yet powerful framework evaluates whether
+                  Scalex  can enable growth synergies for your business.
                 </p>
               </div>
             </div>
@@ -171,9 +202,11 @@ const Services = () => {
               ? "w-full sm:w-[20%] bg-primary-green min-h-100"
               : "w-full sm:w-[50%] min-h-100"
           }`}
+          onMouseEnter={() => setActiveSection("design")}
+          onMouseLeave={() => setActiveSection(null)}
         >
           {/* Background Animation */}
-          {(activeSection === null) && (
+          {activeSection === null && (
             <Lottie
               loop
               animationData={designAnimation}
@@ -199,7 +232,11 @@ const Services = () => {
             </span>
             <svg
               className={`w-6 h-6 transition-transform duration-300 ${
-                activeSection === "design" ? "rotate-180" : activeSection === null ? "" : "opacity-0"
+                activeSection === "design"
+                  ? "rotate-180"
+                  : activeSection === null
+                  ? ""
+                  : "opacity-0"
               }`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

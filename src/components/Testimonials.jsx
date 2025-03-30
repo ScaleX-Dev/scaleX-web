@@ -9,7 +9,8 @@ const Testimonials = () => {
       company: "Forge Fitness Studio",
     },
     {
-      quote: "Teaming up with Scalex for our digital strategy was a game-changer. We quickly discovered they had the technical expertise and insights we were after",
+      quote:
+        "Teaming up with Scalex for our digital strategy was a game-changer. We quickly discovered they had the technical expertise and insights we were after",
       author: "Achintha Isiwara",
       company: "CEO • Magnate Shipping",
     },
@@ -40,7 +41,13 @@ const Testimonials = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-6 gap-4 sm:gap-6">
         {/* Author and Company */}
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-300 rounded-full" />{" "}
+          <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-300 rounded-full">
+            <img
+              src="https://png.pngtree.com/png-vector/20220609/ourmid/pngtree-person-gray-photo-placeholder-man-silhouette-on-gray-background-png-image_4847624.png"
+              alt="Profile"
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
           {/* Placeholder for profile image */}
           <div className="flex flex-col">
             <p className="text-black font-bold text-base sm:text-lg">

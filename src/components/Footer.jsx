@@ -5,7 +5,7 @@ import {
   FaLinkedinIn,
   FaInstagram,
 } from "react-icons/fa"; // Import Font Awesome icons
-import { Link } from "react-router-dom";
+import Icon from "../assets/icon.png"; 
 
 const Footer = () => {
   return (
@@ -30,7 +30,11 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12 px-6 md:px-20">
             {/* ScaleX Column */}
             <div>
-              <h3 className="text-lg font-bold mb-4">ScaleX</h3>
+              <img
+                src={Icon}
+                alt="ScaleX Logo"
+                className="w-15 mb-4"
+              />
               <p className="text-gray-300 mb-4">
                 Address
                 <br />
@@ -54,48 +58,26 @@ const Footer = () => {
 
             {/* Company Column */}
             <div>
-              <h3 className="text-lg font-bold mb-4">Company</h3>
+              <h3 className="text-lg font-bold mb-4">Links</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <a href="#" className="hover:text-white">
+                  <a href="/" className="hover:text-white">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/about" className="hover:text-white">
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white">
-                    Features
+                  <a href="/projects" className="hover:text-white">
+                    Projects
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Services Column */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">Services</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>
-                  <a href="#" className="hover:text-white">
-                    SEO Tools
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Marketplace
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Google Analytics
+                  <a href="/blog" className="hover:text-white">
+                    Blogs
                   </a>
                 </li>
               </ul>
@@ -106,18 +88,13 @@ const Footer = () => {
               <h3 className="text-lg font-bold mb-4">Help Center</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <a href="#" className="hover:text-white">
-                    Community
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
+                  <a href="/contact" className="hover:text-white">
                     Contact
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white">
-                    Support
+                  <a href="/appointments" className="hover:text-white">
+                    Schedule a Meeting
                   </a>
                 </li>
               </ul>

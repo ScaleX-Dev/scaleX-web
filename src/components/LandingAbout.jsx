@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { SparklesIcon } from "@heroicons/react/24/solid";
+import TileShape from "../assets/tile_shape.png";
 
 const LandingAbout = () => {
   const { scrollYProgress } = useScroll();
@@ -58,7 +59,7 @@ const LandingAbout = () => {
   };
 
   return (
-    <div className="bg-bg-color relative flex flex-col items-center justify-center text-center w-full overflow-x-hidden">
+    <div className=" relative flex flex-col items-center justify-center text-center w-full overflow-x-hidden">
       {/* Main Heading and Subtext */}
       <div className="md:mb-12 md:mt-[60px] mt-10 px-4">
         <motion.h1
@@ -80,7 +81,7 @@ const LandingAbout = () => {
         >
           We optimize
           <span className="inline-flex items-center justify-center bg-primary-green px-3 md:px-5 py-2 rounded-full mx-2 md:translate-y-[6px]">
-            <SparklesIcon className="md:w-6 w-3 h-3 md:h-6 text-black" />
+            <img src={TileShape} alt="rocket" className="w-6 md:w-8" />
           </span>
           every touchpoint precisely.
         </motion.p>

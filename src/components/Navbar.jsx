@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,9 +9,9 @@ const Navbar = () => {
       <div className="flex justify-center items-center z-100">
         <div className="flex shadow-2xl bg-[#FAFAFA] rounded-full py-3 px-6 justify-between items-center w-7/10 max-w-screen-lg">
           <a href="/">
-            <h1 className="text-primary-green text-2xl font-bold bg-black rounded-full px-4">
-              ScaleX
-            </h1>
+            <img src={Logo} alt="Logo" className="w-20" />
+            {/* <h1 className="text-primary-green text-2xl font-bold bg-black rounded-full px-4">
+            </h1> */}
           </a>
 
           {/* Desktop Nav */}
@@ -45,7 +46,7 @@ const Navbar = () => {
           <div>
             <a
               href="/contact"
-              className="bg-primary-green text-black px-4 py-2 rounded-full hover:bg-green-300 transition text-sm md:px-6 hidden sm:inline" 
+              className="bg-primary-green text-black px-4 py-2 rounded-full hover:bg-green-300 transition text-sm md:px-6 hidden sm:inline"
             >
               Contact Us
             </a>
