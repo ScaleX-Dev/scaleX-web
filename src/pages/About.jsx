@@ -207,13 +207,13 @@ const AboutUs = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
           <div className="text-center">
             <img
-              className="rounded-xl sm:size-48 lg:size-60 mx-auto"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D4E03AQHr-ip2u_SAxQ/profile-displayphoto-shrink_800_800/B4EZPv9bQ8HkAg-/0/1734897678363?e=1750291200&v=beta&t=2RMdpOlCFujwJtPSY2iDWiPZvADq4qWzvz6lm1RswPY"
               alt="Avatar"
             />
             <div className="mt-2 sm:mt-4">
               <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-                David Forren
+                Chirath Hewagamage
               </h3>
               <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
                 Founder / CEO
@@ -224,16 +224,16 @@ const AboutUs = () => {
 
           <div className="text-center">
             <img
-              className="rounded-xl sm:size-48 lg:size-60 mx-auto"
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D5603AQG3FsxUguvAGA/profile-displayphoto-shrink_800_800/B56ZWunqGHGUAg-/0/1742391388216?e=1750291200&v=beta&t=5uJeZaCAqZU_WmfKklblc-W_hPkFI8H1TPu3vNWg1Ms"
               alt="Avatar"
             />
             <div className="mt-2 sm:mt-4">
               <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-                Amil Evara
+              Vishaka Wijekoon
               </h3>
               <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
-                UI/UX Designer
+                Customer Relations
               </p>
             </div>
           </div>
@@ -241,16 +241,17 @@ const AboutUs = () => {
 
           <div className="text-center">
             <img
-              className="rounded-xl sm:size-48 lg:size-60 mx-auto"
-              src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D5603AQH2IWt3CSTyxQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718214160407?e=1750291200&v=beta&t=jeM5mcpK4MKNlgJ5QCE2RktDHMYT_J_YAMCaF6DS6qQ"
               alt="Avatar"
             />
             <div className="mt-2 sm:mt-4">
               <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-                Ebele Egbuna
+              Rachitha Nanayakkarawasam
+
               </h3>
               <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
-                Support Consultant
+              Senior Marketing Analyst
               </p>
             </div>
           </div>
@@ -258,47 +259,13 @@ const AboutUs = () => {
 
           <div className="text-center">
             <img
-              className="rounded-xl sm:size-48 lg:size-60 mx-auto"
-              src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D5603AQFUu7EeY4iZQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718273426409?e=1750291200&v=beta&t=q7l6pvy_nfk8FNZlUEzqIwf2oxVFooWgMnhEYcMf3fs"
               alt="Avatar"
             />
             <div className="mt-2 sm:mt-4">
               <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-                Maria Powers
-              </h3>
-              <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
-                Director of sales
-              </p>
-            </div>
-          </div>
-          {/* End Col */}
-
-          <div className="text-center">
-            <img
-              className="rounded-xl sm:size-48 lg:size-60 mx-auto"
-              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-              alt="Avatar"
-            />
-            <div className="mt-2 sm:mt-4">
-              <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-                Delia Pawelke
-              </h3>
-              <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
-                Front-end Developer
-              </p>
-            </div>
-          </div>
-          {/* End Col */}
-
-          <div className="text-center">
-            <img
-              className="rounded-xl sm:size-48 lg:size-60 mx-auto"
-              src="https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-              alt="Avatar"
-            />
-            <div className="mt-2 sm:mt-4">
-              <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-                Tom Lowry
+                Yasiru Lakintha
               </h3>
               <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
                 UI/UX Designer
