@@ -57,8 +57,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            <span className="text-primary-green mr-2">⚡</span> Connect. Engage.
-            Grow
+            <span className="text-primary-green mr-2">⚡</span> Connect. Co-Create. Scale
           </motion.button>
 
           <motion.h1
@@ -94,14 +93,14 @@ const Hero = () => {
               </motion.button>
             </a>
 
-            <motion.button
+            {/* <motion.button
               className="bg-transparent border-primary-green border-1 text-primary-green px-4 py-2 rounded-full hover:bg-primary-green/10 hover:text-black transition text-sm md:px-6 md:py-3 inline-block"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
             >
               View Case Study
-            </motion.button>
+            </motion.button> */}
           </div>
 
           {/* <motion.div

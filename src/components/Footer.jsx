@@ -38,7 +38,9 @@ const Footer = () => {
               <p className="text-gray-300 mb-4">
                 Address
                 <br />
-                Street Dahlia Number 06, Malang, Indonesia, 64182
+                Level 35, WTC Colombo, Sri Lanka
+                <br />
+                hello@scalex.global
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-300 hover:text-white">

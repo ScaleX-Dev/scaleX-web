@@ -135,13 +135,13 @@ const LandingAbout = () => {
         {/* Second Column */}
         <div className="flex flex-col items-center text-center">
           <button className="bg-theme-main text-black px-3 py-1 hover:bg-theme-main/90 transition bg-primary-green rounded-full border border-black">
-            Job Success
+            Referral Rate
           </button>
           <h2 className="text-6xl md:text-[100px] font-regular text-theme-black">
-            <Counter from={0} to={98} />%
+            <Counter from={0} to={67} />%
           </h2>
           <p className="text-gray-600 text-sm md:text-base">
-            Client Satisfaction Rate
+            of new business via client referrals
           </p>
         </div>
 

@@ -26,7 +26,9 @@ const clients = [
       "Partnering with ScaleX was a game-changer. Their technical expertise and insights were exactly what we needed.",
     tags: ["Branding", "SEO", "Web Development", "PPC"],
     stats: { followers: "200K+", engagement: "350%", return: "5X" },
-    video: "../assets/forge.mp4",
+    video: "https://res.cloudinary.com/drj8voqyf/video/upload/v1744869211/Final_1_s1kn1h.mp4",
+    thumbnail:
+      "https://res.cloudinary.com/drj8voqyf/video/upload/w_1000,h_800,c_fill,so_38.5/Final_1_s1kn1h.jpg",
   },
   {
     category: "Lead Generation",

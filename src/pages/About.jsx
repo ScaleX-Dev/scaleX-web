@@ -23,7 +23,7 @@ const AboutUs = () => {
         <section className="pt-20">
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-4xl font-semibold mb-4">
-              We Love playing with Data & Creativity
+            We Love playing with Data & Creativity
             </h2>
             <p className="text-lg max-w-5xl mx-auto">
               At Scalex, our journey began with a group of college freelancers.
