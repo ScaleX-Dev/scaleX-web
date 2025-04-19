@@ -11,7 +11,7 @@ const clients = [
     quote:
       "ScaleX seamlessly integrated with our team, making them an invaluable partner in expanding our remote coaching platform.",
     tags: ["UX/UI", "Branding", "Strategy"],
-    stats: { followers: "200K+", engagement: "350%", return: "5X" },
+    stats: { followers: "20,000", subtext1: "followers within 2 months", engagement: "185%", subtext2: "Engagement Growth", return: "2.5x", subtext3: "Return on ad spend" },
     video:
       "https://res.cloudinary.com/drj8voqyf/video/upload/v1741641974/Third_15_secs_rr6vt2.mp4",
     thumbnail:
@@ -25,7 +25,8 @@ const clients = [
     quote:
       "Partnering with ScaleX was a game-changer. Their technical expertise and insights were exactly what we needed.",
     tags: ["Branding", "SEO", "Web Development", "PPC"],
-    stats: { followers: "200K+", engagement: "350%", return: "5X" },
+    stats: { followers: "270,000+", subtext1: "followers", engagement: "85%",  subtext2: "Engagement Growth",  return: "120", subtext3: "Leads Generated" },
+
     video: "https://res.cloudinary.com/drj8voqyf/video/upload/v1744869211/Final_1_s1kn1h.mp4",
     thumbnail:
       "https://res.cloudinary.com/drj8voqyf/video/upload/w_1000,h_800,c_fill,so_38.5/Final_1_s1kn1h.jpg",
@@ -38,7 +39,8 @@ const clients = [
     quote:
       "Their insights amaze me weekly, revealing new possibilities I can't wait to act on.",
     tags: ["Lead Generation", "Branding", "Content Strategy", "Illustration"],
-    stats: { followers: "200K+", engagement: "350%", return: "5X" },
+    stats: { followers: "15,000+",subtext1: "followers within 1st month",  engagement: "75/month", subtext2: "Gym Memberships Generated", return: "250%", subtext3: "Engagement Growth" }, 
+
     video:
       "https://res.cloudinary.com/drj8voqyf/video/upload/v1741641975/Render_Me_2nd_version_v8qfjd.mp4",
     thumbnail:
@@ -104,20 +106,20 @@ export default function ClientResults() {
                     {client.stats.followers}
                   </span>
                   <span className="text-xs text-grey">
-                    Followers in 3 months
+                    {client.stats.subtext1}
                   </span>
                 </div>
                 <div className="flex flex-col items-center p-5 rounded-xl bg-black">
                   <span className="font-regular text-2xl text-white">
                     {client.stats.engagement}
                   </span>
-                  <span className="text-xs text-grey">Engagement growth</span>
+                  <span className="text-xs text-grey">{client.stats.subtext2}</span>
                 </div>
                 <div className="flex flex-col items-center p-5 rounded-xl bg-black">
                   <span className="font-regular text-2xl text-white">
                     {client.stats.return}
                   </span>
-                  <span className="text-xs text-grey">Return on ad spend</span>
+                  <span className="text-xs text-grey">{client.stats.subtext3}</span>
                 </div>
               </div>
             </div>
