@@ -40,8 +40,8 @@ const AboutUs = () => {
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div className="aspect-w-16 aspect-h-7">
           <img
-            className="w-full object-cover rounded-xl h-60"
-            src="https://images.unsplash.com/photo-1624571409412-1f253e1ecc89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+            className="w-full object-cover rounded-xl h-80"
+            src="src/assets/about-bg.jpeg"
             alt="Features Image"
           />
         </div>
