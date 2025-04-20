@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AboutImage from "../assets/about-bg.jpeg";
 
 const AboutUs = () => {
   return (
@@ -41,7 +42,7 @@ const AboutUs = () => {
         <div className="aspect-w-16 aspect-h-7">
           <img
             className="w-full object-cover rounded-xl h-80"
-            src="/src/assets/about-bg.jpeg"
+            src={AboutImage}
             alt="Features Image"
           />
         </div>
