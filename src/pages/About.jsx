@@ -24,7 +24,7 @@ const AboutUs = () => {
         <section className="pt-20">
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-4xl font-semibold mb-4">
-            We Love playing with Data & Creativity
+              We Love playing with Data & Creativity
             </h2>
             <p className="text-lg max-w-5xl mx-auto">
               At Scalex, our journey began with a group of college freelancers.
@@ -51,12 +51,14 @@ const AboutUs = () => {
         <div className="mt-5 lg:mt-16 grid lg:grid-cols-3 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
             <h2 className="font-bold text-2xl md:text-3xl text-gray-800">
-              We conquer the marketing hurdles start-ups face
+              We Connect Vision, Co-Create Strategy, and Scale Brands with
+              Agility and Purpose
             </h2>
             <p className="mt-2 md:mt-4 text-gray-500">
-              Beyond partnering with start-ups to boost their digital presence,
-              we’ve crafted innovative solutions for common marketing challenges
-              we’ve encountered across diverse campaigns and projects.
+              At Scalex Global, we go beyond partnerships - we become an
+              extension of your team. By blending agile digital marketing,
+              performance-driven design, and strategic insight, we solve
+              real-world challenges startups and growing brands face every day.
             </p>
           </div>
           {/* End Col */}
@@ -85,11 +87,12 @@ const AboutUs = () => {
                 </svg>
                 <div className="grow">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Strategic visionaries
+                    Co-Create Meaningful Digital Experiences
                   </h3>
                   <p className="mt-1 text-gray-600">
-                    We handpick our teams with precision. Our experts are the
-                    driving force behind breakthrough marketing success.
+                    Through agile collaboration, we design websites, content,
+                    and campaigns that don't just look good, they inspire action
+                    and create measurable impact.
                   </p>
                 </div>
               </div>
@@ -114,12 +117,11 @@ const AboutUs = () => {
                 </svg>
                 <div className="grow">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Cost-effective and seamless
+                    Scale with Precision and Performance
                   </h3>
                   <p className="mt-1 text-gray-600">
-                    From ad campaigns to social media tools, there’s virtually
-                    no marketing need you can’t manage with ease using our
-                    services at MarketPulse.
+                    Every solution we build is performance-driven and scalable —
+                    ensuring brands can grow faster, smarter, and sustainably.
                   </p>
                 </div>
               </div>
@@ -144,12 +146,12 @@ const AboutUs = () => {
                 </svg>
                 <div className="grow">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Cutting-edge marketing insights
+                    Agility at Our Core
                   </h3>
                   <p className="mt-1 text-gray-600">
-                    Our comprehensive guides and robust resource kits provide
-                    everything a business needs to launch and optimize a
-                    powerful digital strategy.
+                    we thrive on change, offering innovative marketing and
+                    digital solutions that evolve with trends and drive
+                    continuous growth
                   </p>
                 </div>
               </div>
@@ -176,12 +178,12 @@ const AboutUs = () => {
                 </svg>
                 <div className="grow">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Crafting user-centric campaigns
+                    Crafting Brands for the Next Era
                   </h3>
                   <p className="mt-1 text-gray-600">
-                    We relentlessly pursue the perfect harmony between
-                    data-driven results and creative design, delivering engaging
-                    and impactful marketing experiences.
+                    From standout websites to conversion-driven campaigns, we
+                    build digital ecosystems that position brands to lead the
+                    way
                   </p>
                 </div>
               </div>
@@ -231,7 +233,7 @@ const AboutUs = () => {
             />
             <div className="mt-2 sm:mt-4">
               <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-              Vishaka Wijekoon
+                Vishaka Wijekoon
               </h3>
               <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
                 Customer Relations
@@ -248,11 +250,10 @@ const AboutUs = () => {
             />
             <div className="mt-2 sm:mt-4">
               <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
-              Rachitha Nanayakkarawasam
-
+                Rachitha Nanayakkarawasam
               </h3>
               <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
-              Senior Marketing Analyst
+                Senior Marketing Analyst
               </p>
             </div>
           </div>

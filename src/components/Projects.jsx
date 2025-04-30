@@ -100,7 +100,7 @@ export default function ClientResults() {
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 mb-4">
                 <div className="flex flex-col items-center p-5 rounded-xl bg-black">
                   <span className="font-regular text-2xl text-white">
                     {client.stats.followers}
