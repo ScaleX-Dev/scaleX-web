@@ -58,7 +58,7 @@ export default function ClientResults() {
   };
 
   return (
-    <section className="container mx-auto px-4 py-10">
+    <section className="w-full px-4 py-10">
       <h2 className="text-[48px] font-medium text-center">
         Real Clients. Real Results.
       </h2>
@@ -71,7 +71,7 @@ export default function ClientResults() {
         {clients.map((client, index) => (
           <div
             key={index}
-            className={` p-6 rounded-xl flex flex-col sm:flex-row items-center ${
+            className={` sm:p-6 rounded-xl flex flex-col sm:flex-row items-center ${
               index % 2 === 0 ? "" : "sm:flex-row-reverse"
             }`}
           >
@@ -100,7 +100,7 @@ export default function ClientResults() {
                   </span>
                 ))}
               </div>
-              <div className="flex gap-4 mb-4">
+              <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
                 <div className="flex flex-col items-center p-5 rounded-xl bg-black">
                   <span className="font-regular text-2xl text-white">
                     {client.stats.followers}

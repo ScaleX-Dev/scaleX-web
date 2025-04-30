@@ -34,17 +34,18 @@ const BlogSection = () => {
     <section className="py-16 px-8 md:px-20 bg-gradient-to-b from-white to-green-100">
       <div className="mx-auto text-left">
         <div className="flex flex-col lg:flex-row">
-          <div>
+          <div className="flex-1">
             <h2 className="lg:text-[48px] text-[35px] font-medium mb-4 text-black">
-              Digital Marketing & SEO Services That Grow Traffic & Increase
-              Revenue
+              Agile Digital Marketing and Design Solutions – Built to Scale
             </h2>
           </div>
-          <div>
+          <div className="flex-1">
             <p className="text-gray-500 mt-3 mb-8">
-              We are the top digital marketing agency for branding corp. We
-              offer a full range of services to help clients improve their
-              search engine rankings and drive more traffic to their websites.
+              At Scalex Global, we move with agility to help ambitious brands
+              connect with their audiences, co-create powerful digital
+              experiences, and scale sustainably. Through website development,
+              performance marketing, and content creation, we craft tailored
+              strategies that drive measurable growth.
             </p>
             <Link to="/blogs">
               <button className="bg-primary-green text-black px-6 py-2 rounded-full hover:bg-green-300 transition border-1 border-black">
