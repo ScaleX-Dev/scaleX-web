@@ -5,12 +5,12 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBbUo2nfDS4C1qYXYQmgx5sT8D-nC8-tyU",
-    authDomain: "scalex-4cacd.firebaseapp.com",
-    projectId: "scalex-4cacd",
-    storageBucket: "scalex-4cacd.firebasestorage.app",
-    messagingSenderId: "992804394699",
-    appId: "1:992804394699:web:6473e9356f82d6aa8c6d4e"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
@@ -18,3 +18,5 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 export { auth, db, storage, collection, getDocs, onSnapshot};
+
+
