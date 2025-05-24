@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
 const Testimonials = () => {
   const testimonials = [
@@ -17,12 +18,18 @@ const Testimonials = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   const handleNext = () => {
+    setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
 
   const handlePrev = () => {
+    setDirection(-1);
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
@@ -31,24 +38,31 @@ const Testimonials = () => {
   const { quote, author, company } = testimonials[currentIndex];
 
   return (
-    <div className="bg-[#F5F7F9] p-6 rounded-lg max-w-full mx-auto h-auto flex flex-col">
-      {/* Testimonial Quote */}
-      <p className="text-black text-xl sm:text-2xl md:text-[32px] font-medium mb-6 px-4 sm:px-6 text-justify flex-grow">
-        {quote}
-      </p>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+      className="bg-[#F5F7F9] p-6 rounded-lg max-w-full mx-auto h-auto flex flex-col"
+    >
+      {/* Testimonial Quote with animation */}
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={currentIndex}
+          initial={{ opacity: 0, x: direction >= 0 ? 50 : -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: direction >= 0 ? -50 : 50 }}
+          transition={{ duration: 0.4 }}
+          className="text-black text-xl sm:text-2xl md:text-[32px] font-medium mb-6 px-4 sm:px-6 text-justify flex-grow"
+        >
+          {quote}
+        </motion.p>
+      </AnimatePresence>
 
       {/* Footer: Author/Company and Navigation Buttons */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-6 gap-4 sm:gap-6">
         {/* Author and Company */}
         <div className="flex items-center space-x-3">
-          {/* <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-300 rounded-full">
-            <img
-              src="https://png.pngtree.com/png-vector/20220609/ourmid/pngtree-person-gray-photo-placeholder-man-silhouette-on-gray-background-png-image_4847624.png"
-              alt="Profile"
-              className="w-full h-full object-cover rounded-full"
-            />
-          </div> */}
-          {/* Placeholder for profile image */}
           <div className="flex flex-col">
             <p className="text-black font-bold text-base sm:text-lg">
               {author}
@@ -79,7 +93,7 @@ const Testimonials = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

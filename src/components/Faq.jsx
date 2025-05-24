@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FAQ = () => {
   const faqs = [
@@ -73,11 +74,25 @@ const FAQ = () => {
                   {openIndex === index ? "−" : "+"}
                 </span>
               </button>
-              {openIndex === index && (
-                <div className="py-3 sm:py-4 px-4 sm:px-5 text-gray-400 bg-black text-sm sm:text-base">
-                  <p>{faq.answer}</p>
-                </div>
-              )}
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    key="content"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      ease: [0.4, 0, 0.2, 1], // a smoother custom bezier easing
+                    }}
+                    className="overflow-hidden"
+                  >
+                    <div className="py-3 sm:py-4 px-4 sm:px-5 text-gray-400 bg-black text-sm sm:text-base">
+                      <p>{faq.answer}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>

@@ -66,7 +66,7 @@ const LandingAbout = () => {
           className="text-3xl md:text-5xl font-regular text-black mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay:0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           From strategy to execution
@@ -76,7 +76,7 @@ const LandingAbout = () => {
           className="text-2xl md:text-5xl font-regular text-black flex flex-wrap items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay:0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           We optimize
