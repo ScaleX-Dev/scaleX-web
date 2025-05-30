@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "react-snap"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -25,6 +26,7 @@
     "react-lottie-player": "^2.1.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.3.0",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^4.0.9"
   },
   "devDependencies": {
@@ -38,5 +40,9 @@
     "globals": "^15.15.0",
     "tailwind-scrollbar": "^4.0.2",
     "vite": "^6.2.0"
+  },
+  "homepage": ".",
+  "reactSnap": {
+    "inlineCss": true
   }
 }
