@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/Landing";
 import AboutUs from "./pages/About";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import BlogPage from "./pages/Blogs";
 import Blog from "./pages/Blog";
 import ProjectsPage from "./pages/Projects";
@@ -41,6 +42,18 @@ function App() {
                   description="At Scalex, our journey began with a group of college freelancers. Since then, we've grown our business, expanded our team, and diversified our portfolio. Central to our evolution has been our unwavering passion for data and creativity, empowering us to solve problems for our clients in our sleep."
                 />
                 <AboutUs />
+              </>
+            }
+          />
+          <Route
+            path="/privacy-policy"
+            element={
+              <>
+                <Metadata
+                  title="Privacy Policy - ScaleX"
+                  description="Read ScaleX's Privacy Policy to understand how we collect, use, and protect your personal information when you use our website."
+                />
+                <PrivacyPolicy />
               </>
             }
           />
