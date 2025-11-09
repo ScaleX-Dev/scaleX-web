@@ -8,6 +8,7 @@ import Blog from "./pages/Blog";
 import ProjectsPage from "./pages/Projects";
 import ContactPage from "./pages/Contact";
 import AppointmentScheduler from "./pages/Appointments";
+import FunnelAuditPage from "./pages/FreeFunnelAudit";
 import Login from "./pages/Login";
 import BlogEditor from "./pages/BlogEditor";
 import PrivateRoute from "./PrivateRoute";
@@ -152,6 +153,18 @@ function App() {
                   description="ScaleX combines AI-driven insights with expert marketing solutions to drive exponential business growth, spanning all stages of business from idea to implementation."
                 />
                 <LandingPage />
+              </>
+            }
+          />
+          <Route
+            path="/free-funnel-audit"
+            element={
+              <>
+                <Metadata
+                  title="Free Funnel Audit - ScaleX"
+                  description="Get a free audit of your sales funnel to optimize conversions and maximize revenue with ScaleX."
+                />
+                <FunnelAuditPage />
               </>
             }
           />
