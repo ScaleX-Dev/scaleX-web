@@ -1,0 +1,6 @@
+{
+  "/appointments/page": "app/appointments/page.js",
+  "/api/create-event/route": "app/api/create-event/route.js",
+  "/api/send-emails/route": "app/api/send-emails/route.js",
+  "/thankyou/page": "app/thankyou/page.js"
+}
