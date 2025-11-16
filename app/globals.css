@@ -1,0 +1,20 @@
+/* stylelint-disable at-rule-no-unknown */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+:root {
+  --color-primary-green: #00ff81;
+  --color-grey: #646464;
+  --color-bg-color: #FAFAFA;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}

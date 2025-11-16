@@ -1,0 +1,42 @@
+.next
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+.git
+.gitignore
+.vscode
+Dockerfile
+docker-compose.yml
+public/assets
+coverage
+*.log
+# Docker-specific
+Dockerfile
+.dockerignore
+
+# Build outputs
+.next
+dist
+build
+
+# Node.js
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# VS Code
+.vscode

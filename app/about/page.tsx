@@ -1,0 +1,303 @@
+'use client'
+import React from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Image from "next/image";
+import Metadata from "@/components/Metadata";
+
+const AboutUs = () => {
+  return (
+    <div>
+        <Metadata
+            title="About Us - ScaleX"
+            description="At Scalex, our journey began with a group of college freelancers. Since then, we've grown our business, expanded our team, and diversified our portfolio. Central to our evolution has been our unwavering passion for data and creativity, empowering us to solve problems for our clients in our sleep."
+        />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+      >
+        <div
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+          className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+        />
+      </div>
+      <Navbar />
+      <div className="text-gray-900 mt-20">
+        {/* Introduction Section */}
+        <section className="pt-20">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-4xl font-semibold mb-4">
+              We Love playing with Data & Creativity
+            </h2>
+            <p className="text-lg max-w-5xl mx-auto">
+              At Scalex, our journey began with a group of college freelancers.
+              Since then, we've grown our business, expanded our team, and
+              diversified our portfolio. Central to our evolution has been our
+              unwavering passion for data and creativity, empowering us to solve
+              problems for our clients in our sleep.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* Features */}
+      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div className="aspect-w-16 aspect-h-7">
+          <Image
+            className="w-full object-cover rounded-xl h-80"
+            src="/about-bg.jpeg"
+            alt="Features Image"
+            width={1600}
+            height={700}
+          />
+        </div>
+
+        {/* Grid */}
+        <div className="mt-5 lg:mt-16 grid lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="lg:col-span-1">
+            <h2 className="font-bold text-2xl md:text-3xl text-gray-800">
+              We Connect Vision, Co-Create Strategy, and Scale Brands with
+              Agility and Purpose
+            </h2>
+            <p className="mt-2 md:mt-4 text-gray-500">
+              At Scalex Global, we go beyond partnerships - we become an
+              extension of your team. By blending agile digital marketing,
+              performance-driven design, and strategic insight, we solve
+              real-world challenges startups and growing brands face every day.
+            </p>
+          </div>
+          {/* End Col */}
+
+          <div className="lg:col-span-2">
+            <div className="grid sm:grid-cols-2 gap-8 md:gap-12">
+              {/* Icon Block */}
+              <div className="flex gap-x-5">
+                <svg
+                  className="shrink-0 mt-1 size-6 text-primary-green"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect width="18" height="10" x="3" y="11" rx="2" />
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M12 7v4" />
+                  <line x1="8" x2="8" y1="16" y2="16" />
+                  <line x1="16" x2="16" y1="16" y2="16" />
+                </svg>
+                <div className="grow">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Co-Create Meaningful Digital Experiences
+                  </h3>
+                  <p className="mt-1 text-gray-600">
+                    Through agile collaboration, we design websites, content,
+                    and campaigns that don't just look good, they inspire action
+                    and create measurable impact.
+                  </p>
+                </div>
+              </div>
+              {/* End Icon Block */}
+
+              {/* Icon Block */}
+              <div className="flex gap-x-5">
+                <svg
+                  className="shrink-0 mt-1 size-6 text-primary-green"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 10v12" />
+                  <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
+                </svg>
+                <div className="grow">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Scale with Precision and Performance
+                  </h3>
+                  <p className="mt-1 text-gray-600">
+                    Every solution we build is performance-driven and scalable —
+                    ensuring brands can grow faster, smarter, and sustainably.
+                  </p>
+                </div>
+              </div>
+              {/* End Icon Block */}
+
+              {/* Icon Block */}
+              <div className="flex gap-x-5">
+                <svg
+                  className="shrink-0 mt-1 size-6 text-primary-green"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+                <div className="grow">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Agility at Our Core
+                  </h3>
+                  <p className="mt-1 text-gray-600">
+                    we thrive on change, offering innovative marketing and
+                    digital solutions that evolve with trends and drive
+                    continuous growth
+                  </p>
+                </div>
+              </div>
+              {/* End Icon Block */}
+
+              {/* Icon Block */}
+              <div className="flex gap-x-5">
+                <svg
+                  className="shrink-0 mt-1 size-6 text-primary-green"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <div className="grow">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Crafting Brands for the Next Era
+                  </h3>
+                  <p className="mt-1 text-gray-600">
+                    From standout websites to conversion-driven campaigns, we
+                    build digital ecosystems that position brands to lead the
+                    way
+                  </p>
+                </div>
+              </div>
+              {/* End Icon Block */}
+            </div>
+          </div>
+          {/* End Col */}
+        </div>
+        {/* End Grid */}
+      </div>
+      {/* End Features */}
+
+      {/* Team */}
+      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        {/* Title */}
+        <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+          <h2 className="text-2xl font-bold md:text-4xl md:leading-tight">
+            Our leadership
+          </h2>
+        </div>
+        {/* End Title */}
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="text-center">
+            <Image
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D4E03AQHr-ip2u_SAxQ/profile-displayphoto-shrink_800_800/B4EZPv9bQ8HkAg-/0/1734897678363?e=1750291200&v=beta&t=2RMdpOlCFujwJtPSY2iDWiPZvADq4qWzvz6lm1RswPY"
+              alt="Avatar"
+              width={240}
+              height={240}
+            />
+            <div className="mt-2 sm:mt-4">
+              <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
+                Chirath Hewagamage
+              </h3>
+              <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
+                Founder / CEO
+              </p>
+            </div>
+          </div>
+          {/* End Col */}
+
+          <div className="text-center">
+            <Image
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D5603AQG3FsxUguvAGA/profile-displayphoto-shrink_800_800/B56ZWunqGHGUAg-/0/1742391388216?e=1750291200&v=beta&t=5uJeZaCAqZU_WmfKklblc-W_hPkFI8H1TPu3vNWg1Ms"
+              alt="Avatar"
+              width={240}
+              height={240}
+            />
+            <div className="mt-2 sm:mt-4">
+              <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
+                Vishaka Wijekoon
+              </h3>
+              <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
+                Customer Relations
+              </p>
+            </div>
+          </div>
+          {/* End Col */}
+
+          <div className="text-center">
+            <Image
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D5603AQH2IWt3CSTyxQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718214160407?e=1750291200&v=beta&t=jeM5mcpK4MKNlgJ5QCE2RktDHMYT_J_YAMCaF6DS6qQ"
+              alt="Avatar"
+              width={240}
+              height={240}
+            />
+            <div className="mt-2 sm:mt-4">
+              <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
+                Rachitha Nanayakkarawasam
+              </h3>
+              <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
+                Senior Marketing Analyst
+              </p>
+            </div>
+          </div>
+          {/* End Col */}
+
+          <div className="text-center">
+            <Image
+              className="rounded-full sm:size-48 lg:size-60 mx-auto"
+              src="https://media.licdn.com/dms/image/v2/D5603AQFUu7EeY4iZQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718273426409?e=1750291200&v=beta&t=q7l6pvy_nfk8FNZlUEzqIwf2oxVFooWgMnhEYcMf3fs"
+              alt="Avatar"
+              width={240}
+              height={240}
+            />
+            <div className="mt-2 sm:mt-4">
+              <h3 className="text-sm font-medium text-gray-800 sm:text-base lg:text-lg">
+                Yasiru Lakintha
+              </h3>
+              <p className="text-xs text-gray-600 sm:text-sm lg:text-base">
+                UI/UX Designer
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* End Grid */}
+      </div>
+      {/* End Team */}
+
+      <Footer />
+    </div>
+  );
+};
+
+export default AboutUs;
