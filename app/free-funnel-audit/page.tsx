@@ -22,15 +22,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Metadata from "@/components/Metadata";
-// Use Recharts (maintained) for the funnel visualization.
-import {
-  ResponsiveContainer,
-  FunnelChart as RechartsFunnelChart,
-  Funnel as RechartsFunnel,
-  Tooltip as RechartsTooltip,
-  LabelList,
-  Cell,
-} from "recharts";
+import Image from "next/image";
 
 // Main Page Component
 export default function FunnelAuditPage() {
@@ -104,21 +96,42 @@ function HeroSection() {
         </div>
 
         {/* Right: Funnel Charts */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <FunnelChart
-            title="Before Funnel"
-            description="High Traffic, Low Conversion"
-            leads={30}
-            qualified={5}
-            conversions={2}
-          />
-          <FunnelChart
-            title="After Audit"
-            description="Optimized Flow, High Conversion"
-            leads={20}
-            qualified={15}
-            conversions={8}
-          />
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-start">
+          {/* Before Funnel Image */}
+          <div className="flex flex-col items-center w-full sm:w-auto">
+            <div className="relative w-full max-w-[280px] h-auto">
+              <Image
+                src="/CurrentSalesFunnel.jpg"
+                alt="Before Funnel - High Traffic, Low Conversion"
+                width={280}
+                height={400}
+                className="rounded-lg shadow-xl object-contain"
+                priority
+              />
+            </div>
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-semibold text-black">Before Funnel</h3>
+              <p className="text-sm text-gray-500">High Traffic, Low Conversion</p>
+            </div>
+          </div>
+          
+          {/* After Funnel Image */}
+          <div className="flex flex-col items-center w-full sm:w-auto">
+            <div className="relative w-full max-w-[280px] h-auto">
+              <Image
+                src="/AfterFunnelAudit.jpg"
+                alt="After Audit - Optimized Flow, High Conversion"
+                width={280}
+                height={400}
+                className="rounded-lg shadow-xl object-contain"
+                priority
+              />
+            </div>
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-semibold text-black">After Audit</h3>
+              <p className="text-sm text-gray-500">Optimized Flow, High Conversion</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -314,17 +327,17 @@ function TestimonialsSection() {
 function ProcessSection() {
   const steps = [
     {
-      num: "1️⃣",
+      num: "01",
       title: "Discovery Call",
-      desc: "We’ll understand your goals, audience, and current funnel setup.",
+      desc: "We'll understand your goals, audience, and current funnel setup.",
     },
     {
-      num: "2️⃣",
+      num: "02",
       title: "Access & Analysis",
       desc: "We review your website, ad accounts, lead forms, automation tools, and social presence.",
     },
     {
-      num: "3️⃣",
+      num: "03",
       title: "Personalized Report",
       desc: "You’ll receive a detailed audit with insights, benchmarks, and actionable steps.",
     },
@@ -335,7 +348,7 @@ function ProcessSection() {
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
-            🔍 What the Process Looks Like
+            What the Process Looks Like
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -375,7 +388,7 @@ function WhoIsForSection() {
     <div className="container mx-auto px-6 py-20">
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-          📈 Who This Is For
+          Who This Is For
         </h2>
         <p className="text-lg text-gray-600 mb-12">
           This audit is ideal for professionals serious about scaling their
@@ -419,7 +432,7 @@ function CtaSection() {
             Book My Free Funnel Audit
           </a>
           <p className="text-sm text-gray-500 mt-6">
-            🔒 100% Confidential | No Obligations | Real Insights
+            100% Confidential | No Obligations | Real Insights
           </p>
         </div>
       </div>
@@ -427,75 +440,4 @@ function CtaSection() {
   );
 }
 
-// New wrapper component: prefer external library, fallback to OldFunnelChart
-function FunnelChart(props: {
-    title: string;
-    description: string;
-    leads: number;
-    qualified: number;
-    conversions: number;
-}) {
-  const {
-    leads = 0,
-    qualified = 0,
-    conversions = 0,
-    title,
-    description,
-  } = props;
-
-  // Data shape for react-funnel-chart
-  const data = [
-    { label: "Leads", value: Math.max(0, Number(leads)) },
-    { label: "Qualified", value: Math.max(0, Number(qualified)) },
-    { label: "Conversions", value: Math.max(0, Number(conversions)) },
-  ];
-
-  // Render a maintained Recharts-based funnel visualization.
-  const colors = ["#F97316", "#EF4444", "#10B981"];
-
-  return (
-    <div className="flex flex-col items-center p-4 bg-[#101010] rounded-lg shadow-xl w-full max-w-[250px]">
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <p className="text-sm text-gray-400 mb-4">{description}</p>
-
-      <div className="w-full h-48">
-        <ResponsiveContainer width="100%" height="100%">
-          <RechartsFunnelChart>
-            <RechartsFunnel
-              dataKey="value"
-              data={data}
-              isAnimationActive={false}
-            >
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={colors[index % colors.length]}
-                />
-              ))}
-              <LabelList dataKey="value" position="inside" />
-            </RechartsFunnel>
-            <RechartsTooltip />
-          </RechartsFunnelChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* Legend / Stats (kept for parity with old UI) */}
-      <div className="mt-4 w-full text-left">
-        <div className="flex items-center gap-2 mb-1">
-          <div className={`w-3 h-3 rounded-full bg-orange-400`}></div>
-          <span className="text-sm text-gray-300">{leads} Leads</span>
-        </div>
-        <div className="flex items-center gap-2 mb-1">
-          <div className={`w-3 h-3 rounded-full bg-red-500`}></div>
-          <span className="text-sm text-gray-300">{qualified} Qualified</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className={`w-3 h-3 rounded-full bg-green-500`}></div>
-          <span className="text-sm text-gray-300">
-            {conversions} Conversions
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
+// FunnelChart component removed - now using static images
