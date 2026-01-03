@@ -4,6 +4,7 @@ export function setCookie(name: string, value: string, days: number) {
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
 }
 
+// Get a cookie by name
 export function getCookie(name: string) {
   return document.cookie
     .split("; ")
