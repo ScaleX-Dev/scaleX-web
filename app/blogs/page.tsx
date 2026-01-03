@@ -1,11 +1,13 @@
 'use client'
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { db } from "@/lib/firebaseConfig";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import Metadata from "@/components/Metadata";
+import { trackEvent } from "@/utils/events";
+import { captureUTM } from "@/utils/attribution";
 
 interface BlogPost {
     id: string;
@@ -21,10 +23,52 @@ interface BlogPost {
 }
 
 const BlogPage = () => {
+  const scrollTrackedRef = useRef<Set<number>>(new Set());
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    captureUTM();
+    trackEvent("page_view", {
+      page: "blogs",
+      title: "Blogs - ScaleX"
+    });
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const button = target.closest('button, a');
+      if (button) {
+        trackEvent("click", {
+          element: button.tagName.toLowerCase(),
+          text: button.textContent?.trim() || '',
+          href: button.getAttribute('href'),
+          page: "blogs"
+        });
+      }
+    };
+
+    const handleScroll = () => {
+      const scrollPercentage = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
+          scrollTrackedRef.current.add(milestone);
+          trackEvent("scroll_depth", { depth: milestone, page: "blogs" });
+        }
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const blogCollection = collection(db, "blogs");

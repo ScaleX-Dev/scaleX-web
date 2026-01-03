@@ -1,15 +1,58 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { auth } from "@/lib/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Metadata from "@/components/Metadata";
+import { trackEvent } from "@/utils/events";
+import { captureUTM } from "@/utils/attribution";
 
 const Login = () => {
+  const scrollTrackedRef = useRef<Set<number>>(new Set());
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    captureUTM();
+    trackEvent("page_view", {
+      page: "login",
+      title: "Login - ScaleX"
+    });
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const button = target.closest('button, a');
+      if (button) {
+        trackEvent("click", {
+          element: button.tagName.toLowerCase(),
+          text: button.textContent?.trim() || '',
+          href: button.getAttribute('href'),
+          page: "login"
+        });
+      }
+    };
+
+    const handleScroll = () => {
+      const scrollPercentage = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
+          scrollTrackedRef.current.add(milestone);
+          trackEvent("scroll_depth", { depth: milestone, page: "login" });
+        }
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,11 +1,71 @@
 'use client'
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import Metadata from "@/components/Metadata";
+import { trackEvent } from "@/utils/events";
+import { captureUTM } from "@/utils/attribution";
 
 const AboutUs = () => {
+  const scrollTrackedRef = useRef<Set<number>>(new Set());
+
+  useEffect(() => {
+    // Capture UTM parameters
+    captureUTM();
+
+    // Track page view
+    trackEvent("page_view", {
+      page: "about",
+      title: "About Us - ScaleX"
+    });
+
+    // Auto button/link tracking
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const button = target.closest('button, a');
+      
+      if (button) {
+        const tagName = button.tagName.toLowerCase();
+        const text = button.textContent?.trim() || '';
+        const href = button.getAttribute('href');
+        
+        trackEvent("click", {
+          element: tagName,
+          text,
+          href,
+          page: "about"
+        });
+      }
+    };
+
+    // Scroll depth tracking
+    const handleScroll = () => {
+      const scrollPercentage = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+
+      const milestones = [25, 50, 75, 100];
+      milestones.forEach((milestone) => {
+        if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
+          scrollTrackedRef.current.add(milestone);
+          trackEvent("scroll_depth", {
+            depth: milestone,
+            page: "about"
+          });
+        }
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
         <Metadata
