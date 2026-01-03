@@ -332,6 +332,7 @@ const PrivacyPolicy = () => {
 
     <Footer />
   </div>
-);
+  );
+};
 
 export default PrivacyPolicy;
