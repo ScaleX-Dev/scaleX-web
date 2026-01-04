@@ -1,16 +1,63 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Metadata from "@/components/Metadata";
 import Link from "next/link";
+import { trackEvent } from "@/utils/events";
+import { captureUTM } from "@/utils/attribution";
 
 import { useSearchParams } from "next/navigation";
 
 export default function ThankYouClient() {
+  const scrollTrackedRef = useRef<Set<number>>(new Set());
   const searchParams = useSearchParams();
   const submitted = searchParams.get("submitted");
 
   const isSubmitted = submitted?.toLowerCase() === "true";
+
+  useEffect(() => {
+    if (isSubmitted) {
+      captureUTM();
+      trackEvent("page_view", {
+        page: "thankyou",
+        title: "Thank you - ScaleX"
+      });
+
+      const handleClick = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        const button = target.closest('button, a');
+        if (button) {
+          trackEvent("click", {
+            element: button.tagName.toLowerCase(),
+            text: button.textContent?.trim() || '',
+            href: button.getAttribute('href'),
+            page: "thankyou"
+          });
+        }
+      };
+
+      const handleScroll = () => {
+        const scrollPercentage = Math.round(
+          (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+        );
+        [25, 50, 75, 100].forEach((milestone) => {
+          if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
+            scrollTrackedRef.current.add(milestone);
+            trackEvent("scroll_depth", { depth: milestone, page: "thankyou" });
+          }
+        });
+      };
+
+      document.addEventListener('click', handleClick);
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        document.removeEventListener('click', handleClick);
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [isSubmitted]);
 
   if (typeof window !== "undefined" && !isSubmitted) {
     window.location.replace("/");

@@ -1,13 +1,16 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { db } from "@/lib/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { Switch } from "@headlessui/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Metadata from "@/components/Metadata";
+import { trackEvent } from "@/utils/events";
+import { captureUTM } from "@/utils/attribution";
 
 export default function Example() {
+  const scrollTrackedRef = useRef<Set<number>>(new Set());
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +24,46 @@ export default function Example() {
   });
 
   const [alertMessage, setAlertMessage] = useState("");
+
+  useEffect(() => {
+    captureUTM();
+    trackEvent("page_view", {
+      page: "contact",
+      title: "Contact Us - ScaleX"
+    });
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const button = target.closest('button, a');
+      if (button) {
+        trackEvent("click", {
+          element: button.tagName.toLowerCase(),
+          text: button.textContent?.trim() || '',
+          href: button.getAttribute('href'),
+          page: "contact"
+        });
+      }
+    };
+
+    const handleScroll = () => {
+      const scrollPercentage = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
+          scrollTrackedRef.current.add(milestone);
+          trackEvent("scroll_depth", { depth: milestone, page: "contact" });
+        }
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

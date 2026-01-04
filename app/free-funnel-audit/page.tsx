@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useRef } from "react";
 import {
   CheckCircle,
   Rocket,
@@ -23,9 +24,62 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Metadata from "@/components/Metadata";
 import Image from "next/image";
+import { trackEvent } from "@/utils/events";
+import { captureUTM } from "@/utils/attribution";
+// Use Recharts (maintained) for the funnel visualization.
+import {
+  ResponsiveContainer,
+  FunnelChart as RechartsFunnelChart,
+  Funnel as RechartsFunnel,
+  Tooltip as RechartsTooltip,
+  LabelList,
+  Cell,
+} from "recharts";
 
 // Main Page Component
 export default function FunnelAuditPage() {
+  const scrollTrackedRef = useRef<Set<number>>(new Set());
+
+  useEffect(() => {
+    captureUTM();
+    trackEvent("page_view", {
+      page: "free-funnel-audit",
+      title: "Free Funnel Audit - ScaleX"
+    });
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const button = target.closest('button, a');
+      if (button) {
+        trackEvent("click", {
+          element: button.tagName.toLowerCase(),
+          text: button.textContent?.trim() || '',
+          href: button.getAttribute('href'),
+          page: "free-funnel-audit"
+        });
+      }
+    };
+
+    const handleScroll = () => {
+      const scrollPercentage = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      [25, 50, 75, 100].forEach((milestone) => {
+        if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
+          scrollTrackedRef.current.add(milestone);
+          trackEvent("scroll_depth", { depth: milestone, page: "free-funnel-audit" });
+        }
+      });
+    };
+
+    document.addEventListener('click', handleClick);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <main className=" text-gray-300 font-sans">
         <Metadata
