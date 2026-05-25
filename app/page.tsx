@@ -1,15 +1,14 @@
 'use client'
 import { useEffect, useRef } from "react";
-import Hero from "@/components/Hero"
-import LandingAbout from "@/components/LandingAbout"
-import Services from "@/components/Services"
-import HorizontalScrollComponent from "@/components/HorizontalProjects"
-// import Projects from "../components/Projects"
-import Faq from "@/components/Faq"
-import Testimonials from "@/components/Testimonials"
-import BlogCards from "@/components/BlogCards"
-import Footer from "@/components/Footer"
-import Metadata from "@/components/Metadata"
+import Hero from "@/components/Hero";
+import Clients from "@/components/Clients";
+import ProcessPath from "@/components/ProcessPath";
+import Services from "@/components/Services";
+import FieldNotes from "@/components/FieldNotes";
+import TwoWays from "@/components/TwoWays";
+import ConversationCTA from "@/components/ConversationCTA";
+import Footer from "@/components/Footer";
+import Metadata from "@/components/Metadata";
 import { trackEvent } from "@/utils/events";
 import { captureUTM } from "@/utils/attribution";
 
@@ -59,18 +58,17 @@ const LandingPage = () =>{
     return(
         <>
             <Metadata
-              title="ScaleX - Your Partner in Digital Marketing"
-              description="ScaleX combines AI-driven insights with expert marketing solutions to drive exponential business growth, spanning all stages of business from idea to implementation."
+              title="ScaleX — Marketing, Branding & Design"
+              description="We are a World-Class marketing, branding, and design partner for B2B and B2C service businesses across Sri Lanka and the UAE. Built to close the gap between the business and how it shows up online."
               twitterCard="summary_large_image"
             />
             <Hero />
-            <LandingAbout />
+            <Clients />
+            <ProcessPath />
             <Services />
-            <HorizontalScrollComponent />
-            {/* <Projects /> */}
-            <Testimonials />
-            <Faq />
-            <BlogCards />
+            <FieldNotes />
+            <TwoWays />
+            <ConversationCTA />
             <Footer />
         </>
     )
