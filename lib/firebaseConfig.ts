@@ -13,11 +13,18 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase for client-side rendering
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+// Only initialize when a valid API key is present.
+// During Next.js static prerendering the NEXT_PUBLIC_* vars may be absent,
+// so we skip initialization to avoid a FirebaseError at build time.
+const hasConfig = !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+const app = hasConfig
+  ? (!getApps().length ? initializeApp(firebaseConfig) : getApp())
+  : null;
 
-const db = getFirestore(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
+// Cast to the real types — all usages are inside useEffect / event handlers
+// (client-only), so these will never be null at runtime.
+const db = app ? getFirestore(app) : null as unknown as ReturnType<typeof getFirestore>;
+const auth = app ? getAuth(app) : null as unknown as ReturnType<typeof getAuth>;
+const storage = app ? getStorage(app) : null as unknown as ReturnType<typeof getStorage>;
 
 export { app, auth, db, storage, collection, getDocs, onSnapshot };
