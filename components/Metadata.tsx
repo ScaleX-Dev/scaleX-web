@@ -1,5 +1,5 @@
 'use client'
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 interface MetadataProps {
     title?: string;
@@ -7,22 +7,30 @@ interface MetadataProps {
     twitterCard?: string;
 }
 
+const setMeta = (name: string, content: string) => {
+  let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.name = name;
+    document.head.appendChild(el);
+  }
+  el.content = content;
+};
+
 const Metadata: React.FC<MetadataProps> = ({
   title = 'ScaleX - Your Partner in Digital Marketing',
   description = 'ScaleX combines AI-driven insights with expert marketing solutions to drive exponential business growth, spanning all stages of business from idea to implementation.',
   twitterCard = 'summary_large_image',
 }) => {
-  return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      
-      {/* Twitter metadata */}
-      <meta name="twitter:card" content={twitterCard} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-    </Helmet>
-  );
+  useEffect(() => {
+    document.title = title;
+    setMeta('description', description);
+    setMeta('twitter:card', twitterCard);
+    setMeta('twitter:title', title);
+    setMeta('twitter:description', description);
+  }, [title, description, twitterCard]);
+
+  return null;
 };
 
 export default Metadata;
