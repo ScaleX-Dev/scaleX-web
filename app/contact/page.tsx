@@ -101,230 +101,179 @@ export default function Example() {
   };
 
   return (
-    <div className="isolate bg-[#FAFAFA]">
+    <div className="bg-[#0c0d0e] min-h-screen relative overflow-hidden">
       <Metadata
-        title="Contact Us - ScaleX"
+        title="Contact Us — ScaleX"
         description="Get in touch with ScaleX for your digital marketing needs."
+      />
+
+      {/* Ambient glow */}
+      <div className="absolute top-[5%] left-[10%] w-[700px] h-[500px] bg-[#00ff81]/[0.05] rounded-full blur-[150px] pointer-events-none" />
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.025) 1.2px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          maskImage: "radial-gradient(ellipse 70% 50% at 40% 20%, black 10%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 50% at 40% 20%, black 10%, transparent 100%)",
+        }}
       />
 
       <Navbar />
 
-      {/* Background Shape */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-      >
-        <div
-          className="relative left-1/2 -z-10 aspect-[1155/678] w-[36rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72rem]"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-32 relative z-10">
+        {/* Header */}
+        <div className="mb-16">
+          <p className="text-[11px] font-mono text-[#00ff81]/60 tracking-[0.25em] uppercase mb-6">
+            Get in touch
+          </p>
+          <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] text-white mb-6">
+            Want to build something<br />
+            <span className="text-white/25">great together?</span>
+          </h1>
+          <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
+            Let&apos;s hop on a free discovery call and explore how we can create real results for your business.
+          </p>
+        </div>
 
-      {/* Header */}
-      <div className="mx-auto max-w-3xl text-center pt-32">
-        <h2 className="text-4xl font-semibold text-gray-900 sm:text-5xl">
-          Contact us
-        </h2>
-        <p className="mt-10 text-lg leading-8 text-gray-600">
-          Want to build something great together?
-          <br />
-          Let's hop on a free discovery call and explore how we can create impactful synergies.
-        </p>
-      </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="max-w-2xl">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
 
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="mx-auto my-16 max-w-2xl sm:mt-20">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {/* First Name */}
-          <div>
-            <label
-              htmlFor="first-name"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              First name <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              id="first-name"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Last Name */}
-          <div>
-            <label
-              htmlFor="last-name"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Last name <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              id="last-name"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Email */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Email <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Company */}
-          <div>
-            <label
-              htmlFor="company"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Company <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              id="company"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              required
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Company URL */}
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="company-url"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Company URL
-            </label>
-            <input
-              id="company-url"
-              name="companyUrl"
-              type="url"
-              placeholder="https://"
-              value={formData.companyUrl}
-              onChange={handleChange}
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Phone */}
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="phone-number"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Phone number <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              id="phone-number"
-              name="phoneNumber"
-              placeholder="123-456-7890"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              required
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Goal */}
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="goal"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Goal <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              id="goal"
-              name="goal"
-              value={formData.goal}
-              onChange={handleChange}
-              required
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Message */}
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="message"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              value={formData.message}
-              onChange={handleChange}
-              className="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 ring-1 ring-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600"
-            />
-          </div>
-
-          {/* Switch */}
-          <div className="flex items-center gap-x-4 sm:col-span-2">
-            <Switch
-              checked={formData.agreed}
-              onChange={handleSwitchChange}
-              className="group relative inline-flex h-6 w-11 rounded-full bg-gray-200 ring-1 ring-gray-900/5 transition-colors duration-200 ease-in-out focus:outline-none data-[checked]:bg-primary-green"
-            >
-              <span className="sr-only">Agree to policies</span>
-              <span
-                aria-hidden="true"
-                className="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white ring-1 ring-gray-900/5 transition duration-200 ease-in-out translate-x-1 group-data-[checked]:translate-x-6"
+            {/* First Name */}
+            <div>
+              <label htmlFor="first-name" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                First name <span className="text-[#00ff81]">*</span>
+              </label>
+              <input
+                id="first-name" name="firstName" value={formData.firstName}
+                onChange={handleChange} required
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
               />
-            </Switch>
-            <span className="text-sm text-gray-600">
-              Please note that your email may be used for marketing purposes. You may opt-out at any time.
-            </span>
-          </div>
-        </div>
+            </div>
 
-        {/* Alert */}
-        {alertMessage && (
-          <div
-            className={`my-4 text-center text-lg font-semibold ${
-              alertMessage.includes("Error") ? "text-red-600" : "text-green-600"
-            }`}
-          >
-            {alertMessage}
-          </div>
-        )}
+            {/* Last Name */}
+            <div>
+              <label htmlFor="last-name" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Last name <span className="text-[#00ff81]">*</span>
+              </label>
+              <input
+                id="last-name" name="lastName" value={formData.lastName}
+                onChange={handleChange} required
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
+              />
+            </div>
 
-        {/* Submit Button */}
-        <div className="mt-10">
-          <button
-            type="submit"
-            className="w-full rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-900 focus:ring-2 focus:ring-indigo-600"
-          >
-            Let’s talk
-          </button>
-        </div>
-      </form>
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Email <span className="text-[#00ff81]">*</span>
+              </label>
+              <input
+                id="email" name="email" type="email" value={formData.email}
+                onChange={handleChange} required
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
+              />
+            </div>
+
+            {/* Company */}
+            <div>
+              <label htmlFor="company" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Company <span className="text-[#00ff81]">*</span>
+              </label>
+              <input
+                id="company" name="company" value={formData.company}
+                onChange={handleChange} required
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
+              />
+            </div>
+
+            {/* Company URL */}
+            <div className="sm:col-span-2">
+              <label htmlFor="company-url" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Company URL
+              </label>
+              <input
+                id="company-url" name="companyUrl" type="url" placeholder="https://"
+                value={formData.companyUrl} onChange={handleChange}
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
+              />
+            </div>
+
+            {/* Phone */}
+            <div className="sm:col-span-2">
+              <label htmlFor="phone-number" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Phone number <span className="text-[#00ff81]">*</span>
+              </label>
+              <input
+                id="phone-number" name="phoneNumber" placeholder="123-456-7890"
+                value={formData.phoneNumber} onChange={handleChange} required
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
+              />
+            </div>
+
+            {/* Goal */}
+            <div className="sm:col-span-2">
+              <label htmlFor="goal" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Your goal <span className="text-[#00ff81]">*</span>
+              </label>
+              <input
+                id="goal" name="goal" value={formData.goal}
+                onChange={handleChange} required
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all"
+              />
+            </div>
+
+            {/* Message */}
+            <div className="sm:col-span-2">
+              <label htmlFor="message" className="block text-xs font-mono text-white/40 tracking-[0.15em] uppercase mb-2">
+                Message
+              </label>
+              <textarea
+                id="message" name="message" rows={4}
+                value={formData.message} onChange={handleChange}
+                className="block w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00ff81]/50 focus:bg-white/[0.06] transition-all resize-none"
+              />
+            </div>
+
+            {/* Privacy toggle */}
+            <div className="flex items-center gap-x-4 sm:col-span-2">
+              <Switch
+                checked={formData.agreed}
+                onChange={handleSwitchChange}
+                className="group relative inline-flex h-6 w-11 rounded-full bg-white/10 ring-1 ring-white/10 transition-colors duration-200 ease-in-out focus:outline-none data-[checked]:bg-[#00ff81]"
+              >
+                <span className="sr-only">Agree to policies</span>
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white ring-1 ring-white/10 transition duration-200 ease-in-out translate-x-1 group-data-[checked]:translate-x-6 mt-1"
+                />
+              </Switch>
+              <span className="text-xs text-white/30 leading-relaxed">
+                Your email may be used for marketing purposes. You may opt-out at any time.
+              </span>
+            </div>
+          </div>
+
+          {/* Alert */}
+          {alertMessage && (
+            <div className={`my-5 text-sm font-mono ${alertMessage.includes("Error") ? "text-red-400" : "text-[#00ff81]"}`}>
+              {alertMessage}
+            </div>
+          )}
+
+          {/* Submit */}
+          <div className="mt-8">
+            <button
+              type="submit"
+              className="bg-white text-black text-sm font-medium px-8 py-3.5 rounded-full hover:bg-[#00ff81] transition-all duration-300"
+            >
+              Send message
+            </button>
+          </div>
+        </form>
+      </div>
 
       <Footer />
     </div>

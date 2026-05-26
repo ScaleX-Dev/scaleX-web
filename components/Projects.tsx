@@ -17,7 +17,7 @@ const clients = [
     video:
       "https://res.cloudinary.com/drj8voqyf/video/upload/v1741641974/Third_15_secs_rr6vt2.mp4",
     thumbnail:
-      "https://res.cloudinary.com/drj8voqyf/video/upload/w_1000,h_800,c_fill,so_5.5/Third_15_secs_rr6vt2.jpg  ",
+      "https://res.cloudinary.com/drj8voqyf/video/upload/w_1000,h_800,c_fill,so_5.5/Third_15_secs_rr6vt2.jpg",
   },
   {
     category: "SEO Optimization",
