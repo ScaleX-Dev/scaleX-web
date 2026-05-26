@@ -52,32 +52,46 @@ const AppointmentScheduler = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
-        <Metadata
-            title="Book an Appointment - ScaleX"
-            description="Schedule a meeting with the ScaleX team to discuss your business growth."
-        />
+    <div className="bg-[#0c0d0e] min-h-screen flex flex-col relative overflow-hidden">
+      <Metadata
+        title="Book an Appointment — ScaleX"
+        description="Schedule a free discovery call with the ScaleX team to discuss your business growth."
+      />
+
+      {/* Ambient glow */}
+      <div className="absolute top-[10%] right-[5%] w-[600px] h-[500px] bg-[#00ff81]/[0.06] rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.025) 1.2px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          maskImage: "radial-gradient(ellipse 80% 50% at 60% 20%, black 10%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 50% at 60% 20%, black 10%, transparent 100%)",
+        }}
+      />
+
       <Navbar />
 
-      {/* Background Shape */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-      >
-        <div
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-          className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-        />
-      </div>
+      {/* Hero */}
+      <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-12 relative z-10 w-full">
+        <p className="text-[11px] font-mono text-[#00ff81]/60 tracking-[0.25em] uppercase mb-6">
+          Book a Call
+        </p>
+        <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-4xl md:text-5xl lg:text-[3.5rem] text-white mb-6">
+          Let&apos;s start a<span className="hidden sm:inline"><br /></span>{" "}
+          <span className="text-white/25">conversation.</span>
+        </h1>
+        <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
+          A free 30-minute discovery call. We listen first, then tell you exactly how we can help — or whether we&apos;re the right fit.
+        </p>
+      </section>
 
-      {/* Appointment Scheduler */}
-      <div className="max-w-6xl mx-auto mt-28 mb-20">
-        <h1 className="text-3xl font-bold text-center mb-8">Book an Appointment</h1>
+      {/* Calendar */}
+      <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pb-32 relative z-10 w-full">
         <BookingCalendar />
-      </div>
+      </section>
 
       <Footer />
     </div>

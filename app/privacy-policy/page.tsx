@@ -51,38 +51,27 @@ const PrivacyPolicy = () => {
   }, []);
 
   return (
-  <div className="flex flex-col min-h-screen">
+  <div className="bg-[#FAFAFA] flex flex-col min-h-screen">
       <Metadata
         title="Privacy Policy - ScaleX"
         description="Read ScaleX's Privacy Policy to understand how we collect, use, and protect your personal information when you use our website."
       />
-    <div
-      aria-hidden="true"
-      className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-    >
-      <div
-        style={{
-          clipPath:
-            "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-        }}
-        className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-      />
-    </div>
     <Navbar />
 
-    <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-20">
-      <h1 className="text-4xl font-bold mb-2">Privacy Policy</h1>
-      <p className="italic text-gray-600 mb-6">Last Updated: Sep 17th, 2025</p>
+    <main className="flex-1 max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 pt-40 pb-24">
+      <p className="text-[11px] font-mono text-[#00ff81]/60 tracking-[0.25em] uppercase mb-5">Legal</p>
+      <h1 className="font-medium tracking-[-0.025em] leading-[1.05] text-[2.8rem] text-gray-900 mb-3">Privacy Policy</h1>
+      <p className="text-sm text-gray-400 mb-10">Last Updated: Sep 17th, 2025</p>
 
-      <p className="mb-6">
-        At <span className="font-semibold">ScaleX Global</span>, your privacy is
+      <p className="mb-6 text-gray-600 leading-relaxed">
+        At <span className="font-semibold text-gray-900">ScaleX Global</span>, your privacy is
         important to us. This Privacy Policy explains how we collect, use, and
         protect your personal information when you visit{" "}
         <Link
           href="https://scalex.global/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 underline hover:text-blue-800"
+          className="text-[#00a855] underline hover:opacity-70"
         >
           https://scalex.global/
         </Link>
@@ -92,9 +81,9 @@ const PrivacyPolicy = () => {
         in this Privacy Policy.
       </p>
 
-      <section className="space-y-8">
+      <section className="space-y-8 text-gray-600 leading-relaxed">
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             1. Information We Collect
           </h2>
           <p className="mb-3">
@@ -148,7 +137,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             2. How We Use Your Information
           </h2>
           <ul className="list-disc pl-6 space-y-1">
@@ -177,7 +166,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             3. Cookies and Tracking
           </h2>
           <p>We use cookies, tracking pixels, and similar technologies to:</p>
@@ -197,7 +186,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             4. Sharing of Information
           </h2>
           <p className="mb-2">
@@ -220,7 +209,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             5. Data Storage and Security
           </h2>
           <p>
@@ -230,7 +219,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">6. Data Retention</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">6. Data Retention</h2>
           <p>
             We retain your personal data only as long as necessary to fulfill
             the purposes outlined in this Privacy Policy, unless a longer
@@ -239,7 +228,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             7. Your Rights (GDPR &amp; UAE Compliance)
           </h2>
           <p className="mb-2">
@@ -259,7 +248,7 @@ const PrivacyPolicy = () => {
             To exercise your rights, please email us at{" "}
             <Link
               href="mailto:hello@scalex.global"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-[#00a855] underline hover:opacity-70"
             >
               hello@scalex.global
             </Link>
@@ -268,7 +257,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             8. International Data Transfers
           </h2>
           <p>
@@ -279,7 +268,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">9. Children’s Privacy</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">9. Children&apos;s Privacy</h2>
           <p>
             Our Website and services are not directed at individuals under 18.
             We do not knowingly collect data from minors.
@@ -287,7 +276,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">
             10. Updates to This Policy
           </h2>
           <p>
@@ -297,26 +286,24 @@ const PrivacyPolicy = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-3">11. Contact Us</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-3">11. Contact Us</h2>
           <p>
             If you have any questions or concerns about this Privacy Policy or
             how your information is handled, please contact us at:
           </p>
           <p className="mt-2">
-            📧{" "}
             <Link
               href="mailto:hello@scalex.global"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-[#00a855] underline hover:opacity-70"
             >
               hello@scalex.global
             </Link>
             <br />
-            🌐{" "}
             <Link
               href="https://scalex.global/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
+              className="text-[#00a855] underline hover:opacity-70"
             >
               https://scalex.global/
             </Link>
@@ -324,7 +311,7 @@ const PrivacyPolicy = () => {
         </div>
       </section>
 
-      <p className="mt-12 font-semibold">
+      <p className="mt-12 text-sm font-medium text-gray-500">
         ScaleX Global is committed to protecting your privacy while helping you
         scale with confidence.
       </p>

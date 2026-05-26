@@ -59,7 +59,7 @@ export default function Footer() {
               alt="ScaleX"
               width={88}
               height={25}
-              className="brightness-0 invert mb-3 opacity-90"
+              className="invert mb-3 opacity-90"
             />
             <p className="text-white/30 text-xs font-mono tracking-wide">
               Marketing, Branding & Design · Colombo & Galle, Sri Lanka.

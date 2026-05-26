@@ -52,29 +52,39 @@ const ProjectsPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="bg-[#FAFAFA] min-h-screen flex flex-col">
       <Metadata
-        title="Projects - ScaleX"
+        title="Case Studies — ScaleX"
         description="Explore our portfolio of successful digital marketing projects at ScaleX."
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-      >
-        <div
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-          className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-        />
-      </div>
       <Navbar />
       <main className="flex-grow">
-        <div className="mt-20">
-          <Projects />
-        </div>
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-[#FAFAFA]">
+          <div
+            className="absolute inset-0 pointer-events-none select-none"
+            style={{
+              backgroundImage: "radial-gradient(rgba(0,0,0,0.035) 1.2px, transparent 1px)",
+              backgroundSize: "22px 22px",
+              maskImage: "radial-gradient(ellipse 72% 58% at 50% 32%, black 15%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse 72% 58% at 50% 32%, black 15%, transparent 100%)",
+            }}
+          />
+          <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-16 relative z-10">
+            <p className="text-[11px] font-mono text-black/30 tracking-[0.25em] uppercase mb-6">
+              Our Work
+            </p>
+            <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4rem] text-[#0c0d0e] mb-6">
+              Work that speaks<span className="hidden sm:inline"><br /></span>{" "}
+              <span className="text-[#0c0d0e]/25">for itself.</span>
+            </h1>
+            <p className="text-black/45 text-sm md:text-base max-w-sm leading-relaxed">
+              A curated look at the brands we&apos;ve built, the campaigns we&apos;ve run, and the results that followed.
+            </p>
+          </div>
+        </section>
 
+        <Projects />
         <BlogSection />
       </main>
       <Footer />

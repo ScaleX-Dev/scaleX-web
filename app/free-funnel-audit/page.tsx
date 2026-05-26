@@ -81,23 +81,11 @@ export default function FunnelAuditPage() {
   }, []);
 
   return (
-    <main className=" text-gray-300 font-sans">
+    <main className="bg-[#0c0d0e] text-gray-300 font-sans">
         <Metadata
             title="Free Funnel Audit - ScaleX"
             description="Get a free audit of your sales funnel to optimize conversions and maximize revenue with ScaleX."
         />
-      <div
-        aria-hidden="true"
-        className="fixed inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-      >
-        <div
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-          className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-        />
-      </div>
       <Navbar />
       <HeroSection />
       <FunnelStatsSection />
@@ -115,34 +103,34 @@ export default function FunnelAuditPage() {
 // 1. Hero Section
 function HeroSection() {
   return (
-    <div className="container mx-auto px-6 py-24 md:pt-28 md:pb-24">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-24">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         {/* Left: Text Content */}
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3 text-[var(--color-primary-green)] bg-[#0e0e0e] rounded-full px-3 py-1 w-max">
-            <Rocket className="w-5 h-5" />
-            <span className="font-semibold tracking-wide uppercase">
+          <div className="flex items-center gap-3 text-[#00ff81] bg-white/[0.06] border border-white/[0.08] rounded-full px-4 py-1.5 w-max">
+            <Rocket className="w-4 h-4" />
+            <span className="text-xs font-mono tracking-[0.18em] uppercase">
               Free Funnel Audit
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-black tracking-tight">
+          <h1 className="font-medium tracking-[-0.025em] leading-[1.05] text-[2.4rem] md:text-[3rem] text-white">
             Turn More Traffic into UAE Real Estate Transactions.
           </h1>
-          <p className="text-lg text-gray-400">
+          <p className="text-white/40 text-sm md:text-base leading-relaxed">
             You already understand the buyer journey has changed — your funnel
-            should too. Fix what’s quietly leaking your sales.
+            should too. Fix what&apos;s quietly leaking your sales.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="/appointments"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-black bg-[var(--color-primary-green)] rounded-lg shadow-lg hover:bg-black hover:text-white transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white text-black text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#00ff81] transition-all duration-300"
             >
               Book My Free Funnel Audit
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4" />
             </a>
             <a
               href="#process"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-black bg-transparent border border-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-transparent text-white/60 text-sm border border-white/10 px-7 py-3.5 rounded-full hover:border-white/30 hover:text-white transition-all duration-300"
             >
               See the Process
             </a>
@@ -164,8 +152,8 @@ function HeroSection() {
               />
             </div>
             <div className="mt-4 text-center">
-              <h3 className="text-lg font-semibold text-black">Before Funnel</h3>
-              <p className="text-sm text-gray-500">High Traffic, Low Conversion</p>
+              <h3 className="text-lg font-semibold text-white">Before Funnel</h3>
+              <p className="text-sm text-white/40">High Traffic, Low Conversion</p>
             </div>
           </div>
           
@@ -182,8 +170,8 @@ function HeroSection() {
               />
             </div>
             <div className="mt-4 text-center">
-              <h3 className="text-lg font-semibold text-black">After Audit</h3>
-              <p className="text-sm text-gray-500">Optimized Flow, High Conversion</p>
+              <h3 className="text-lg font-semibold text-white">After Audit</h3>
+              <p className="text-sm text-white/40">Optimized Flow, High Conversion</p>
             </div>
           </div>
         </div>
@@ -210,21 +198,21 @@ function FunnelStatsSection() {
   ];
 
   return (
-    <div className="bg-[#111111] py-16">
-      <div className="container mx-auto px-6">
+    <div className="bg-[#111416] py-16 border-t border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="text-3xl font-medium text-white mb-6 tracking-tight">
               Here’s the reality most UAE real estate agents ignore...
             </h2>
             <div className="flex flex-col gap-4">
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 p-4 bg-[#313131] rounded-lg"
+                  className="flex items-center gap-4 p-4 bg-white/[0.04] border border-white/[0.06] rounded-xl"
                 >
-                  <stat.icon className="w-8 h-8 text-[var(--color-primary-green)] flex-shrink-0" />
-                  <p className="text-lg font-medium text-gray-300">
+                  <stat.icon className="w-7 h-7 text-[#00ff81] flex-shrink-0" />
+                  <p className="text-sm font-medium text-white/70">
                     {stat.text}
                   </p>
                 </div>
@@ -232,7 +220,7 @@ function FunnelStatsSection() {
             </div>
           </div>
           <div className="text-center md:text-left">
-            <h3 className="text-5xl font-bold text-[var(--color-primary-green)]">
+            <h3 className="text-5xl font-bold text-[#00ff81]">
               27 Months
             </h3>
             <p className="text-xl text-gray-300 mt-2">
@@ -275,14 +263,14 @@ function DiscoverSection() {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-16 pb-20">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 py-20">
       <div className="text-center max-w-3xl mx-auto">
-        <Lightbulb className="w-12 h-12 text-[var(--color-primary-green)] mx-auto mb-4" />
-        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+        <Lightbulb className="w-10 h-10 text-[#00ff81] mx-auto mb-4" />
+        <h2 className="font-medium tracking-tight text-3xl md:text-4xl text-white mb-4">
           What You’ll Discover
         </h2>
-        <p className="text-lg text-gray-600 mb-12">
-          This isn’t a surface-level review. It’s a strategic and sales
+        <p className="text-white/40 text-sm mb-12 leading-relaxed">
+          This isn&apos;t a surface-level review. It&apos;s a strategic and sales
           conversion audit — a full diagnosis of your marketing funnel with
           actionable recommendations to help you scale.
         </p>
@@ -291,10 +279,10 @@ function DiscoverSection() {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 p-5 bg-[#313131] rounded-lg"
+            className="flex items-center gap-4 p-5 bg-white/[0.04] border border-white/[0.06] rounded-xl"
           >
-            <feature.icon className="w-6 h-6 text-[var(--color-primary-green)] flex-shrink-0" />
-            <span className="text-gray-300">{feature.text}</span>
+            <feature.icon className="w-5 h-5 text-[#00ff81] flex-shrink-0" />
+            <span className="text-white/60 text-sm">{feature.text}</span>
           </div>
         ))}
       </div>
@@ -305,11 +293,11 @@ function DiscoverSection() {
 // 5. "Why This Audit Matters" Section
 function WhyAuditSection() {
   return (
-    <div className="bg-[#111111] py-16">
-      <div className="container mx-auto px-6">
+    <div className="bg-[#111416] py-20 border-t border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24">
         <div className="max-w-3xl mx-auto text-center">
-          <Search className="w-12 h-12 text-[var(--color-primary-green)] mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <Search className="w-10 h-10 text-[#00ff81] mx-auto mb-4" />
+          <h2 className="font-medium tracking-tight text-3xl md:text-4xl text-white mb-4">
             Why This Audit Matters
           </h2>
           <p className="text-lg text-gray-400">
@@ -345,29 +333,29 @@ function TestimonialsSection() {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-16">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 py-20">
       <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+        <h2 className="font-medium tracking-tight text-3xl md:text-4xl text-white mb-4">
           What Others Are Saying
         </h2>
-        <p className="text-gray-600 mb-12">
-          We've helped agents and marketing teams get clarity on their sales
-          funnel. Here's what they have to say.
+        <p className="text-white/40 text-sm mb-12 leading-relaxed">
+          We&apos;ve helped agents and marketing teams get clarity on their sales
+          funnel. Here&apos;s what they have to say.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-6">
         {testimonials.map((testimonial, index) => (
-          <div key={index} className="bg-[#313131] p-8 rounded-lg shadow-xl">
-            <p className="text-gray-300 italic text-lg mb-6">
-              "{testimonial.quote}"
+          <div key={index} className="bg-white/[0.04] border border-white/[0.06] p-8 rounded-2xl">
+            <p className="text-white/50 italic text-sm mb-6">
+              &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex items-center">
-              <div className="w-12 h-12 rounded-full mr-4 bg-gray-700 flex items-center justify-center font-bold text-white">
+              <div className="w-10 h-10 rounded-full mr-4 bg-white/10 flex items-center justify-center font-mono text-sm text-[#00ff81]">
                 {testimonial.name.charAt(0)}
               </div>
               <div>
-                <p className="font-bold text-white">{testimonial.name}</p>
-                <p className="text-sm text-gray-400">{testimonial.title}</p>
+                <p className="font-medium text-white text-sm">{testimonial.name}</p>
+                <p className="text-xs text-white/30">{testimonial.title}</p>
               </div>
             </div>
           </div>
@@ -398,18 +386,18 @@ function ProcessSection() {
   ];
 
   return (
-    <div id="process" className="bg-[#111111] py-20">
-      <div className="container mx-auto px-6">
+    <div id="process" className="bg-[#111416] py-20 border-t border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
+          <h2 className="font-medium tracking-tight text-3xl md:text-4xl text-white mb-12">
             What the Process Looks Like
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8 text-center">
           {steps.map((step, index) => (
             <div key={index} className="flex flex-col items-center">
-              <div className="text-5xl mb-4">{step.num}</div>
-              <h3 className="text-xl font-bold text-white mb-2">
+              <div className="text-4xl font-mono text-[#00ff81]/30 mb-4">{step.num}</div>
+              <h3 className="text-lg font-medium text-white mb-2">
                 {step.title}
               </h3>
               <p className="text-gray-400">{step.desc}</p>
@@ -439,12 +427,12 @@ function WhoIsForSection() {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-20">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 py-20">
       <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+        <h2 className="font-medium tracking-tight text-3xl md:text-4xl text-white mb-4">
           Who This Is For
         </h2>
-        <p className="text-lg text-gray-600 mb-12">
+        <p className="text-white/40 text-sm mb-12 leading-relaxed">
           This audit is ideal for professionals serious about scaling their
           impact in the UAE real estate market.
         </p>
@@ -453,10 +441,10 @@ function WhoIsForSection() {
         {targets.map((target, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 p-5 bg-[#333333] rounded-lg"
+            className="flex items-center gap-4 p-5 bg-white/[0.04] border border-white/[0.06] rounded-xl"
           >
-            <target.icon className="w-8 h-8 text-[var(--color-primary-green)] flex-shrink-0" />
-            <span className="text-lg text-gray-300">{target.text}</span>
+            <target.icon className="w-6 h-6 text-[#00ff81] flex-shrink-0" />
+            <span className="text-white/60 text-sm">{target.text}</span>
           </div>
         ))}
       </div>
@@ -467,26 +455,26 @@ function WhoIsForSection() {
 // 9. Final Call to Action Section
 function CtaSection() {
   return (
-    <div id="cta" className="bg-[#111111] py-20">
-      <div className="container mx-auto px-6">
-        <div className="bg-[#222222] shadow-2xl rounded-lg p-10 md:p-16 text-center max-w-4xl mx-auto">
-          <Clock className="w-12 h-12 text-[var(--color-primary-green)] mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <div id="cta" className="bg-[#111416] py-24 border-t border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24">
+        <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-10 md:p-16 text-center max-w-4xl mx-auto">
+          <Clock className="w-10 h-10 text-[#00ff81] mx-auto mb-4" />
+          <h2 className="font-medium tracking-tight text-3xl md:text-4xl text-white mb-4">
             Limited Complimentary Slots
           </h2>
-          <p className="text-lg text-gray-400 mb-8">
+          <p className="text-white/40 text-sm mb-8 leading-relaxed max-w-lg mx-auto">
             We conduct only a few audits each month to ensure every client
             receives a deep, data-driven review. Book your free session today
-            and discover exactly what’s holding your funnel back.
+            and discover exactly what&apos;s holding your funnel back.
           </p>
           <a
             href="/appointments"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold text-lg text-black bg-[var(--color-primary-green)] rounded-lg shadow-lg hover:bg-black hover:text-white transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-white text-black text-sm font-medium px-8 py-3.5 rounded-full hover:bg-[#00ff81] transition-all duration-300"
           >
             Book My Free Funnel Audit
           </a>
-          <p className="text-sm text-gray-500 mt-6">
-            100% Confidential | No Obligations | Real Insights
+          <p className="text-xs text-white/20 font-mono mt-6">
+            100% Confidential &nbsp;|&nbsp; No Obligations &nbsp;|&nbsp; Real Insights
           </p>
         </div>
       </div>

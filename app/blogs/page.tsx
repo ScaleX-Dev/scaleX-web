@@ -104,82 +104,85 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-        <Metadata
-            title="Blogs - ScaleX"
-            description="Read the latest insights, tips, and news from the ScaleX digital marketing team."
-        />
-      <Navbar />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-      >
-        <div
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-          className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#646464] to-[#00ff81] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-        />
-      </div>
-      <main className="w-full max-w-[1200px] mx-auto flex flex-col py-[150px] md:px-0 px-2.5 flex-grow">
-        <header className="flex items-center justify-between mb-5">
-          <h2 className="text-[34px] font-semibold tracking-[-0.5px] text-gray-900">
-            Blogs for you
-          </h2>
-        </header>
+    <div className="bg-[#0c0d0e] min-h-screen flex flex-col relative overflow-hidden">
+      <Metadata
+        title="Field Notes — ScaleX"
+        description="Read the latest insights, tips, and news from the ScaleX digital marketing team."
+      />
 
-        {error && <div className="text-center py-20 text-red-500">{error}</div>}
+      {/* Ambient glow */}
+      <div className="absolute top-[5%] right-[10%] w-[600px] h-[450px] bg-[#00ff81]/[0.05] rounded-full blur-[140px] pointer-events-none" />
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.025) 1.2px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          maskImage: "radial-gradient(ellipse 80% 45% at 60% 15%, black 10%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 45% at 60% 15%, black 10%, transparent 100%)",
+        }}
+      />
+
+      <Navbar />
+
+      {/* Hero */}
+      <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-16 relative z-10 w-full">
+        <p className="text-[11px] font-mono text-[#00ff81]/60 tracking-[0.25em] uppercase mb-6">
+          Field Notes
+        </p>
+        <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] text-white mb-6">
+          Ideas worth{" "}
+          <span className="text-white/25">reading.</span>
+        </h1>
+        <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
+          Marketing, branding, and design perspectives from the ScaleX team.
+        </p>
+      </section>
+
+      {/* Blog Grid */}
+      <main className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pb-32 relative z-10 w-full flex-grow">
+        {error && <div className="text-center py-20 text-red-400 font-mono text-sm">{error}</div>}
+
         {loading && (
-          <div className="flex justify-center items-center h-screen">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-primary-green border-solid"></div>
+          <div className="flex justify-center items-center py-32">
+            <div className="w-8 h-8 border-2 border-white/10 border-t-[#00ff81] rounded-full animate-spin" />
           </div>
         )}
+
         {!loading && !error && blogPosts.length > 0 && (
-          <ul className="flex flex-wrap gap-5 md:gap-[20px]">
-            {blogPosts.map((post, index) => (
-              <li
-                key={post.id}
-                className={`relative flex-none w-full sm:w-[40%] h-[420px] ${
-                  index % 4 === 0 || index % 4 === 3
-                    ? "md:w-[calc(60%-20px)]"
-                    : "md:w-[calc(40%-20px)]"
-                } ${post.dark ? "text-white" : ""}`}
-              >
-                <div
-                  className={`relative w-full h-full rounded-[20px] overflow-hidden ${
-                    post.dark ? "bg-black" : "bg-gray-100"
-                  }`}
-                >
-                  <div className="card-image-container h-full relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/20 to-transparent"></div>
-                    <img
-                      className="object-cover w-full h-full"
-                      src={post.coverImageUrl}
-                      alt={post.title || "Blog post cover"}
-                      style={post.imageStyle}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="absolute top-4 left-4 text-white">
-                    <span className="block text-sm uppercase font-regular text-primary-green w-auto">
-                      {post.category || "Uncategorized"}
-                    </span>
-                    <h2 className="text-2xl font-medium line-clamp-2 pr-3">
-                      {post.title || "Untitled"}
-                    </h2>
-                  </div>
-                  <button
-                    className="absolute inset-0 z-10"
-                    onClick={() => openBlog(post)}
-                    aria-label={`Open ${post.title || "blog post"}`}
-                  />
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {blogPosts.map((post) => (
+              <li key={post.id} className="group relative h-[380px] rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.06] cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-transparent z-10" />
+                <img
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  src={post.coverImageUrl}
+                  alt={post.title || "Blog post cover"}
+                  loading="lazy"
+                />
+                <div className="absolute top-5 left-5 z-20">
+                  <span className="text-[10px] font-mono text-[#00ff81] tracking-[0.2em] uppercase block mb-2">
+                    {post.category || "Uncategorized"}
+                  </span>
+                  <h2 className="text-white font-medium text-xl leading-snug line-clamp-2 max-w-[260px]">
+                    {post.title || "Untitled"}
+                  </h2>
                 </div>
+                <button
+                  className="absolute inset-0 z-30"
+                  onClick={() => openBlog(post)}
+                  aria-label={`Open ${post.title || "blog post"}`}
+                />
               </li>
             ))}
           </ul>
         )}
+
+        {!loading && !error && blogPosts.length === 0 && (
+          <p className="text-white/25 font-mono text-sm py-20 text-center">No posts yet — check back soon.</p>
+        )}
       </main>
+
       <Footer />
     </div>
   );
