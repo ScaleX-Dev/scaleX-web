@@ -4,96 +4,134 @@ import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const Hero = () => {
+const TICKER = [
+  "Performance Marketing", "Brand Identity", "Web Design",
+  "Growth Strategy", "Motion Design", "Content Strategy",
+  "Paid Media", "UI/UX Design", "Lead Generation", "SEO",
+  "Email Sequences", "Brand Voice",
+];
+
+const HEADLINE_LINES = [
+  {
+    segments: [
+      { text: "For businesses ", muted: false },
+      { text: "worth more than", muted: true },
+    ],
+  },
+  {
+    segments: [{ text: "their marketing shows.", muted: false }],
+  },
+];
+
+export default function Hero() {
   return (
-    <div className="bg-white relative overflow-hidden">
-      {/* Full-width black content container */}
-      <div className="w-full bg-black text-white relative">
-        {/* Background Video */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          autoPlay
-          loop
-          muted
-          playsInline
+    <div className="bg-[#FAFAFA] relative overflow-hidden min-h-screen flex flex-col z-10">
+      <Navbar />
+
+      {/* Subtle ambient green radial glow for positive, premium energy */}
+      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[700px] h-[550px] bg-[#00ff81]/[0.10] rounded-full blur-[140px] pointer-events-none select-none z-0" />
+
+      {/* Dot grid (Light variant) */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          backgroundImage: "radial-gradient(rgba(0,0,0,0.035) 1.2px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          maskImage:
+            "radial-gradient(ellipse 72% 58% at 50% 42%, black 15%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 72% 58% at 50% 42%, black 15%, transparent 100%)",
+        }}
+      />
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-36 pb-12 max-w-screen-xl mx-auto w-full relative z-10">
+        {/* Meta row */}
+        <motion.div
+          className="flex items-center justify-between mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <source
-            src="https://res.cloudinary.com/drj8voqyf/video/upload/v1743158159/scalex_bg_1_qjohfe.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+          <span className="text-[11px] font-mono text-black/35 tracking-[0.22em] uppercase">
+            Est. 2023 · Sri Lanka &amp; UAE
+          </span>
+        </motion.div>
 
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-green/10 to-transparent opacity-50 z-10" />
-
-        {/* Side Gradient Overlays with Blur (Vertically Centered) */}
-        <div
-          className="gradient-overlay left absolute top-1/2 left-0 h-[70vh] w-1/3 rounded-full blur-xl z-20 -ml-64 transform -translate-y-1/2"
-          style={{
-            background:
-              "radial-gradient(circle at left, rgba(74, 222, 128, 0.5), transparent)",
-          }}
-        />
-        <div
-          className="gradient-overlay right absolute top-1/2 right-0 h-[70vh] w-1/3 rounded-full blur-xl z-20 -mr-64 transform -translate-y-1/2"
-          style={{
-            background:
-              "radial-gradient(circle at right, rgba(74, 222, 128, 0.5), transparent)",
-          }}
-        />
-
-        {/* Navigation */}
-        <Navbar />
-
-        {/* Main content */}
-        <div className="text-center z-30 px-4 py-32 md:px-16 md:py-48 relative">
-          <motion.button
-            className="mb-6 md:mb-8 bg-gray-800/50 text-white px-4 py-1 rounded-full border-gray-700 hover:bg-gray-700 transition text-sm md:text-base inline-block"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          >
-            <span className="text-primary-green mr-2">⚡</span> Connect. Co-Create. Scale
-          </motion.button>
-
-          <motion.h1
-            className="text-4xl font-medium mb-6 md:text-6xl md:mb-8 text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-          >
-            Your Trusted
-            <br /> Growth Marketing Catalyst
-          </motion.h1>
-
-          <motion.p
-            className="text-gray-400 mb-8 max-w-2xl mx-auto text-sm md:text-base"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-          >
-            ScaleX combines AI-driven insights with expert marketing solutions
-            to drive exponential business growth, spanning all stages of
-            business from idea to implementation.
-          </motion.p>
-
-          <div className="space-x-4 mb-8 md:mb-12">
-            <Link href="/appointments" target="_blank">
-              <motion.button
-                className="bg-primary-green text-black px-4 py-2 rounded-full hover:bg-green-300 transition text-sm md:px-6 md:py-3 inline-block"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+        {/* Headline — line-by-line reveal */}
+        <div className="mb-14 relative">
+          {HEADLINE_LINES.map((line, i) => (
+            <div key={i} className="overflow-hidden">
+              <motion.span
+                className="block font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem]"
+                initial={{ y: "108%" }}
+                animate={{ y: "0%" }}
+                transition={{
+                  duration: 0.88,
+                  delay: 0.22 + i * 0.11,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               >
-                Schedule Call →
-              </motion.button>
+                {line.segments.map((seg, j) => (
+                  <span key={j} className={seg.muted ? "text-black/[0.24]" : "text-[#0c0d0e]"}>
+                    {seg.text}
+                  </span>
+                ))}
+              </motion.span>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom row: copy + CTAs */}
+        <motion.div
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.62, ease: "easeOut" }}
+        >
+          <p className="text-black/55 max-w-xs text-sm md:text-base leading-relaxed">
+            A World-Class marketing, branding, and design partner for B2B and B2C
+            service businesses across Sri Lanka and the UAE. Built to close the gap
+            between the business and how it shows up online.
+          </p>
+          <div className="flex flex-wrap gap-3 shrink-0">
+            <Link href="/appointments">
+              <button className="bg-black text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#00ff81] hover:text-black transition-all duration-300">
+                Book a discovery call
+              </button>
+            </Link>
+            <Link href="/blogs">
+              <button className="text-black text-sm font-medium px-7 py-3.5 rounded-full border border-black/15 hover:border-black/35 hover:bg-black/[0.04] transition-all duration-200">
+                See recent work →
+              </button>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Bottom service ticker */}
+      <motion.div
+        className="relative z-10 border-t border-black/[0.07] py-4 overflow-hidden select-none bg-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1.0 }}
+      >
+        <style>{`@keyframes ticker-ltr { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
+        <div
+          className="flex whitespace-nowrap"
+          style={{ animation: "ticker-ltr 32s linear infinite" }}
+        >
+          {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((item, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center gap-5 px-5 text-[10px] font-mono text-black/[0.38] tracking-[0.2em] uppercase"
+            >
+              {item}
+              <span className="text-[#00c85a] font-bold">·</span>
+            </span>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
-};
-
-export default Hero;
+}

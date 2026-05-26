@@ -9,96 +9,102 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 pt-5 justify-center items-center z-50">
       <div className="flex justify-center items-center z-[100]">
-        <div className="flex shadow-2xl bg-[#FAFAFA] rounded-full py-3 px-6 justify-between items-center w-full max-w-screen-lg">
+        <div className="flex shadow-sm bg-[#FAFAFA]/95 backdrop-blur-sm rounded-full py-3 px-6 justify-between items-center w-full max-w-screen-lg border border-black/5">
           <Link href="/">
-            <Image src="/logo.png" alt="Logo" width={90} height={25.5} />
+            <Image src="/logo.png" alt="ScaleX" width={90} height={25.5} />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden 900:flex space-x-6">
+          <div className="hidden 900:flex space-x-7">
             <Link
-              href="/"
-              className="hover:text-gray-300 text-sm font-regular text-black"
+              href="/marketing"
+              className="text-sm text-black/70 hover:text-black transition-colors"
             >
-              Home
+              Marketing
             </Link>
             <Link
-              href="/about"
-              className="hover:text-gray-300 text-sm font-regular text-black"
+              href="/branding-design"
+              className="text-sm text-black/70 hover:text-black transition-colors"
             >
-              Who We Are?
-            </Link>
-            <Link
-              href="/projects"
-              className="hover:text-gray-300 text-sm font-regular text-black"
-            >
-              Projects
+              Branding &amp; Design
             </Link>
             <Link
               href="/blogs"
-              className="hover:text-gray-300 text-sm font-regular text-black"
+              className="text-sm text-black/70 hover:text-black transition-colors"
             >
-              Blogs
+              Resources
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm text-black/70 hover:text-black transition-colors"
+            >
+              About
             </Link>
           </div>
 
-          {/* Contact Button & Mobile Menu Button */}
-          <div>
+          {/* CTA Button & Mobile Menu Button */}
+          <div className="flex items-center gap-3">
             <Link
-              href="/contact"
-              className="bg-primary-green text-black px-4 py-2 rounded-full hover:bg-green-300 transition text-sm md:px-6 hidden sm:inline"
+              href="/appointments"
+              className="bg-black text-white px-4 py-2 rounded-full hover:bg-black/80 transition text-sm md:px-5 hidden sm:inline"
             >
-              Contact Us
+              Book a discovery call
             </Link>
             {/* Hamburger Menu */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="900:hidden text-black p-2 transition-transform duration-300"
+              aria-label="Toggle menu"
             >
-              ☰
+              {isOpen ? "✕" : "☰"}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu with Slide & Fade Effect */}
+      {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed top-24 left-1/2 transform -translate-x-1/2 w-[90%] max-w-[320px] rounded-4xl bg-white shadow-md transition-all duration-200 ease-in-out ${
+        className={`900:hidden fixed top-24 left-1/2 transform -translate-x-1/2 w-[90%] max-w-[320px] rounded-2xl bg-white shadow-lg border border-black/5 transition-all duration-200 ease-in-out ${
           isOpen
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center space-y-4 py-4 w-full bg-white rounded-lg">
+        <div className="flex flex-col items-center space-y-4 py-6 w-full">
           <Link
-            href="/"
-            className="text-black text-sm font-medium hover:text-gray-500"
+            href="/marketing"
+            onClick={() => setIsOpen(false)}
+            className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
-            Home
+            Marketing
           </Link>
           <Link
-            href="/about"
-            className="text-black text-sm font-medium hover:text-gray-500"
+            href="/branding-design"
+            onClick={() => setIsOpen(false)}
+            className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
-            Who We Are?
-          </Link>
-          <Link
-            href="/projects"
-            className="text-black text-sm font-medium hover:text-gray-500"
-          >
-            Projects
+            Branding &amp; Design
           </Link>
           <Link
             href="/blogs"
-            className="text-black text-sm font-medium hover:text-gray-500"
+            onClick={() => setIsOpen(false)}
+            className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
-            Blogs
+            Field Notes
           </Link>
           <Link
-            href="/contact"
-            className="bg-primary-green text-black px-4 py-2 rounded-full hover:bg-green-300 transition text-sm"
+            href="/about"
+            onClick={() => setIsOpen(false)}
+            className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
-            Contact Us
+            About
+          </Link>
+          <Link
+            href="/appointments"
+            onClick={() => setIsOpen(false)}
+            className="bg-black text-white px-5 py-2 rounded-full hover:bg-black/80 transition text-sm"
+          >
+            Book a discovery call
           </Link>
         </div>
       </div>

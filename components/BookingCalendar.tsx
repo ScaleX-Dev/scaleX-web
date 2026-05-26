@@ -32,9 +32,6 @@ export default function BookingCalendar() {
   useEffect(() => {
     if (!selectedDay) return;
 
-    // Clear busy times on new day selection
-    setBusyTimes([]);
-
     // Fetch busy times from your API
     fetch(`/api/get-busy-times?date=${format(selectedDay, 'yyyy-MM-dd')}`)
       .then((res) => res.json())
@@ -42,7 +39,10 @@ export default function BookingCalendar() {
         // data.busySlots will be an array of ISO strings (e.g., "2025-11-20T09:00:00.000Z")
         setBusyTimes(data.busySlots || []);
       })
-      .catch((error) => console.error('Error fetching busy times:', error));
+      .catch((error) => {
+        console.error('Error fetching busy times:', error);
+        setBusyTimes([]);
+      });
   }, [selectedDay]);
 
   // Handle clicking a time slot
