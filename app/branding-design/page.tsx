@@ -7,34 +7,28 @@ import Footer from "@/components/Footer";
 
 const SERVICES = [
   {
-    tag: "IMAGES + VIDEO",
-    headline: "Brand storytelling that makes people choose you.",
-    body: "Most businesses sell features. We build the story that makes a customer decide before they've compared a price. Shot, directed, and edited to carry the brand across every channel.",
+    tag: "BRAND IDENTITY — system + guidelines",
+    headline: "An identity that survives contact with the real world.",
+    body: "Logos break. Fonts drift. Colours get approximated. We build identity systems with the rules, the assets, and the logic to hold together across every team, vendor, and surface — not just on a slide deck.",
     imageLeft: false,
   },
   {
-    tag: "WEBSITE",
-    headline: "A website that turns your brand into enquiries.",
-    body: "Not a portfolio piece. A conversion system built around how your customer actually decides. Every page earns its place by moving the visitor forward.",
+    tag: "WEB DESIGN — landing pages",
+    headline: "A website that sells, not just one that looks good.",
+    body: "We design websites the way your best salesperson operates — with a clear argument, the right evidence at the right moment, and a path that ends in a conversation.",
     imageLeft: true,
   },
   {
-    tag: "COPY + CREATIVE",
-    headline: "Content that carries the brand and does a job.",
-    body: "Content that sounds like the business, not like filler. Written for the channel, built around the brand, and planned to compound over time.",
+    tag: "PHOTO + VIDEO DIRECTION — cut + edit",
+    headline: "We run the brief, not the camera.",
+    body: "We direct the shoot to produce the images the website actually needs — not the hero shots the photographer wanted to take. Then we edit to brand, not to taste.",
     imageLeft: false,
   },
   {
-    tag: "META + GOOGLE",
-    headline: "Paid reach, measured to the enquiry.",
-    body: "Ads that speak to the right people with the right message at the right moment. Budgets tracked to outcomes — not impressions, not clicks. Enquiries.",
+    tag: "COLLATERAL — print + physical",
+    headline: "The brand, everywhere it lives offline.",
+    body: "Proposals, packaging, signage, print. Every physical touchpoint is an extension of the brand — and most businesses let it drift. We don't.",
     imageLeft: true,
-  },
-  {
-    tag: "PERFORMANCE > CRM",
-    headline: "A path from first touch to close, with nothing leaking.",
-    body: "Most businesses lose the lead after the first contact. We map the entire journey — from ad to booked call — and close the gaps where revenue disappears.",
-    imageLeft: false,
   },
 ];
 
@@ -52,7 +46,7 @@ function ImagePlaceholder({ tag }: { tag: string }) {
   );
 }
 
-export default function MarketingPage() {
+export default function BrandingDesignPage() {
   return (
     <div className="bg-[#0c0d0e] min-h-screen">
       <Navbar />
@@ -65,7 +59,7 @@ export default function MarketingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Marketing
+          Branding & Design
         </motion.p>
         <motion.h1
           className="text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem] font-medium text-white leading-[1.1] tracking-tight max-w-4xl mb-7"
@@ -73,7 +67,7 @@ export default function MarketingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.08 }}
         >
-          Brand-led marketing that makes you the{" "}
+          Brand and design that makes you the{" "}
           <span className="text-white/[0.22]">obvious choice.</span>
         </motion.h1>
         <motion.p
@@ -82,9 +76,8 @@ export default function MarketingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.18 }}
         >
-          It starts with a brand worth choosing — then the web, content, ads, and
-          automation that turn attention into enquiries. Built on storytelling and
-          behavioural science, and measured at every step.
+          Identity, web, photography and video direction, collateral — built so
+          your brand looks like the business you actually are. Led by Vishaka.
         </motion.p>
         <motion.div
           className="flex flex-wrap gap-3"
@@ -125,7 +118,7 @@ export default function MarketingPage() {
               <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[10px] border-l-white/50 ml-1" />
             </div>
             <p className="text-[11px] font-mono text-white/20 tracking-[0.2em] uppercase">
-              HERO VIDEO — marketing-led growth • always visible • endlessly multiplied
+              HERO VIDEO — design process cut • scroll-triggered identity reveals
             </p>
           </div>
         </motion.div>
@@ -150,8 +143,8 @@ export default function MarketingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Brand first.{" "}
-            <span className="text-white/[0.22]">Everything else amplifies it.</span>
+            From a single project to a brand{" "}
+            <span className="text-white/[0.22]">that scales.</span>
           </motion.h2>
           <motion.p
             className="text-base text-white/45 leading-relaxed"
@@ -160,11 +153,10 @@ export default function MarketingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.12 }}
           >
-            Most agencies start with tactics — a new website, some ads, a posting
-            schedule — and wonder why nothing compounds. We start with the brand:
-            the story, the positioning, the identity that makes a customer choose
-            you before they've compared a price. Then every channel amplifies that
-            brand instead of competing with it.
+            Whether you're launching a brand or rebuilding one that's drifted, the
+            work expands with you — and stays consistent across every surface, long
+            after we hand it over. We build identity systems made to survive real
+            use, not just look good in a pitch.
           </motion.p>
         </div>
       </section>
@@ -174,7 +166,7 @@ export default function MarketingPage() {
         {SERVICES.map((svc) => (
           <motion.div
             key={svc.tag}
-            className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center py-16 border-t border-white/[0.06]`}
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center py-16 border-t border-white/[0.06]"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -198,7 +190,7 @@ export default function MarketingPage() {
         ))}
       </section>
 
-      {/* TEAM STRIP */}
+      {/* ABOUT STRIP */}
       <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 py-24 border-t border-white/[0.06]">
         <div className="max-w-2xl">
           <motion.h2
@@ -208,31 +200,21 @@ export default function MarketingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            A small, senior team.{" "}
-            <span className="text-white/[0.22]">Close to the work.</span>
+            Design and marketing,{" "}
+            <span className="text-white/[0.22]">under one roof.</span>
           </motion.h2>
           <motion.p
-            className="text-base text-white/45 leading-relaxed mb-5"
+            className="text-base text-white/45 leading-relaxed"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            Where most agencies scale by adding headcount, we scale by staying
-            senior. You work with the people who actually do the work — no account
-            managers, no relay races, no junior hands on senior briefs. We take a
-            small number of clients at a time, because senior work done properly
-            does not stretch to hundreds.
-          </motion.p>
-          <motion.p
-            className="text-sm text-white/30 font-medium"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Trusted by established businesses across architecture, yacht management,
-            and hospitality.
+            Most agencies split brand from performance — and six months in, the
+            website and the feed look like two different companies. We build them
+            together. Vishaka leads the design, the marketing team operates inside
+            the system she builds. The brand stays the brand across every surface,
+            because the same team is responsible for all of it.
           </motion.p>
         </div>
       </section>
@@ -256,8 +238,8 @@ export default function MarketingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Ready to close{" "}
-            <span className="text-[#00ff81]">the gap?</span>
+            Building or rebuilding{" "}
+            <span className="text-[#00ff81]">the brand?</span>
           </motion.h2>
           <motion.p
             className="text-base text-white/40 leading-relaxed mb-9"
@@ -266,9 +248,9 @@ export default function MarketingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            Twenty minutes. Tell us where the business is and what's not working,
-            and we'll tell you honestly whether we're the right team to fix it. No
-            pitch, no obligation.
+            Twenty minutes. Tell us what you're building, and we'll tell you
+            honestly whether we're the right team and what the work would look like.
+            No pitch, no obligation.
           </motion.p>
           <motion.div
             className="flex flex-wrap gap-3"

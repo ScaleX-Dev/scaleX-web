@@ -3,76 +3,90 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const ConversationCTA = () => {
+export default function ConversationCTA() {
   return (
-    <section className="bg-[#FAFAFA] px-6 md:px-16 lg:px-24 py-16 max-w-screen-xl mx-auto w-full">
-      <div className="bg-black text-white rounded-3xl p-10 md:p-16 lg:p-20 relative overflow-hidden border border-white/5 shadow-2xl">
-        {/* Modern dark grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+    <section className="bg-[#0c0d0e] py-28 md:py-36 px-6 md:px-16 lg:px-24 relative overflow-hidden">
+      {/* Subtle green ambient glow */}
+      <div
+        className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(0,255,129,0.06), transparent 65%)",
+        }}
+      />
+      <div
+        className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(0,255,129,0.04), transparent 65%)",
+        }}
+      />
 
-        {/* Glowing backdrop animations */}
-        <motion.div
-          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-30 filter blur-[100px] pointer-events-none"
-          style={{ background: "radial-gradient(circle, #00ff81, transparent 70%)" }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.45, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full opacity-20 filter blur-[120px] pointer-events-none"
-          style={{ background: "radial-gradient(circle, #10b981, transparent 70%)" }}
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.35, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+      <div className="relative z-10 max-w-screen-xl mx-auto">
+        {/* Top label */}
+        <motion.span
+          className="text-[11px] font-mono text-[#00ff81]/60 tracking-[0.22em] uppercase mb-10 block"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Get Started
+        </motion.span>
 
-        <div className="relative z-10">
-          <motion.h2
-            className="text-4xl md:text-6xl lg:text-7xl font-medium text-white leading-[1.05] tracking-tight mb-6 max-w-3xl"
+        {/* Two-column layout: headline left, body+CTAs right */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 lg:gap-20">
+          {/* Left: Big headline */}
+          <motion.div
+            className="flex-1"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Start with a conversation.
-          </motion.h2>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[0.96] tracking-tight">
+              Start with a
+              <br />
+              <span className="text-[#00ff81]">conversation.</span>
+            </h2>
+          </motion.div>
 
-          <motion.p
-            className="text-white/60 text-base md:text-lg leading-relaxed mb-10 max-w-xl"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-          >
-            Twenty minutes to turn your business into the obvious choice. Tell us where things stand and what&apos;s not working, and we&apos;ll tell you honestly whether we&apos;re the right team to fix it.
-          </motion.p>
-
+          {/* Right: Body + CTAs */}
           <motion.div
-            className="flex flex-wrap gap-3"
-            initial={{ opacity: 0, y: 12 }}
+            className="lg:max-w-xs shrink-0"
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
           >
-            <Link href="/appointments">
-              <button className="bg-primary-green text-black px-6 py-3 rounded-full hover:bg-white transition text-sm font-medium">
-                Book a discovery call
-              </button>
-            </Link>
-            <Link href="/blogs">
-              <button className="bg-transparent text-white px-6 py-3 rounded-full border border-white/20 hover:border-white/50 transition text-sm font-medium">
-                Read recent field notes
-              </button>
-            </Link>
+            <p className="text-white/40 text-sm leading-relaxed mb-8">
+              Twenty minutes to turn your business into the obvious choice. Tell us where
+              things stand and what’s not working, and we’ll tell you honestly whether
+              we’re the right team to fix it.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/appointments">
+                <button className="bg-[#00ff81] text-black text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white transition-colors duration-200">
+                  Book a discovery call
+                </button>
+              </Link>
+              <Link href="/blogs">
+                <button className="text-white text-sm font-medium px-7 py-3.5 rounded-full border border-white/[0.12] hover:border-white/30 transition-colors duration-200">
+                  Read field notes →
+                </button>
+              </Link>
+            </div>
           </motion.div>
         </div>
+
+        {/* Bottom rule */}
+        <motion.div
+          className="mt-20 h-px bg-white/[0.06]"
+          initial={{ scaleX: 0, originX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.3, ease: "easeOut" }}
+          style={{ background: "linear-gradient(to right, rgba(0,255,129,0.3), rgba(0,255,129,0.05))" }}
+        />
       </div>
     </section>
   );
-};
-
-export default ConversationCTA;
+}

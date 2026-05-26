@@ -7,59 +7,126 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── Constellation (Marketing panel background) ───────── */
-const NODES = [
-  { x: 55, y: 35 }, { x: 145, y: 18 }, { x: 230, y: 55 },
-  { x: 310, y: 28 }, { x: 368, y: 82 }, { x: 330, y: 138 },
-  { x: 250, y: 152 }, { x: 162, y: 130 }, { x: 72, y: 138 },
-  { x: 30, y: 88 }, { x: 188, y: 82 }, { x: 288, y: 105 },
+/* ─── Campaign Flow (Marketing panel background) ──────── */
+// Hub-and-spoke: one central node + 7 channel satellites
+const HUB = { x: 200, y: 87 };
+const SATELLITES = [
+  { x: 58,  y: 28  },
+  { x: 190, y: 18  },
+  { x: 338, y: 32  },
+  { x: 368, y: 100 },
+  { x: 310, y: 152 },
+  { x: 95,  y: 155 },
+  { x: 28,  y: 105 },
 ];
-const CONNECTIONS = [
-  [0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,0],
-  [10,1],[10,2],[10,7],[10,11],[11,3],[11,4],[11,5],[0,10],[6,11],
-];
-const GREEN_NODES = new Set([1, 4, 10, 11]);
+const OUTER_LINKS = [[0,1],[1,2],[2,3],[5,6],[6,0]];
 
-function ConstellationSVG() {
+function CampaignFlow() {
   const [tick, setTick] = useState(0);
   const raf = useRef(0);
   useEffect(() => {
     let id: number;
-    const loop = () => { raf.current += 0.008; setTick(raf.current); id = requestAnimationFrame(loop); };
+    const loop = () => { raf.current += 0.014; setTick(raf.current); id = requestAnimationFrame(loop); };
     id = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(id);
   }, []);
-  const drifted = NODES.map((n, i) => ({
-    x: n.x + Math.sin(tick * 0.7 + i * 1.2) * 5,
-    y: n.y + Math.cos(tick * 0.5 + i * 0.9) * 4,
-  }));
+
+  // Hub broadcast rings
+  const HUB_RINGS = 3;
+  // Packet positions along each spoke (hub ↔ satellite)
+  const packets = SATELLITES.map((s, si) => {
+    const phase = ((tick * 0.55 + si * (1 / SATELLITES.length)) % 1);
+    return { x: HUB.x + (s.x - HUB.x) * phase, y: HUB.y + (s.y - HUB.y) * phase, op: Math.sin(phase * Math.PI) * 0.9 };
+  });
+  // Reverse packets (satellite → hub)
+  const rpackets = SATELLITES.map((s, si) => {
+    const phase = ((tick * 0.4 + si * (1 / SATELLITES.length) + 0.5) % 1);
+    return { x: s.x + (HUB.x - s.x) * phase, y: s.y + (HUB.y - s.y) * phase, op: Math.sin(phase * Math.PI) * 0.55 };
+  });
+
   return (
     <svg className="w-full h-full" viewBox="0 0 400 175" fill="none">
-      {CONNECTIONS.map(([a, b], i) => {
-        const na = drifted[a], nb = drifted[b];
-        const p = (Math.sin(tick * 1.5 + i * 0.6) + 1) / 2;
-        const isG = GREEN_NODES.has(a) || GREEN_NODES.has(b);
-        return <line key={i} x1={na.x} y1={na.y} x2={nb.x} y2={nb.y}
-          stroke={isG ? "#00ff81" : "rgba(255,255,255,0.18)"}
-          strokeWidth={isG ? 0.9 : 0.5} opacity={0.2 + p * 0.38} />;
-      })}
-      {drifted.map((n, i) => {
-        const g = GREEN_NODES.has(i);
-        const p = (Math.sin(tick * 2 + i * 0.8) + 1) / 2;
+      {/* Hub broadcast rings */}
+      {Array.from({ length: HUB_RINGS }, (_, ri) => {
+        const phase = ((tick * 0.5 + ri * (1 / HUB_RINGS)) % 1);
         return (
-          <g key={i}>
-            {g && <circle cx={n.x} cy={n.y} r={10 + p * 6} fill="#00ff81" opacity={0.05 + p * 0.08} />}
-            <circle cx={n.x} cy={n.y} r={g ? 2.5 + p * 1.5 : 2} fill={g ? "#00ff81" : "rgba(255,255,255,0.65)"} />
+          <circle key={`ring-${ri}`} cx={HUB.x} cy={HUB.y}
+            r={phase * 52} stroke="#00ff81" strokeWidth={0.8}
+            fill="none" opacity={(1 - phase) * 0.5} />
+        );
+      })}
+      {/* Spoke lines hub → satellite */}
+      {SATELLITES.map((s, i) => (
+        <line key={`spoke-${i}`} x1={HUB.x} y1={HUB.y} x2={s.x} y2={s.y}
+          stroke="#00ff81" strokeWidth={0.5}
+          opacity={0.15 + Math.sin(tick * 1.2 + i * 0.9) * 0.08} />
+      ))}
+      {/* Outer ring links */}
+      {OUTER_LINKS.map(([a, b], i) => {
+        const sa = SATELLITES[a], sb = SATELLITES[b];
+        return (
+          <line key={`outer-${i}`} x1={sa.x} y1={sa.y} x2={sb.x} y2={sb.y}
+            stroke="rgba(255,255,255,0.15)" strokeWidth={0.4}
+            opacity={0.12 + Math.sin(tick * 0.8 + i * 1.3) * 0.07} />
+        );
+      })}
+      {/* Outbound packets */}
+      {packets.map((p, i) => (
+        <circle key={`pkt-${i}`} cx={p.x} cy={p.y} r={2.2}
+          fill="#00ff81" opacity={p.op} />
+      ))}
+      {/* Return packets */}
+      {rpackets.map((p, i) => (
+        <circle key={`rpkt-${i}`} cx={p.x} cy={p.y} r={1.4}
+          fill="rgba(255,255,255,0.7)" opacity={p.op} />
+      ))}
+      {/* Satellite nodes */}
+      {SATELLITES.map((s, i) => {
+        const pulse = (Math.sin(tick * 1.8 + i * 0.7) + 1) / 2;
+        return (
+          <g key={`sat-${i}`}>
+            <circle cx={s.x} cy={s.y} r={6 + pulse * 4} fill="#00ff81" opacity={0.04 + pulse * 0.06} />
+            <circle cx={s.x} cy={s.y} r={2.2} fill="rgba(255,255,255,0.65)" />
           </g>
         );
       })}
-      <circle r="2.5" fill="#00ff81" opacity="0.9">
-        <animateMotion dur="4s" repeatCount="indefinite" path="M55,35 L145,18 L230,55 L188,82 L162,130 L72,138 L30,88 Z" />
-      </circle>
-      <circle r="1.5" fill="#00ff81" opacity="0.6">
-        <animateMotion dur="6.5s" repeatCount="indefinite" path="M310,28 L288,105 L330,138 L250,152 L188,82 Z" />
-      </circle>
+      {/* Hub node */}
+      <circle cx={HUB.x} cy={HUB.y} r={18 + Math.sin(tick * 1.1) * 4}
+        fill="#00ff81" opacity={0.07 + Math.sin(tick * 1.1) * 0.04} />
+      <circle cx={HUB.x} cy={HUB.y} r={5} fill="#00ff81" opacity={0.9} />
+      <circle cx={HUB.x} cy={HUB.y} r={3} fill="#00ff81" />
     </svg>
+  );
+}
+
+/* ─── Animated palette dots (Design panel) ─────────────── */
+function AnimatedPalette() {
+  const [tick, setTick] = useState(0);
+  const raf = useRef(0);
+  useEffect(() => {
+    let id: number;
+    const loop = () => { raf.current += 0.025; setTick(raf.current); id = requestAnimationFrame(loop); };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return (
+    <div className="srv-palette-dots flex flex-wrap gap-1.5 mb-6">
+      {PALETTE_DOTS.map((c, i) => {
+        const wave = Math.sin(tick * 1.2 + i * 0.42);
+        const scale = 1 + wave * 0.22;
+        const glow = 4 + wave * 6;
+        const glowAlpha = Math.round((0.45 + wave * 0.3) * 255).toString(16).padStart(2, "0");
+        return (
+          <div key={i} className="srv-palette-dot w-5 h-5 rounded-md flex-shrink-0"
+            style={{
+              background: c,
+              boxShadow: `0 2px ${glow}px ${c}${glowAlpha}`,
+              transform: `scale(${scale}) translateY(${-wave * 2}px)`,
+            }}
+          />
+        );
+      })}
+    </div>
   );
 }
 
@@ -146,13 +213,10 @@ const Services = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16">
           <div>
-            <span className="text-xs font-mono text-black/30 tracking-[0.2em] uppercase mb-5 block">
-              Our Capabilities
-            </span>
-            <h2 className="srv-header-title text-5xl md:text-7xl lg:text-8xl font-medium text-black leading-[0.88] tracking-tight">
-              12 services.
+            <h2 className="srv-header-title text-6xl md:text-8xl lg:text-[7.5rem] font-semibold tracking-tight leading-[0.88] uppercase">
+              Marketing
               <br />
-              <span className="text-black/30">2 disciplines.</span>
+              <span className="text-black/20">&amp; Design</span>
             </h2>
           </div>
           <p className="text-black/45 text-sm md:text-base max-w-xs leading-relaxed font-light md:text-right">
@@ -164,7 +228,7 @@ const Services = () => {
         <div className="srv-panels grid grid-cols-1 lg:grid-cols-2 gap-5">
 
           {/* ── Design Card ─────────────────────────────────── */}
-          <Link href="/design"
+          <Link href="/branding-design"
             className="srv-panel group relative bg-white rounded-3xl border border-black/[0.07] overflow-hidden flex flex-col transition-all duration-300 hover:border-black/20 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
           >
             {/* Top section */}
@@ -186,13 +250,8 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Palette dots */}
-              <div className="srv-palette-dots flex flex-wrap gap-1.5 mb-6">
-                {PALETTE_DOTS.map((c, i) => (
-                  <div key={i} className="srv-palette-dot w-5 h-5 rounded-md flex-shrink-0"
-                    style={{ background: c, boxShadow: `0 1px 6px ${c}50` }} />
-                ))}
-              </div>
+              {/* Animated palette dots */}
+              <AnimatedPalette />
 
               {/* Color swatches */}
               <div className="srv-swatches space-y-2 mb-0">
@@ -231,9 +290,9 @@ const Services = () => {
           <Link href="/marketing"
             className="srv-panel group relative bg-[#0c0d0e] rounded-3xl border border-white/[0.05] overflow-hidden flex flex-col transition-all duration-300 hover:border-[#00ff81]/25 hover:shadow-[0_8px_48px_rgba(0,255,129,0.07)]"
           >
-            {/* constellation bg */}
-            <div className="absolute inset-0 opacity-60 pointer-events-none">
-              <ConstellationSVG />
+            {/* campaign flow bg */}
+            <div className="absolute inset-0 opacity-70 pointer-events-none">
+              <CampaignFlow />
             </div>
             <div className="absolute inset-0 bg-gradient-to-b from-[#0c0d0e]/85 via-[#0c0d0e]/30 to-[#0c0d0e]/95 pointer-events-none" />
 
