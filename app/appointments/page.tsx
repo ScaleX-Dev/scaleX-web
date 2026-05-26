@@ -80,7 +80,7 @@ const AppointmentScheduler = () => {
           Book a Call
         </p>
         <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-4xl md:text-5xl lg:text-[3.5rem] text-white mb-6">
-          Let&apos;s start a<br />
+          Let&apos;s start a<span className="hidden sm:inline"><br /></span>{" "}
           <span className="text-white/25">conversation.</span>
         </h1>
         <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
@@ -92,8 +92,6 @@ const AppointmentScheduler = () => {
       <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pb-32 relative z-10 w-full">
         <BookingCalendar />
       </section>
-
-      <Footer />
 
       <Footer />
     </div>

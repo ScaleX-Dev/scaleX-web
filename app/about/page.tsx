@@ -240,8 +240,7 @@ const AboutUs = () => {
               Ready to start?
             </p>
             <h2 className="font-medium tracking-[-0.02em] text-3xl md:text-4xl text-white leading-tight">
-              Let&apos;s build something<br />
-              <span className="text-white/25">worth talking about.</span>
+              Let&apos;s build something              <span className="text-white/25">worth talking about.</span>
             </h2>
           </div>
           <Link href="/appointments">

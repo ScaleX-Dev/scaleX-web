@@ -75,7 +75,7 @@ const ProjectsPage = () => {
               Our Work
             </p>
             <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4rem] text-[#0c0d0e] mb-6">
-              Work that speaks<br />
+              Work that speaks<span className="hidden sm:inline"><br /></span>{" "}
               <span className="text-[#0c0d0e]/25">for itself.</span>
             </h1>
             <p className="text-black/45 text-sm md:text-base max-w-sm leading-relaxed">

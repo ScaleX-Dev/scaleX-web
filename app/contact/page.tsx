@@ -129,7 +129,7 @@ export default function Example() {
             Get in touch
           </p>
           <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] text-white mb-6">
-            Want to build something<br />
+            Want to build something<span className="hidden sm:inline"><br /></span>{" "}
             <span className="text-white/25">great together?</span>
           </h1>
           <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
