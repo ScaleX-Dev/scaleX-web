@@ -1,5 +1,6 @@
 'use client'
 import React from "react";
+import Link from "next/link";
 
 type ThankYouProps = {
     name?: string;
@@ -63,7 +64,7 @@ export default function ThankYou({
                         Back to home
                     </button>
                 ) : (
-                    <a
+                    <Link
                         href="/"
                         style={{
                             display: "inline-block",
@@ -75,7 +76,7 @@ export default function ThankYou({
                         }}
                     >
                         Back to home
-                    </a>
+                    </Link>
                 )}
 
                 <a
