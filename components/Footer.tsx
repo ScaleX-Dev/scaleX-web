@@ -37,7 +37,7 @@ const NAV = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0c0d0e] text-white relative overflow-hidden">
+    <footer className="bg-[#0c0d0e] text-white relative overflow-hidden z-0">
 
       {/* ── ZONE 1: Brand statement ── */}
       <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-20 pb-16 border-b border-white/[0.05]">
@@ -46,11 +46,11 @@ export default function Footer() {
           {/* Left: Identity */}
           <div>
             <Image
-              src="/logo.png"
+              src="/ScaleX%20Logo%20No%20BG.png"
               alt="ScaleX"
               width={88}
               height={25}
-              className="invert opacity-90 mb-7"
+              className="brightness-0 invert opacity-80 mb-7"
             />
             <p className="text-white/45 text-sm leading-relaxed max-w-[300px] mb-9">
               Brand-led marketing and design that makes you

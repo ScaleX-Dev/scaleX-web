@@ -6,32 +6,32 @@ const clients = [
   {
     no: "01",
     name: "Gallina Innovations",
-    type: "Architecture",
+    type: "Architecture practice.",
     initials: "GI",
     logo: "/logos/gallina-innovations.png",
     detail: "Thirty years in business.",
     problem:
-      "Three decades of legacy work behind a digital presence that did not carry the same weight. The quality was there. The online version of it was not.",
+      "Three decades of legacy work behind a digital presence that did not carry the same weight.",
   },
   {
     no: "02",
     name: "Magnate Yachts",
-    type: "Yacht Management",
+    type: "Sri Lanka's leading yacht management agency.",
     initials: "MY",
     logo: "/logos/magnate-yachts.png",
-    detail: "80% of Sri Lanka yacht arrivals.",
+    detail: "Handles 80% of yacht and superyacht arrivals into the country.",
     problem:
-      "A category-leading position in the market with a website that handed the advantage back to every competitor. Built to look good. Not built to convert.",
+      "A category-leading position in-market, a website that had not been built to reflect it.",
   },
   {
     no: "03",
     name: "Flour Dude",
-    type: "Café & Bakery",
+    type: "Five-star rated café and bakery.",
     initials: "FD",
     logo: "/logos/flour-dude.png",
-    detail: "5-star rated, Galle.",
+    detail: "The product had a five-star reputation.",
     problem:
-      "The product had a five-star reputation. The brand voice online read like every other coffee shop. Nothing in the marketing said why it deserved to be the first choice.",
+      "The marketing voice could have belonged to any café.",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function Clients() {
     <section className="bg-[#FAFAFA] py-24 w-full">
       <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 w-full">
         {/* Header */}
-        <div className="flex items-end justify-between mb-8 pb-8 border-b border-black/[0.07]">
+        <div className="flex items-end justify-between mb-10 pb-8 border-b border-black/[0.07]">
           <motion.h2
             className="text-2xl md:text-3xl font-medium text-black leading-snug max-w-md"
             initial={{ opacity: 0, y: 16 }}
@@ -63,32 +63,34 @@ export default function Clients() {
           </motion.span>
         </div>
 
-        {/* Client detail rows */}
-        <div className="mb-20">
+        {/* 3-col card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-20">
           {clients.map((client, i) => (
             <motion.div
               key={client.name}
-              className="group grid grid-cols-[28px_1fr] md:grid-cols-[28px_1fr_1fr] gap-6 md:gap-12 py-7 border-b border-black/[0.07] hover:bg-[#00ff81]/[0.03] transition-colors duration-300 -mx-3 px-3 rounded-lg border-l-2 border-l-transparent hover:border-l-[#00ff81]"
-              initial={{ opacity: 0, y: 14 }}
+              className="group bg-white border border-black/[0.08] rounded-2xl overflow-hidden hover:border-black/[0.14] hover:shadow-sm transition-all duration-300"
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.09, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
             >
-              <span className="text-[11px] font-mono text-black/25 group-hover:text-[#00b85a] pt-0.5 select-none tabular-nums transition-colors duration-300">
-                {client.no}
-              </span>
-              <div>
-                <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
-                  <h3 className="text-base font-semibold text-black">{client.name}</h3>
-                  <span className="text-[10px] font-mono text-black/40 bg-black/[0.06] px-2.5 py-0.5 rounded-full tracking-wide">
-                    {client.type}
-                  </span>
-                </div>
-                <p className="text-sm text-black/35">{client.detail}</p>
+              {/* Logo area */}
+              <div className="h-[88px] bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center">
+                <span className="text-[13px] font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none">
+                  {client.initials}
+                </span>
               </div>
-              <p className="hidden md:block text-sm text-black/50 leading-relaxed group-hover:text-black/70 transition-colors duration-300 pt-0.5">
-                {client.problem}
-              </p>
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-[15px] font-semibold text-black mb-1 leading-snug">
+                  {client.name}
+                </h3>
+                <p className="text-[13px] text-black/45 leading-snug mb-1">{client.type}</p>
+                <p className="text-[13px] text-black/35 mb-4">{client.detail}</p>
+                <p className="text-[13px] text-black/55 leading-relaxed border-t border-black/[0.06] pt-4">
+                  {client.problem}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

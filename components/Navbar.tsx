@@ -7,11 +7,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 pt-5 justify-center items-center z-50">
-      <div className="flex justify-center items-center z-[100]">
+    <nav className="fixed top-0 left-0 right-0 pt-5 justify-center items-center z-[100]">
+      <div className="flex justify-center items-center">
         <div className="flex shadow-sm bg-[#FAFAFA]/95 backdrop-blur-sm rounded-full py-3 px-6 justify-between items-center w-full max-w-screen-lg border border-black/5">
           <Link href="/">
-            <Image src="/logo.png" alt="ScaleX" width={90} height={25.5} />
+            <Image src="/ScaleX%20Logo%20No%20BG.png" alt="ScaleX" width={90} height={25.5} />
           </Link>
 
           {/* Desktop Nav */}
@@ -64,7 +64,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`900:hidden fixed top-24 left-1/2 transform -translate-x-1/2 w-[90%] max-w-[320px] rounded-2xl bg-white shadow-lg border border-black/5 transition-all duration-200 ease-in-out ${
+        className={`900:hidden fixed top-24 left-1/2 z-[100] transform -translate-x-1/2 w-[90%] max-w-[320px] rounded-2xl bg-white shadow-lg border border-black/5 transition-all duration-200 ease-in-out ${
           isOpen
             ? "opacity-100 scale-100"
             : "opacity-0 scale-95 pointer-events-none"
