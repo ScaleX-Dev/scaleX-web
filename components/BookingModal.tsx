@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { format } from 'date-fns';
 
 type Props = {
   isOpen: boolean;
@@ -30,8 +29,12 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
           phone,
           companyName,
           brief,
-          date: format(bookingTime, 'yyyy-MM-dd'),
-          startTime: format(bookingTime, 'HH:mm'),
+          date: bookingTime.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' }),
+          startTime: bookingTime.toLocaleTimeString('en-GB', {
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: 'Asia/Colombo',
+          }),
         }),
       });
     } catch (err) {
@@ -97,8 +100,27 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
         <p className="mb-4">
           You are booking for: <br />
           <strong className="text-black">
-            {format(bookingTime, 'eeee, MMMM d, yyyy')} at {format(bookingTime, 'h:mm aa')}
+            {bookingTime.toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              timeZone: 'Asia/Colombo',
+            })}{' '}
+            at{' '}
+            {bookingTime.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+              timeZone: 'Asia/Colombo',
+            })}{' '}
+            Sri Lanka Time
           </strong>
+          <br />
+          <span className="text-sm text-gray-500">
+            Your local time:{' '}
+            {bookingTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {' '}({Intl.DateTimeFormat().resolvedOptions().timeZone})
+          </span>
         </p>
 
         {error && <p className="text-red-500 mb-2">{error}</p>}

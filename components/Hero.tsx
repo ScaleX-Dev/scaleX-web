@@ -28,19 +28,27 @@ export default function Hero() {
     <div className="bg-[#FAFAFA] relative overflow-hidden min-h-screen flex flex-col z-10">
       <Navbar />
 
-      {/* Subtle ambient green radial glow for positive, premium energy */}
-      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[700px] h-[550px] bg-[#00ff81]/[0.10] rounded-full blur-[140px] pointer-events-none select-none z-0" />
+      {/* Strong green radial — large, centre-top, clearly visible */}
+      <div className="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[900px] h-[700px] bg-[#00ff81]/[0.28] rounded-full blur-[120px] pointer-events-none select-none z-0" />
 
-      {/* Dot grid (Light variant) */}
+      {/* Secondary smaller glow — bottom-left for depth */}
+      <div className="absolute bottom-[5%] left-[5%] w-[500px] h-[420px] bg-[#00ff81]/[0.14] rounded-full blur-[100px] pointer-events-none select-none z-0" />
+
+      {/* Full-coverage dot grid — strong enough to read against the light bg */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
-          backgroundImage: "radial-gradient(rgba(0,0,0,0.035) 1.2px, transparent 1px)",
-          backgroundSize: "22px 22px",
-          maskImage:
-            "radial-gradient(ellipse 72% 58% at 50% 42%, black 15%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 72% 58% at 50% 42%, black 15%, transparent 100%)",
+          backgroundImage: "radial-gradient(rgba(0,0,0,0.08) 1.4px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }}
+      />
+
+      {/* Vignette — darken edges slightly so content area pops */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 90% 85% at 50% 45%, transparent 55%, rgba(0,0,0,0.06) 100%)",
         }}
       />
 
@@ -73,7 +81,7 @@ export default function Hero() {
                 }}
               >
                 {line.segments.map((seg, j) => (
-                  <span key={j} className={seg.muted ? "text-black/[0.24]" : "text-[#0c0d0e]"}>
+                  <span key={j} className={seg.muted ? "text-[#00ff81]" : "text-[#0c0d0e]"}>
                     {seg.text}
                   </span>
                 ))}

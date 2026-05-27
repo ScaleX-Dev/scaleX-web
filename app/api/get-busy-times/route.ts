@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
-import { addDays, format } from 'date-fns';
+
+// Sri Lanka is UTC+5:30
+const SL_OFFSET_MS = 5.5 * 60 * 60 * 1000;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -26,11 +28,10 @@ export async function GET(request: Request) {
       throw new Error('Google Calendar ID is not set in .env.local');
     }
 
-    // Set timeMin to the start of the selected day (in local time)
-    const timeMin = new Date(`${date}T00:00:00`);
-    
-    // Set timeMax to the end of the selected day
-    const timeMax = new Date(`${date}T23:59:59`);
+    // Query the full SL day (UTC+5:30) converted to UTC
+    const [year, month, day] = date.split('-').map(Number);
+    const timeMin = new Date(Date.UTC(year, month - 1, day, 0, 0, 0) - SL_OFFSET_MS);
+    const timeMax = new Date(Date.UTC(year, month - 1, day, 23, 59, 59) - SL_OFFSET_MS);
 
     const response = await calendar.events.list({
       calendarId: calendarId,
