@@ -141,7 +141,7 @@ const AboutUs = () => {
           </div>
           <div className="overflow-hidden mb-12">
             <motion.h1
-              className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem] text-[#0c0d0e]/25"
+              className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem] text-[#00ff81]"
               initial={{ y: "108%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 0.88, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}

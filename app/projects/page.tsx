@@ -76,7 +76,7 @@ const ProjectsPage = () => {
             </p>
             <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4rem] text-[#0c0d0e] mb-6">
               Work that speaks<span className="hidden sm:inline"><br /></span>{" "}
-              <span className="text-[#0c0d0e]/25">for itself.</span>
+              <span className="text-[#00ff81]">for itself.</span>
             </h1>
             <p className="text-black/45 text-sm md:text-base max-w-sm leading-relaxed">
               A curated look at the brands we&apos;ve built, the campaigns we&apos;ve run, and the results that followed.

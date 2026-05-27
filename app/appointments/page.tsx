@@ -81,7 +81,7 @@ const AppointmentScheduler = () => {
         </p>
         <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-4xl md:text-5xl lg:text-[3.5rem] text-white mb-6">
           Let&apos;s start a<span className="hidden sm:inline"><br /></span>{" "}
-          <span className="text-white/25">conversation.</span>
+          <span className="text-[#00ff81]">conversation.</span>
         </h1>
         <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
           A free 30-minute discovery call. We listen first, then tell you exactly how we can help — or whether we&apos;re the right fit.
