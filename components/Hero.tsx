@@ -28,12 +28,6 @@ export default function Hero() {
     <div className="bg-[#FAFAFA] relative overflow-hidden min-h-screen flex flex-col z-10">
       <Navbar />
 
-      {/* Strong green radial — large, centre-top, clearly visible */}
-      <div className="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[900px] h-[700px] bg-[#00ff81]/[0.28] rounded-full blur-[120px] pointer-events-none select-none z-0" />
-
-      {/* Secondary smaller glow — bottom-left for depth */}
-      <div className="absolute bottom-[5%] left-[5%] w-[500px] h-[420px] bg-[#00ff81]/[0.14] rounded-full blur-[100px] pointer-events-none select-none z-0" />
-
       {/* Full-coverage dot grid — strong enough to read against the light bg */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-0"
