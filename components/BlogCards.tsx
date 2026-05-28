@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import { db } from "@/lib/firebaseConfig";
-import { collection, query, orderBy, limit, getDocs, Timestamp } from "firebase/firestore";
+
 import Link from "next/link";
 
 interface Blog {
@@ -9,7 +8,7 @@ interface Blog {
     readTime: number;
     title: string;
     content: string;
-    createdAt: Timestamp;
+    createdAt: string;
 }
 
 const BlogSection = () => {
@@ -17,26 +16,13 @@ const BlogSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const q = query(
-          collection(db, "blogs"),
-          orderBy("createdAt", "desc"),
-          limit(3)
-        );
-        const querySnapshot = await getDocs(q);
-        const blogData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Blog[];
-        setBlogs(blogData);
-      } catch (error) {
-        console.error("Error fetching blogs: ", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlogs();
+    fetch("/api/blogs")
+      .then((r) => r.json())
+      .then((data: Blog[]) => {
+        setBlogs(data.slice(0, 3));
+      })
+      .catch((error) => console.error("Error fetching blogs: ", error))
+      .finally(() => setLoading(false));
   }, []);
 
   return (

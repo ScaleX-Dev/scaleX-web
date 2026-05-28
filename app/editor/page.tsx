@@ -6,8 +6,7 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useAuth } from "@/lib/AuthContext";
 import { useRouter } from "next/navigation";
-import { db } from "@/lib/firebaseConfig";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+
 import { storage } from "@/lib/firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Metadata from "@/components/Metadata";
@@ -23,6 +22,9 @@ const publisherData: { [key: string]: { name: string; designation: string } } = 
   "chirath@scalex.global": { name: "Chirath Hewagamage", designation: "CEO" },
 };
 
+type PublishTarget = "blog" | "resource";
+type ResourceType = "case_study" | "video" | "article" | "guide";
+
 const BlogEditor = () => {
   const scrollTrackedRef = useRef<Set<number>>(new Set());
   const [content, setContent] = useState("");
@@ -30,6 +32,11 @@ const BlogEditor = () => {
   const [category, setCategory] = useState("");
   const [shortTitle, setShortTitle] = useState("");
   const [coverImage, setCoverImage] = useState<File | null>(null);
+  const [publishTarget, setPublishTarget] = useState<PublishTarget>("blog");
+  const [resourceType, setResourceType] = useState<ResourceType>("article");
+  const [clientName, setClientName] = useState("");
+  const [clientMeta, setClientMeta] = useState("");
+  const [readTime, setReadTime] = useState("");
   const { logout, user } = useAuth();
   const router = useRouter();
 
@@ -92,8 +99,12 @@ const BlogEditor = () => {
   };
 
   const handleSave = async () => {
-    if (!title || !content || !category || !shortTitle || !coverImage) {
-      alert("All fields are required!");
+    if (!title || !content || !shortTitle || !coverImage) {
+      alert("Title, short title, content, and cover image are required!");
+      return;
+    }
+    if (publishTarget === "blog" && !category) {
+      alert("Category is required for blog posts!");
       return;
     }
 
@@ -103,41 +114,70 @@ const BlogEditor = () => {
       designation: "Guest",
     };
 
-    // Calculate read time based on content length (words per minute)
-    const wordCount = content.split(/\s+/).length; // Count words by splitting on spaces
-    const readTime = Math.round(wordCount / 200); // Round to the nearest minute
+    const wordCount = content.split(/\s+/).length;
+    const autoReadTime = Math.round(wordCount / 200);
 
     try {
-      const blogId = generateRandomId();
+      const id = generateRandomId();
 
-      // Upload cover image to Firebase Storage
       const coverImageRef = ref(storage, `cover_images/${coverImage.name}`);
       await uploadBytes(coverImageRef, coverImage);
       const coverImageUrl = await getDownloadURL(coverImageRef);
 
-      // Create or update the blog document with the generated blogId
-      await setDoc(doc(db, "blogs", blogId.toString()), {
-        id: blogId,
-        title,
-        category,
-        shortTitle,
-        content,
-        coverImageUrl,
-        createdAt: Timestamp.now(),
-        publisher: publisher.name,
-        designation: publisher.designation,
-        email: email,
-        readTime: readTime, // Add readTime to the document
-      });
+      if (publishTarget === "blog") {
+        await fetch("/api/blogs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+            title,
+            category,
+            shortTitle,
+            content,
+            coverImageUrl,
+            createdAt: new Date().toISOString(),
+            publisher: publisher.name,
+            designation: publisher.designation,
+            email,
+            readTime: autoReadTime,
+          }),
+        });
+        alert("Blog saved successfully!");
+      } else {
+        await fetch("/api/resources", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+            title,
+            shortTitle,
+            type: resourceType,
+            content,
+            coverImageUrl,
+            createdAt: new Date().toISOString(),
+            publisher: publisher.name,
+            designation: publisher.designation,
+            email,
+            featured: resourceType === "case_study",
+            readTime: readTime || `${autoReadTime} min read`,
+            clientName: clientName || null,
+            clientMeta: clientMeta || null,
+          }),
+        });
+        alert("Resource saved successfully!");
+      }
 
-      alert("Blog saved successfully!");
       setTitle("");
       setCategory("");
       setShortTitle("");
       setContent("");
       setCoverImage(null);
-    } catch (err: any) {
-      alert("Error saving blog: " + err.message);
+      setClientName("");
+      setClientMeta("");
+      setReadTime("");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Unknown error";
+      alert("Error saving: " + message);
     }
   };
 
@@ -146,21 +186,61 @@ const BlogEditor = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-3xl mx-auto">
         <Metadata
-            title="Blog Editor - ScaleX"
-            description="Create and edit blog posts for the ScaleX website."
+            title="Content Editor - ScaleX"
+            description="Create and edit blog posts and resources for the ScaleX website."
         />
-      <button
-        onClick={() => logout()}
-        className="bg-red-500 text-white px-4 py-2 rounded mb-4"
-      >
-        Logout
-      </button>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-xl font-semibold text-gray-900">Content Editor</h1>
+        <button
+          onClick={() => logout()}
+          className="bg-red-500 text-white px-4 py-2 rounded text-sm"
+        >
+          Logout
+        </button>
+      </div>
+
+      {/* Publish target toggle */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="text-sm font-medium text-gray-700">Publish as:</span>
+        <div className="flex rounded-lg overflow-hidden border border-gray-200">
+          {(["blog", "resource"] as PublishTarget[]).map((t) => (
+            <button
+              key={t}
+              onClick={() => setPublishTarget(t)}
+              className={`px-4 py-2 text-sm capitalize transition-colors ${
+                publishTarget === t
+                  ? "bg-[#0c0d0e] text-white"
+                  : "bg-white text-gray-600 hover:bg-gray-50"
+              }`}
+            >
+              {t === "blog" ? "Blog post" : "Resource"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Resource type selector (only shown for resources) */}
+      {publishTarget === "resource" && (
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Resource type</label>
+          <select
+            value={resourceType}
+            onChange={(e) => setResourceType(e.target.value as ResourceType)}
+            className="w-full p-2 border rounded text-sm"
+          >
+            <option value="case_study">Case study</option>
+            <option value="video">Video</option>
+            <option value="article">Article</option>
+            <option value="guide">Guide</option>
+          </select>
+        </div>
+      )}
 
       <input
         type="text"
-        placeholder="Blog Title"
+        placeholder="Title"
         className="w-full p-2 border rounded mb-4"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -168,19 +248,45 @@ const BlogEditor = () => {
 
       <input
         type="text"
-        placeholder="Short Title"
+        placeholder="Short title (for cards)"
         className="w-full p-2 border rounded mb-4"
         value={shortTitle}
         onChange={(e) => setShortTitle(e.target.value)}
       />
 
-      <input
-        type="text"
-        placeholder="Category"
-        className="w-full p-2 border rounded mb-4"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      />
+      {publishTarget === "blog" ? (
+        <input
+          type="text"
+          placeholder="Category"
+          className="w-full p-2 border rounded mb-4"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
+      ) : (
+        <>
+          <input
+            type="text"
+            placeholder="Client name (case studies only, optional)"
+            className="w-full p-2 border rounded mb-4"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Client meta (e.g. 'Architecture practice · 30 years', optional)"
+            className="w-full p-2 border rounded mb-4"
+            value={clientMeta}
+            onChange={(e) => setClientMeta(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Read time (e.g. '7 min read', optional — auto-calculated if blank)"
+            className="w-full p-2 border rounded mb-4"
+            value={readTime}
+            onChange={(e) => setReadTime(e.target.value)}
+          />
+        </>
+      )}
 
       <input
         type="file"
@@ -193,9 +299,9 @@ const BlogEditor = () => {
 
       <button
         onClick={handleSave}
-        className="bg-green-500 text-white px-4 py-2 rounded"
+        className="bg-[#0c0d0e] text-white px-6 py-2.5 rounded font-medium hover:bg-[#00ff81] hover:text-black transition-colors"
       >
-        Save Blog
+        Publish {publishTarget === "blog" ? "Blog post" : "Resource"}
       </button>
     </div>
   );

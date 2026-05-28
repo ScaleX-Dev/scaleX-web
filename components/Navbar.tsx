@@ -29,7 +29,7 @@ const Navbar = () => {
               Branding &amp; Design
             </Link>
             <Link
-              href="/blogs"
+              href="/resources"
               className="text-sm text-black/70 hover:text-black transition-colors"
             >
               Resources
@@ -86,11 +86,11 @@ const Navbar = () => {
             Branding &amp; Design
           </Link>
           <Link
-            href="/blogs"
+            href="/resources"
             onClick={() => setIsOpen(false)}
             className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
-            Field Notes
+            Resources
           </Link>
           <Link
             href="/about"

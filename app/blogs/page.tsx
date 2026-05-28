@@ -2,8 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { db } from "@/lib/firebaseConfig";
-import { collection, onSnapshot } from "firebase/firestore";
+
 import { useRouter } from "next/navigation";
 import Metadata from "@/components/Metadata";
 import { trackEvent } from "@/utils/events";
@@ -71,32 +70,26 @@ const BlogPage = () => {
   }, []);
 
   useEffect(() => {
-    const blogCollection = collection(db, "blogs");
-
-    const unsubscribe = onSnapshot(
-      blogCollection,
-      (snapshot) => {
-        const blogList = snapshot.docs.map((doc, index) => ({
-          id: doc.id,
-          ...doc.data(),
+    fetch("/api/blogs")
+      .then((r) => r.json())
+      .then((data: BlogPost[]) => {
+        const blogList = data.map((item, index) => ({
+          ...item,
           dark: index % 2 === 1,
           imageStyle: {
             top: index % 2 === 0 ? "-300px" : "-50px",
             width: index % 2 === 0 ? "100%" : "110%",
             left: index % 2 === 0 ? "0" : "-20px",
           },
-        })) as BlogPost[];
+        }));
         setBlogPosts(blogList);
         setLoading(false);
-      },
-      (error) => {
+      })
+      .catch((error) => {
         console.error("Error fetching blogs:", error);
         setError("Failed to load blog posts");
         setLoading(false);
-      }
-    );
-
-    return () => unsubscribe();
+      });
   }, []);
 
   const openBlog = (post: BlogPost) => {
