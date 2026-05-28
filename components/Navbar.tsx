@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="flex justify-center items-center">
         <div className="flex shadow-sm bg-[#FAFAFA]/95 backdrop-blur-sm rounded-full py-3 px-6 justify-between items-center w-full max-w-screen-lg border border-black/5">
           <Link href="/">
-            <Image src="/ScaleX%20Logo%20No%20BG.png" alt="ScaleX" width={90} height={25.5} />
+            <Image src="/ScaleX%20Logo%20No%20BG.png" alt="ScaleX" width={90} height={26} style={{ height: "auto" }} unoptimized />
           </Link>
 
           {/* Desktop Nav */}
@@ -29,7 +29,7 @@ const Navbar = () => {
               Branding &amp; Design
             </Link>
             <Link
-              href="/blogs"
+              href="/resources"
               className="text-sm text-black/70 hover:text-black transition-colors"
             >
               Resources
@@ -86,11 +86,11 @@ const Navbar = () => {
             Branding &amp; Design
           </Link>
           <Link
-            href="/blogs"
+            href="/resources"
             onClick={() => setIsOpen(false)}
             className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
-            Field Notes
+            Resources
           </Link>
           <Link
             href="/about"

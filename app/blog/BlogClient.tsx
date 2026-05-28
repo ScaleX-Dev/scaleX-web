@@ -1,14 +1,16 @@
 'use client'
 import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { db } from "@/lib/firebaseConfig";
-import { doc, getDoc, Timestamp } from "firebase/firestore";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { format } from "date-fns";
 import Metadata from "@/components/Metadata";
 import { trackEvent } from "@/utils/events";
 import { captureUTM } from "@/utils/attribution";
+
+const normalizeRichText = (html: string) =>
+  html.replace(/&nbsp;/g, " ").replace(/\u00a0/g, " ");
 
 interface BlogPost {
     title: string;
@@ -17,7 +19,7 @@ interface BlogPost {
     publisher: string;
     designation: string;
     authorImage: string;
-    createdAt: Timestamp;
+    createdAt: string;
 }
 
 const BlogClient = () => {
@@ -72,26 +74,16 @@ const BlogClient = () => {
 
   useEffect(() => {
     if (blogId) {
-      const fetchBlogPost = async () => {
-        try {
-          const blogRef = doc(db, "blogs", blogId);
-          const blogSnap = await getDoc(blogRef);
-
-          if (blogSnap.exists()) {
-            setBlogPost(blogSnap.data() as BlogPost);
-          } else {
-            console.log("No such blog!");
-          }
-        } catch (error) {
-          console.error("Error fetching blog: ", error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchBlogPost();
+      fetch(`/api/blogs?id=${blogId}`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (data) setBlogPost(data as BlogPost);
+          else console.log("No such blog!");
+        })
+        .catch((error) => console.error("Error fetching blog: ", error))
+        .finally(() => setLoading(false));
     } else {
-        setLoading(false);
+      Promise.resolve().then(() => setLoading(false));
     }
   }, [blogId]);
 
@@ -109,6 +101,8 @@ const BlogClient = () => {
       <div className="text-center mt-10 text-gray-600">Blog not found.</div>
     );
   }
+
+  const normalizedContent = normalizeRichText(blogPost.content);
 
   return (
     <div className="mx-auto">
@@ -158,8 +152,8 @@ const BlogClient = () => {
                 </p>
                 <p className="text-gray-500 text-xs">
                   {blogPost.designation} •{" "}
-                  {blogPost.createdAt?.toDate
-                    ? format(blogPost.createdAt.toDate(), "MMM dd, yyyy")
+                  {blogPost.createdAt
+                    ? format(new Date(blogPost.createdAt), "MMM dd, yyyy")
                     : "Unknown Date"}
                 </p>
               </div>
@@ -173,7 +167,7 @@ const BlogClient = () => {
             {/* Blog Content */}
             <div
               className="mt-4 text-gray-700 text-lg leading-relaxed whitespace-pre-line"
-              dangerouslySetInnerHTML={{ __html: blogPost.content }}
+              dangerouslySetInnerHTML={{ __html: normalizedContent }}
             ></div>
           </div>
         </div>

@@ -132,15 +132,15 @@ function AnimatedPalette() {
 
 /* ─── Data ──────────────────────────────────────────────── */
 const COLOR_SWATCHES = [
-  { name: "Imperial", hex: "#E91D27", light: false },
-  { name: "Eerie",    hex: "#171717", light: false },
-  { name: "Seasalt",  hex: "#FAFAFA", light: true  },
-  { name: "Cobalt",   hex: "#2D7DD2", light: false },
-  { name: "Amber",    hex: "#F7B731", light: true  },
+  { name: "Signal Green", hex: "#00FF81", light: true },
+  { name: "Ink Black", hex: "#0C0D0E", light: false },
+  { name: "Soft Canvas", hex: "#FAFAFA", light: true },
+  { name: "Mist Gray", hex: "#D9DDD8", light: true },
+  { name: "Steel Olive", hex: "#7D8A74", light: true },
 ];
 const PALETTE_DOTS = [
-  "#E91D27","#171717","#FAFAFA","#2D7DD2","#F7B731",
-  "#7C3AED","#10B981","#F97316","#38BDF8","#FF6B4A","#4ADE80","#E040FB",
+  "#00FF81", "#0C0D0E", "#FAFAFA", "#D9DDD8", "#7D8A74",
+  "#C7FFD8", "#8CF3B8", "#2C3A33", "#B7C1B0", "#EEF2EC", "#4E5A4A", "#111715",
 ];
 const DESIGN_SERVICES = [
   { no: "01", name: "Branding" },

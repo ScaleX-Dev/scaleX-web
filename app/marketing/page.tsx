@@ -204,7 +204,7 @@ export default function MarketingPage() {
           </div>
           <div className="overflow-hidden mb-10">
             <motion.h1
-              className="font-medium tracking-[-0.028em] leading-[1.0] text-[2.8rem] sm:text-5xl md:text-[3.8rem] lg:text-[5rem] text-[#0c0d0e]/[0.22]"
+              className="font-medium tracking-[-0.028em] leading-[1.0] text-[2.8rem] sm:text-5xl md:text-[3.8rem] lg:text-[5rem] text-[#00ff81]"
               initial={{ y: "110%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}

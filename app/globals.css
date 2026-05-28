@@ -18,3 +18,30 @@ html {
 * {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
+
+/* ── Resource / Blog content ─────────────────────────────────────────────
+   Quill saves inline colour styles that were set in the dark editor.
+   When rendered on a light page those colours (often white) become
+   invisible. Force all inline-coloured elements to inherit the container
+   colour so Tailwind prose styles take effect. */
+.resource-content [style*="color"],
+.resource-content [style*="background-color"] {
+  color: inherit !important;
+  background-color: transparent !important;
+}
+
+/* Tailwind preflight removes list bullets; restore them inside resource content */
+.resource-content ul {
+  list-style-type: disc !important;
+  padding-left: 1.6em !important;
+  margin: 1.1em 0 !important;
+}
+.resource-content ol {
+  list-style-type: decimal !important;
+  padding-left: 1.6em !important;
+  margin: 1.1em 0 !important;
+}
+.resource-content li {
+  margin: 0.35em 0 !important;
+  display: list-item !important;
+}
