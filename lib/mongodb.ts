@@ -3,7 +3,6 @@ import { MongoClient } from "mongodb";
 // Cache the client across requests (and hot reloads in dev) to avoid
 // opening a new TCP connection on every API call.
 declare global {
-  // eslint-disable-next-line no-var
   var _mongoClient: MongoClient | undefined;
 }
 
