@@ -1,260 +1,109 @@
 'use client'
-import React, { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image";
-import Link from "next/link";
 import Metadata from "@/components/Metadata";
-import { motion } from "framer-motion";
-import { trackEvent } from "@/utils/events";
-import { captureUTM } from "@/utils/attribution";
-
-const PILLARS = [
-  {
-    label: "Co-Create",
-    title: "Meaningful digital experiences",
-    body: "Through agile collaboration, we design websites, content, and campaigns that inspire action and create measurable impact.",
-  },
-  {
-    label: "Scale",
-    title: "With precision and performance",
-    body: "Every solution is performance-driven and scalable — ensuring brands grow faster, smarter, and sustainably.",
-  },
-  {
-    label: "Agility",
-    title: "At our core",
-    body: "We thrive on change, offering innovative marketing and digital solutions that evolve with trends and drive continuous growth.",
-  },
-  {
-    label: "Craft",
-    title: "Brands for the next era",
-    body: "From standout websites to conversion-driven campaigns, we build digital ecosystems that position brands to lead.",
-  },
-];
+import Link from "next/link";
 
 const TEAM = [
-  {
-    name: "Chirath Hewagamage",
-    role: "Founder / CEO",
-    img: "https://media.licdn.com/dms/image/v2/D4E03AQHr-ip2u_SAxQ/profile-displayphoto-shrink_800_800/B4EZPv9bQ8HkAg-/0/1734897678363?e=1750291200&v=beta&t=2RMdpOlCFujwJtPSY2iDWiPZvADq4qWzvz6lm1RswPY",
-  },
-  {
-    name: "Vishaka Wijekoon",
-    role: "Customer Relations",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQG3FsxUguvAGA/profile-displayphoto-shrink_800_800/B56ZWunqGHGUAg-/0/1742391388216?e=1750291200&v=beta&t=5uJeZaCAqZU_WmfKklblc-W_hPkFI8H1TPu3vNWg1Ms",
-  },
-  {
-    name: "Rachitha Nanayakkarawasam",
-    role: "Senior Marketing Analyst",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQH2IWt3CSTyxQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718214160407?e=1750291200&v=beta&t=jeM5mcpK4MKNlgJ5QCE2RktDHMYT_J_YAMCaF6DS6qQ",
-  },
-  {
-    name: "Yasiru Lakintha",
-    role: "UI / UX Designer",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQFUu7EeY4iZQQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718273426409?e=1750291200&v=beta&t=q7l6pvy_nfk8FNZlUEzqIwf2oxVFooWgMnhEYcMf3fs",
-  },
+  { name: "Chirath Hewagamage", role: "Founder" },
+  { name: "Vishaka Wijekoon", role: "Social Media Marketing Manager" },
+  { name: "Tinura", role: "Growth Partnership Specialist" },
 ];
 
-const AboutUs = () => {
-  const scrollTrackedRef = useRef<Set<number>>(new Set());
-
-  useEffect(() => {
-    captureUTM();
-    trackEvent("page_view", { page: "about", title: "About Us - ScaleX" });
-
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const button = target.closest('button, a');
-      if (button) {
-        trackEvent("click", {
-          element: button.tagName.toLowerCase(),
-          text: button.textContent?.trim() || '',
-          href: button.getAttribute('href'),
-          page: "about",
-        });
-      }
-    };
-
-    const handleScroll = () => {
-      const scrollPercentage = Math.round(
-        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-      );
-      [25, 50, 75, 100].forEach((milestone) => {
-        if (scrollPercentage >= milestone && !scrollTrackedRef.current.has(milestone)) {
-          scrollTrackedRef.current.add(milestone);
-          trackEvent("scroll_depth", { depth: milestone, page: "about" });
-        }
-      });
-    };
-
-    document.addEventListener('click', handleClick);
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      document.removeEventListener('click', handleClick);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+export default function AboutUs() {
   return (
-    <div className="bg-[#FAFAFA] min-h-screen">
+    <div className="bg-[#FAFAFA] min-h-screen flex flex-col">
       <Metadata
-        title="About Us — ScaleX"
-        description="At ScaleX, our journey began with a group of college freelancers. Since then we've grown into a full-service marketing, branding, and design agency."
+        title="About — ScaleX"
+        description="We make ambitious businesses the obvious choice. ScaleX is a group of storytellers, developers, and strategists who help brands close the gap between their story and how it shows up online."
       />
-
       <Navbar />
 
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#FAFAFA]">
-        {/* Dot grid */}
+      {/* ── HERO ─────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-[#FAFAFA] pt-36 pb-16">
+        {/* dot grid */}
         <div
           className="absolute inset-0 pointer-events-none select-none"
           style={{
-            backgroundImage: "radial-gradient(rgba(0,0,0,0.035) 1.2px, transparent 1px)",
+            backgroundImage: "radial-gradient(rgba(0,0,0,0.045) 1.2px, transparent 1px)",
             backgroundSize: "22px 22px",
-            maskImage: "radial-gradient(ellipse 72% 58% at 50% 42%, black 15%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 72% 58% at 50% 42%, black 15%, transparent 100%)",
+            maskImage:
+              "radial-gradient(ellipse 80% 65% at 48% 40%, black 15%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 65% at 48% 40%, black 15%, transparent 100%)",
           }}
         />
-        {/* Green glow */}
-        <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[600px] h-[450px] bg-[#00ff81]/[0.09] rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute top-[15%] left-[2%] w-[500px] h-[400px] bg-[#00ff81]/[0.07] rounded-full blur-[130px] pointer-events-none" />
 
-        <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-24 relative z-10">
-          <motion.p
-            className="text-[11px] font-mono text-[#00ff81] tracking-[0.25em] uppercase mb-6"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Est. 2023 · Galle &amp; Colombo, Sri Lanka
-          </motion.p>
-
-          <div className="overflow-hidden mb-5">
-            <motion.h1
-              className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem] text-[#0c0d0e]"
-              initial={{ y: "108%" }}
-              animate={{ y: "0%" }}
-              transition={{ duration: 0.88, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            >
-              We love playing with
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden mb-12">
-            <motion.h1
-              className="font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem] text-[#00ff81]"
-              initial={{ y: "108%" }}
-              animate={{ y: "0%" }}
-              transition={{ duration: 0.88, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-            >
-              data &amp; creativity.
-            </motion.h1>
-          </div>
-
-          <motion.p
-            className="text-black/55 max-w-md text-sm md:text-base leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.55, ease: "easeOut" }}
-          >
-            Our journey began with a group of college freelancers. Since then we&apos;ve
-            grown our business, expanded our team, and diversified our portfolio —
-            always driven by an unwavering passion for results.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ── DARK PILLARS ── */}
-      <section className="bg-[#0c0d0e] w-full py-28 relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at bottom right, rgba(0,255,129,0.05), transparent 65%)" }} />
-
-        <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24">
-          <p className="text-[11px] font-mono text-white/25 tracking-[0.22em] uppercase mb-16">
-            How we work
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PILLARS.map((p, i) => (
-              <motion.div
-                key={p.label}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: i * 0.08, ease: "easeOut" }}
-                className="border border-white/[0.06] rounded-2xl p-6 bg-white/[0.02]"
-              >
-                <span className="text-[10px] font-mono text-[#00ff81]/70 tracking-[0.22em] uppercase mb-4 block">
-                  {p.label}
+        <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+            <div className="flex-1 max-w-2xl">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00ff81]" />
+                <span className="text-[11px] font-mono text-[#00ff81] tracking-[0.28em] uppercase">
+                  About
                 </span>
-                <h3 className="text-white font-medium text-lg leading-snug mb-3">
-                  {p.title}
-                </h3>
-                <p className="text-white/40 text-sm leading-relaxed">{p.body}</p>
-              </motion.div>
-            ))}
+              </div>
+              <div className="overflow-hidden mb-3">
+                <h1 className="font-medium tracking-[-0.030em] leading-[1.0] text-[3.2rem] sm:text-[4rem] md:text-[5rem] text-[#0c0d0e]">
+                  We make ambitious businesses<br />
+                  <span className="font-serif font-medium">the obvious choice.</span>
+                </h1>
+              </div>
+              <p className="text-black/45 text-sm md:text-base leading-relaxed max-w-lg mb-10">
+                ScaleX is a group of storytellers, developers, and strategists who met freelancing in university and grouped up around one idea: the best businesses lose every day to worse ones that simply tell a better story. We’re here to make sure that doesn’t happen to yours.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── TEAM ── */}
-      <section className="bg-[#FAFAFA] py-28 w-full">
-        <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24">
-          <p className="text-[11px] font-mono text-black/30 tracking-[0.22em] uppercase mb-4">
-            The team
+      {/* ── CONTENT ──────────────────────────────────────────────── */}
+      <main className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pb-24 w-full flex-1">
+        <section className="mb-16">
+          <h2 className="text-2xl font-serif font-medium text-black mb-3">Your story, told so customers choose you.</h2>
+          <p className="text-base text-gray-700 max-w-2xl">
+            Most businesses are better than their marketing makes them look. The work is real; the story just isn’t landing. That’s the gap we close. We find what makes you the obvious choice, and we make sure your customers feel it everywhere they meet you. You’re the hero of this story. We’re the ones who make sure it gets told properly.
           </p>
-          <h2 className="font-medium tracking-[-0.02em] text-3xl md:text-4xl text-[#0c0d0e] mb-16">
-            The people behind the work.
-          </h2>
+        </section>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {TEAM.map((member, i) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="flex flex-col"
-              >
-                <div className="aspect-square w-full mb-4 rounded-2xl overflow-hidden bg-black/5">
-                  <Image
-                    src={member.img}
-                    alt={member.name}
-                    width={300}
-                    height={300}
-                    className="w-full h-full object-cover"
-                  />
+        <section className="mb-16">
+          <h2 className="text-2xl font-serif font-medium text-black mb-3">Our approach.</h2>
+          <p className="text-base text-gray-700 max-w-2xl">
+            We work as part of your team. Close enough to learn the business the way you know it, so the work comes from real understanding instead of guesswork. We build on what actually makes a customer choose — the psychology of how people decide, and the story that makes them feel you’re the one. And we measure everything we do, because you deserve to see what the work is returning.
+          </p>
+        </section>
+
+        <section className="mb-20">
+          <h2 className="text-2xl font-serif font-medium text-black mb-8">The people you'll actually work with.</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {TEAM.map((person, idx) => (
+              <div key={person.name} className="bg-white rounded-xl border border-black/10 flex flex-col items-center p-8 shadow-sm">
+                <div className="w-24 h-24 bg-gray-100 rounded-full mb-4 flex items-center justify-center">
+                  {/* Placeholder for image */}
+                  <span className="text-gray-400 text-xs">Portrait: {person.name}</span>
                 </div>
-                <p className="text-[#0c0d0e] font-medium text-sm">{member.name}</p>
-                <p className="text-black/40 text-xs mt-0.5">{member.role}</p>
-              </motion.div>
+                <div className="text-lg font-medium text-black mb-1 text-center">{person.name}</div>
+                <div className="text-sm text-gray-500 text-center">{person.role}</div>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── CTA ── */}
-      <section className="bg-[#0c0d0e] py-28 w-full">
-        <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <p className="text-[11px] font-mono text-white/25 tracking-[0.22em] uppercase mb-6">
-              Ready to start?
-            </p>
-            <h2 className="font-medium tracking-[-0.02em] text-3xl md:text-4xl text-white leading-tight">
-              Let&apos;s build something              <span className="text-white/25">worth talking about.</span>
-            </h2>
-          </div>
+        <section className="bg-[#F6F5F2] rounded-2xl py-16 px-8 text-center border border-gray-200">
+          <h2 className="text-2xl font-serif font-medium text-black mb-4">Let's make you the obvious choice.</h2>
+          <p className="text-base text-gray-700 mb-8">
+            The same conversation that starts every engagement starts here — twenty minutes, honest, no pitch.
+          </p>
           <Link href="/appointments">
-            <button className="bg-white text-black text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#00ff81] transition-all duration-300 shrink-0">
+            <button className="bg-[#00ff81] text-[#0c0d0e] px-6 py-3 rounded-full font-medium text-base hover:bg-[#00e872] transition">
               Book a discovery call
             </button>
           </Link>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <Footer />
     </div>
   );
-};
-
-export default AboutUs;
+}
 
