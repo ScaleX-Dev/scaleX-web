@@ -9,6 +9,9 @@ import Metadata from "@/components/Metadata";
 import { trackEvent } from "@/utils/events";
 import { captureUTM } from "@/utils/attribution";
 
+const normalizeRichText = (html: string) =>
+  html.replace(/&nbsp;/g, " ").replace(/\u00a0/g, " ");
+
 interface BlogPost {
     title: string;
     content: string;
@@ -80,7 +83,7 @@ const BlogClient = () => {
         .catch((error) => console.error("Error fetching blog: ", error))
         .finally(() => setLoading(false));
     } else {
-      setLoading(false);
+      Promise.resolve().then(() => setLoading(false));
     }
   }, [blogId]);
 
@@ -98,6 +101,8 @@ const BlogClient = () => {
       <div className="text-center mt-10 text-gray-600">Blog not found.</div>
     );
   }
+
+  const normalizedContent = normalizeRichText(blogPost.content);
 
   return (
     <div className="mx-auto">
@@ -162,7 +167,7 @@ const BlogClient = () => {
             {/* Blog Content */}
             <div
               className="mt-4 text-gray-700 text-lg leading-relaxed whitespace-pre-line"
-              dangerouslySetInnerHTML={{ __html: blogPost.content }}
+              dangerouslySetInnerHTML={{ __html: normalizedContent }}
             ></div>
           </div>
         </div>

@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        serverActions: {
+            bodySizeLimit: "10mb",
+        },
+    },
     images: {
+        loader: "custom",
+        loaderFile: "./cloudinary-loader.ts",
         remotePatterns: [
             {
                 protocol: 'https',

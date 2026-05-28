@@ -6,21 +6,16 @@ if (!uri) {
   throw new Error("Please add MONGODB_URI to your .env.local file");
 }
 
-// In development, reuse the client across hot reloads to avoid exhausting connections
+// Cache the client across requests (and hot reloads in dev) to avoid
+// opening a new TCP connection on every API call.
 declare global {
   // eslint-disable-next-line no-var
   var _mongoClient: MongoClient | undefined;
 }
 
-let client: MongoClient;
-
-if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClient) {
-    global._mongoClient = new MongoClient(uri);
-  }
-  client = global._mongoClient;
-} else {
-  client = new MongoClient(uri);
+const client: MongoClient = global._mongoClient ?? new MongoClient(uri);
+if (!global._mongoClient) {
+  global._mongoClient = client;
 }
 
 export async function getDb() {
