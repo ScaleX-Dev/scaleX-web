@@ -1,50 +1,39 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const THUMBNAIL_BG: Record<string, string> = {
-  AUDIT: "bg-[#00ff81]/[0.18]",
-  VIDEO: "bg-white/[0.06]",
-  NOTE:  "bg-white/[0.04]",
-  BRAND: "bg-white/[0.06]",
+const TYPE_LABELS: Record<string, string> = {
+  case_study: "Case study",
+  video:      "Video",
+  article:    "Article",
+  guide:      "Guide",
 };
 
 const TAG_STYLES: Record<string, string> = {
-  AUDIT: "bg-[#00ff81]/20 text-[#00ff81] border border-[#00ff81]/30",
-  VIDEO: "bg-white/[0.10] text-white/60 border border-white/[0.10]",
-  NOTE:  "bg-white/[0.07] text-white/45 border border-white/[0.08]",
-  BRAND: "bg-white/[0.10] text-white/60 border border-white/[0.10]",
+  case_study: "bg-[#00ff81]/20 text-[#00ff81] border border-[#00ff81]/30",
+  video:      "bg-blue-900/40 text-blue-300 border border-blue-700/40",
+  article:    "bg-white/[0.07] text-white/50 border border-white/[0.10]",
+  guide:      "bg-amber-900/30 text-amber-400 border border-amber-700/30",
 };
 
-const notes = [
-  {
-    tag: "AUDIT",
-    title: "Kuki Beach: where the booking was leaking",
-    meta: "Audit breakdown",
-    slug: "/blogs",
-  },
-  {
-    tag: "VIDEO",
-    title: "Harding Hotels audit walkthrough",
-    meta: "Video",
-    slug: "/blogs",
-  },
-  {
-    tag: "NOTE",
-    title: "Instagram-to-website disconnect",
-    meta: "Field note",
-    slug: "/blogs",
-  },
-  {
-    tag: "BRAND",
-    title: "Flour Dude voice rebuild",
-    meta: "Brand build",
-    slug: "/blogs",
-  },
-];
+interface Resource {
+  id: string;
+  title: string;
+  type: string;
+  coverImageUrl: string;
+}
 
 export default function FieldNotes() {
+  const [notes, setNotes] = useState<Resource[]>([]);
+
+  useEffect(() => {
+    fetch("/api/resources")
+      .then((r) => r.json())
+      .then((data: Resource[]) => setNotes(data.slice(0, 4)))
+      .catch(() => {/* silently stay empty */});
+  }, []);
+
   return (
     <section className="bg-[#0c0d0e] py-12 md:py-16 w-full">
       <div className="max-w-screen-xl mx-auto w-full px-6 md:px-16 lg:px-24">
@@ -74,7 +63,7 @@ export default function FieldNotes() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link
-              href="/blogs"
+              href="/resources"
               className="text-sm font-medium text-white/40 hover:text-[#00ff81] transition-colors duration-200"
             >
               See all field notes →
@@ -86,43 +75,43 @@ export default function FieldNotes() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {notes.map((note, i) => (
             <motion.div
-              key={note.title}
+              key={note.id}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
             >
-              <Link href={note.slug} className="group block">
+              <Link href={`/resource?id=${note.id}`} className="group block">
                 <div className="rounded-2xl border border-white/[0.07] hover:border-white/[0.16] overflow-hidden transition-colors duration-300 bg-white/[0.02]">
                   {/* Thumbnail */}
-                  <div
-                    className={[
-                      "w-full aspect-[9/16] flex items-center justify-center border-b border-white/[0.06]",
-                      THUMBNAIL_BG[note.tag],
-                    ].join(" ")}
-                  >
-                    <svg
-                      width="28"
-                      height="28"
-                      viewBox="0 0 28 28"
-                      fill="none"
-                      className="opacity-20"
-                    >
-                      <rect x="3" y="3" width="22" height="16" rx="2" stroke="white" strokeWidth="1.5" />
-                      <circle cx="9" cy="9" r="2" stroke="white" strokeWidth="1.5" />
-                      <path d="M3 15l5-4 4 3 4-5 9 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M7 23h14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+                  <div className="w-full aspect-[9/16] relative overflow-hidden border-b border-white/[0.06]">
+                    {note.coverImageUrl ? (
+                      <img
+                        src={note.coverImageUrl}
+                        alt={note.title}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-white/[0.04] flex items-center justify-center">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="opacity-20">
+                          <rect x="3" y="3" width="22" height="16" rx="2" stroke="white" strokeWidth="1.5" />
+                          <circle cx="9" cy="9" r="2" stroke="white" strokeWidth="1.5" />
+                          <path d="M3 15l5-4 4 3 4-5 9 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M7 23h14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
                   {/* Content */}
                   <div className="p-5">
                     <span
                       className={[
                         "text-[9px] font-mono tracking-[0.18em] uppercase px-2 py-0.5 rounded-full mb-3 inline-block",
-                        TAG_STYLES[note.tag],
+                        TAG_STYLES[note.type] ?? TAG_STYLES["article"],
                       ].join(" ")}
                     >
-                      {note.tag}
+                      {TYPE_LABELS[note.type] ?? note.type}
                     </span>
                     <p className="text-[13px] font-medium text-white/80 leading-snug group-hover:text-white transition-colors duration-200">
                       {note.title}
@@ -137,7 +126,7 @@ export default function FieldNotes() {
         {/* Mobile "see all" link */}
         <div className="sm:hidden mt-8 text-center">
           <Link
-            href="/blogs"
+            href="/resources"
             className="text-sm font-medium text-white/40 hover:text-[#00ff81] transition-colors duration-200"
           >
             See all field notes →
