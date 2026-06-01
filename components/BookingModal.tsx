@@ -116,7 +116,7 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
       style={{ backgroundColor: 'rgba(12,13,14,0.72)', backdropFilter: 'blur(6px)' }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
+      <div role="dialog" aria-modal="true" aria-labelledby="bm-title" className="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
 
         {/* Modal header */}
         <div className="px-6 py-5 border-b border-gray-100 flex items-start justify-between">
@@ -124,7 +124,7 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
             <p className="text-[10px] font-mono text-[#00cc68] tracking-[0.2em] uppercase mb-1">
               Confirm booking
             </p>
-            <h2 className="text-lg font-semibold text-gray-900 leading-tight">
+            <h2 id="bm-title" className="text-lg font-semibold text-gray-900 leading-tight">
               {slDate}
             </h2>
             <div className="flex items-center gap-3 mt-1.5">
@@ -177,13 +177,14 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
                 </div>
                 <div>
                   <label htmlFor="bm-phone" className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
-                    Phone
+                    Phone <span className="text-rose-400">*</span>
                   </label>
                   <input
                     id="bm-phone"
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    required
                     placeholder="+1 555 000"
                     className={inputClass}
                   />
@@ -207,13 +208,14 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
 
               <div>
                 <label htmlFor="bm-company" className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
-                  Company name
+                  Company name <span className="text-rose-400">*</span>
                 </label>
                 <input
                   id="bm-company"
                   type="text"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
+                  required
                   placeholder="Acme Inc."
                   className={inputClass}
                 />
@@ -221,12 +223,13 @@ export default function BookingModal({ isOpen, onClose, bookingTime }: Props) {
 
               <div>
                 <label htmlFor="bm-brief" className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
-                  What do you need help with?
+                  What do you need help with? <span className="text-rose-400">*</span>
                 </label>
                 <textarea
                   id="bm-brief"
                   value={brief}
                   onChange={(e) => setBrief(e.target.value)}
+                  required
                   rows={3}
                   placeholder="Give us a brief overview..."
                   className={`${inputClass} resize-none`}

@@ -13,7 +13,7 @@ function generateSLSlots(slDateStr: string): Date[] {
   const [year, month, day] = slDateStr.split('-').map(Number);
   const slots: Date[] = [];
   let totalMinutes = 8 * 60;
-  const lastSlotMinutes = 19 * 60 + 15;
+  const lastSlotMinutes = 19 * 60 + 30;
   while (totalMinutes <= lastSlotMinutes) {
     const h = Math.floor(totalMinutes / 60);
     const m = totalMinutes % 60;
