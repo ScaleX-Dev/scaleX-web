@@ -17,16 +17,16 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <div className="hidden 900:flex space-x-7">
             <Link
-              href="/marketing"
-              className="text-sm text-black/70 hover:text-black transition-colors"
-            >
-              Marketing
-            </Link>
-            <Link
               href="/branding-design"
               className="text-sm text-black/70 hover:text-black transition-colors"
             >
               Branding &amp; Design
+            </Link>
+            <Link
+              href="/marketing"
+              className="text-sm text-black/70 hover:text-black transition-colors"
+            >
+              Marketing
             </Link>
             <Link
               href="/resources"
@@ -72,18 +72,18 @@ const Navbar = () => {
       >
         <div className="flex flex-col items-center space-y-4 py-6 w-full">
           <Link
-            href="/marketing"
-            onClick={() => setIsOpen(false)}
-            className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
-          >
-            Marketing
-          </Link>
-          <Link
             href="/branding-design"
             onClick={() => setIsOpen(false)}
             className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
           >
             Branding &amp; Design
+          </Link>
+          <Link
+            href="/marketing"
+            onClick={() => setIsOpen(false)}
+            className="text-black text-sm font-medium hover:text-gray-500 transition-colors"
+          >
+            Marketing
           </Link>
           <Link
             href="/resources"

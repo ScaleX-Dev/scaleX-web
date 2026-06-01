@@ -172,15 +172,14 @@ const Services = () => {
         immediateRender: false,
         scrollTrigger: { trigger: ".srv-header-title", start: "top 92%" },
       });
+      gsap.from(".srv-panels", {
+        opacity: 0,
+        scrollTrigger: { trigger: ".srv-panels", start: "top 99%" },
+      });
       gsap.from(".srv-panel", {
         y: 60, opacity: 0, stagger: 0.18, duration: 1, ease: "power3.out",
         immediateRender: false,
         scrollTrigger: { trigger: ".srv-panels", start: "top 95%" },
-      });
-      gsap.from(".srv-palette-dot", {
-        scale: 0, opacity: 0, stagger: 0.04, duration: 0.45, ease: "back.out(1.4)",
-        immediateRender: false,
-        scrollTrigger: { trigger: ".srv-palette-dots", start: "top 95%" },
       });
       gsap.from(".srv-swatch", {
         y: 40, opacity: 0, stagger: 0.11, duration: 0.75, ease: "power3.out",

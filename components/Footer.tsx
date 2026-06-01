@@ -114,10 +114,10 @@ export default function Footer() {
       </div>
 
       {/* ── ZONE 3: Wordmark + bottom bar ── */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-6 pb-8 relative">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-6 pb-8 border-t border-white/[0.05]">
 
-        {/* Bottom bar — floated over the wordmark space */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4 sm:mt-0 sm:absolute sm:bottom-10 sm:left-6 sm:right-6 md:left-16 md:right-16 lg:left-24 lg:right-24">
+        {/* Bottom bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-2">
           <p className="text-[11px] font-mono text-white/20 tracking-wide">
             © 2026 ScaleX Global. All rights reserved.
           </p>

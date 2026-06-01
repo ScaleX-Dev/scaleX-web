@@ -246,7 +246,7 @@ export default function MarketingPage() {
           </div>
         </motion.div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0c0d0e] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-[#0c0d0e]/60 to-[#0c0d0e] pointer-events-none" />
       </section>
 
       {/* STATS STRIP */}
