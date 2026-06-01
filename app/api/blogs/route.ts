@@ -54,3 +54,15 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ success: true });
 }
+
+export async function DELETE(req: NextRequest) {
+  const id = req.nextUrl.searchParams.get("id");
+  if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
+  try {
+    const db = await getDb();
+    await db.collection("blogs").deleteOne({ id });
+  } catch {
+    return NextResponse.json({ error: "DB error" }, { status: 500 });
+  }
+  return NextResponse.json({ success: true });
+}
