@@ -75,16 +75,16 @@ const AppointmentScheduler = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-12 relative z-10 w-full">
+      <section className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-44 pb-10 relative z-10 w-full">
         <p className="text-[11px] font-mono text-[#00ff81]/60 tracking-[0.25em] uppercase mb-6">
-          Book a Call
+          Free Discovery Call
         </p>
         <h1 className="font-medium tracking-[-0.025em] leading-[1.0] text-4xl md:text-5xl lg:text-[3.5rem] text-white mb-6">
           Let&apos;s start a<span className="hidden sm:inline"><br /></span>{" "}
           <span className="text-[#00ff81]">conversation.</span>
         </h1>
-        <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
-          A free 30-minute discovery call. We listen first, then tell you exactly how we can help — or whether we&apos;re the right fit.
+        <p className="text-white/40 text-sm md:text-base max-w-md leading-relaxed mb-8">
+          A free 30-minute call — we listen first, then tell you exactly how we can help, or whether we&apos;re the right fit.
         </p>
       </section>
 
