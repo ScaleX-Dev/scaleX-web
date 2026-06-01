@@ -97,7 +97,7 @@ export default function FieldNotes() {
                   {/* Thumbnail */}
                   <div
                     className={[
-                      "w-full aspect-[4/3] flex items-center justify-center border-b border-white/[0.06]",
+                      "w-full aspect-[9/16] flex items-center justify-center border-b border-white/[0.06]",
                       THUMBNAIL_BG[note.tag],
                     ].join(" ")}
                   >

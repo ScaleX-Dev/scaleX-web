@@ -261,18 +261,7 @@ export default function ResourcesClient() {
               </motion.p>
             </div>
 
-            {/* Floating badge */}
-            <motion.div
-              className="hidden md:flex items-center justify-center w-32 h-32 lg:w-40 lg:h-40 rounded-full border border-black/10 bg-white shadow-sm shadow-black/5 mt-4 shrink-0 relative overflow-hidden"
-              initial={{ opacity: 0, scale: 0.8, rotate: -8 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="absolute inset-0 bg-[#00ff81]/[0.06] rounded-full" />
-              <span className="text-[#0c0d0e] font-semibold tracking-tight text-base lg:text-lg z-10">
-                ScaleX
-              </span>
-            </motion.div>
+            {/* Removed floating ScaleX badge for cleaner hero section */}
           </div>
 
           {/* Filter tabs */}

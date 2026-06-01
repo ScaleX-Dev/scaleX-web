@@ -63,7 +63,7 @@ export default function Hero() {
         {/* Headline — line-by-line reveal */}
         <div className="mb-14 relative">
           {HEADLINE_LINES.map((line, i) => (
-            <div key={i} className="overflow-hidden">
+            <div key={i} className="overflow-hidden pb-[0.14em]">
               <motion.span
                 className="block font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem]"
                 initial={{ y: "108%" }}
