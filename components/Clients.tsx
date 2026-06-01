@@ -37,12 +37,12 @@ const clients = [
 
 export default function Clients() {
   return (
-    <section className="bg-[#FAFAFA] py-24 w-full">
+    <section className="bg-[#FAFAFA] py-20 md:py-24 w-full">
       <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 w-full">
         {/* Header */}
-        <div className="flex items-end justify-between mb-10 pb-8 border-b border-black/[0.07]">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 md:mb-10 pb-8 border-b border-black/[0.07] gap-3">
           <motion.h2
-            className="text-2xl md:text-3xl font-medium text-black leading-snug max-w-md"
+            className="text-xl sm:text-2xl md:text-3xl font-medium text-black leading-snug max-w-md"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function Clients() {
         </div>
 
         {/* 3-col card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16 md:mb-20">
           {clients.map((client, i) => (
             <motion.div
               key={client.name}
@@ -95,9 +95,9 @@ export default function Clients() {
           ))}
         </div>
 
-        {/* ── LOGO STRIP (Moved after the "trusted us" section & detail rows, exact replica of the uploaded layout) ── */}
+        {/* ── LOGO STRIP ── */}
         <div className="border-t border-b border-black/[0.08] -mx-6 md:-mx-16 lg:-mx-24">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-black/[0.08]">
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-black/[0.08]">
             {/* Logo 1: GBM */}
             <div className="flex items-center justify-center py-7 px-4 hover:bg-black/[0.01] transition-colors duration-200">
               <span className="text-[20px] font-bold tracking-[0.06em] text-black/75" style={{ fontFamily: "Cinzel, Didot, Garamond, serif", textShadow: "0.5px 0px 0px currentColor" }}>

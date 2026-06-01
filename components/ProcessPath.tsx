@@ -29,7 +29,7 @@ const steps = [
 
 export default function ProcessPath() {
   return (
-    <section className="bg-[#0c0d0e] py-28 w-full">
+    <section className="bg-[#0c0d0e] py-20 md:py-28 w-full">
       <div className="max-w-screen-xl mx-auto w-full px-6 md:px-16 lg:px-24">
         {/* Header */}
         <motion.div
@@ -42,7 +42,7 @@ export default function ProcessPath() {
           <span className="text-[11px] font-mono text-white/30 tracking-[0.22em] uppercase mb-5 block">
             The Process
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[0.98]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[0.98]">
             Three steps. <span className="text-white/[0.22]">No retainers.</span>
           </h2>
         </motion.div>
@@ -52,7 +52,7 @@ export default function ProcessPath() {
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
-              className="bg-[#0c0d0e] p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative overflow-hidden group"
+              className="bg-[#0c0d0e] p-7 md:p-10 flex flex-col justify-between min-h-[260px] md:min-h-[340px] relative overflow-hidden group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -88,7 +88,7 @@ export default function ProcessPath() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <Link href="/appointments">
-            <button className="bg-[#00ff81] text-black text-sm font-medium px-8 py-3.5 rounded-full hover:bg-[#00e873] transition-colors duration-200">
+            <button className="bg-[#00ff81] text-black text-sm font-medium px-8 py-3.5 rounded-full hover:bg-[#00e873] transition-colors duration-200 min-h-[44px]">
               Start with a call
             </button>
           </Link>

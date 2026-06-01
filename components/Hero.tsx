@@ -47,10 +47,10 @@ export default function Hero() {
       />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-36 pb-12 max-w-screen-xl mx-auto w-full relative z-10">
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-28 sm:pt-32 md:pt-36 pb-10 md:pb-12 max-w-screen-xl mx-auto w-full relative z-10">
         {/* Meta row */}
         <motion.div
-          className="flex items-center justify-between mb-16"
+          className="flex items-center justify-between mb-10 md:mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -65,7 +65,7 @@ export default function Hero() {
           {HEADLINE_LINES.map((line, i) => (
             <div key={i} className="overflow-hidden pb-[0.14em]">
               <motion.span
-                className="block font-medium tracking-[-0.025em] leading-[1.0] text-[2.6rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem]"
+                className="block font-medium tracking-[-0.025em] leading-[1.0] text-[2rem] xs:text-[2.4rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem]"
                 initial={{ y: "108%" }}
                 animate={{ y: "0%" }}
                 transition={{
@@ -86,24 +86,24 @@ export default function Hero() {
 
         {/* Bottom row: copy + CTAs */}
         <motion.div
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-8"
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 sm:gap-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.62, ease: "easeOut" }}
         >
-          <p className="text-black/55 max-w-xs text-sm md:text-base leading-relaxed">
+          <p className="text-black/55 max-w-sm text-[14px] md:text-base leading-relaxed">
             A World-Class marketing, branding, and design partner for B2B and B2C
             service businesses across Sri Lanka and the UAE. Built to close the gap
             between the business and how it shows up online.
           </p>
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link href="/appointments">
-              <button className="bg-black text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#00ff81] hover:text-black transition-all duration-300">
+              <button className="bg-black text-white text-sm font-medium px-6 py-3 sm:px-7 sm:py-3.5 rounded-full hover:bg-[#00ff81] hover:text-black transition-all duration-300 min-h-[44px]">
                 Book a discovery call
               </button>
             </Link>
             <Link href="/blogs">
-              <button className="text-black text-sm font-medium px-7 py-3.5 rounded-full border border-black/15 hover:border-black/35 hover:bg-black/[0.04] transition-all duration-200">
+              <button className="text-black text-sm font-medium px-6 py-3 sm:px-7 sm:py-3.5 rounded-full border border-black/15 hover:border-black/35 hover:bg-black/[0.04] transition-all duration-200 min-h-[44px]">
                 See recent work →
               </button>
             </Link>

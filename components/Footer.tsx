@@ -40,7 +40,7 @@ export default function Footer() {
     <footer className="bg-[#0c0d0e] text-white relative overflow-hidden z-0">
 
       {/* ── ZONE 1: Brand statement ── */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-20 pb-16 border-b border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-16 md:pt-20 pb-12 md:pb-16 border-b border-white/[0.05]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
 
           {/* Left: Identity */}
@@ -65,7 +65,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:hello@scalex.lk"
-              className="group inline-flex items-center gap-3 text-[1.6rem] sm:text-[2rem] md:text-[2.2rem] font-medium text-white hover:text-[#00ff81] transition-colors duration-300 leading-none"
+              className="group inline-flex items-center gap-3 text-[1.35rem] sm:text-[1.8rem] md:text-[2.2rem] font-medium text-white hover:text-[#00ff81] transition-colors duration-300 leading-none break-all"
             >
               hello@scalex.lk
               <svg

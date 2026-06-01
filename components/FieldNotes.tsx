@@ -46,10 +46,10 @@ const notes = [
 
 export default function FieldNotes() {
   return (
-    <section className="bg-[#0c0d0e] py-28 w-full">
+    <section className="bg-[#0c0d0e] py-20 md:py-28 w-full">
       <div className="max-w-screen-xl mx-auto w-full px-6 md:px-16 lg:px-24">
         {/* Header */}
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 md:mb-10 gap-4">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,8 +82,8 @@ export default function FieldNotes() {
           </motion.div>
         </div>
 
-        {/* 4-equal-column thumbnail grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Grid: 1-col mobile → 2-col sm → 4-col lg */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {notes.map((note, i) => (
             <motion.div
               key={note.title}
