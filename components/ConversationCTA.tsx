@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ConversationCTA() {
   return (
-    <section className="bg-[#0c0d0e] py-28 md:py-36 px-6 md:px-16 lg:px-24 relative overflow-hidden z-0">
+    <section className="bg-[#0c0d0e] py-16 md:py-20 px-6 md:px-16 lg:px-24 relative overflow-hidden z-0">
       {/* Subtle green ambient glow */}
       <div
         className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"
@@ -42,7 +42,7 @@ export default function ConversationCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[0.96] tracking-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[0.96] tracking-tight">
               Start with a
               <br />
               <span className="text-[#00ff81]">conversation.</span>
@@ -64,12 +64,12 @@ export default function ConversationCTA() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/appointments">
-                <button className="bg-[#00ff81] text-black text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white transition-colors duration-200">
+                <button className="bg-[#00ff81] text-black text-sm font-medium px-7 py-3.5 rounded-full hover:bg-white transition-colors duration-200 min-h-[44px]">
                   Book a discovery call
                 </button>
               </Link>
               <Link href="/blogs">
-                <button className="text-white text-sm font-medium px-7 py-3.5 rounded-full border border-white/[0.12] hover:border-white/30 transition-colors duration-200">
+                <button className="text-white text-sm font-medium px-7 py-3.5 rounded-full border border-white/[0.12] hover:border-white/30 transition-colors duration-200 min-h-[44px]">
                   Read field notes →
                 </button>
               </Link>

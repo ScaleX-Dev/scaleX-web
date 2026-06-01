@@ -40,7 +40,7 @@ export default function Footer() {
     <footer className="bg-[#0c0d0e] text-white relative overflow-hidden z-0">
 
       {/* ── ZONE 1: Brand statement ── */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-20 pb-16 border-b border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-12 md:pt-14 pb-10 md:pb-12 border-b border-white/[0.05]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
 
           {/* Left: Identity */}
@@ -65,7 +65,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:hello@scalex.lk"
-              className="group inline-flex items-center gap-3 text-[1.6rem] sm:text-[2rem] md:text-[2.2rem] font-medium text-white hover:text-[#00ff81] transition-colors duration-300 leading-none"
+              className="group inline-flex items-center gap-3 text-[1.35rem] sm:text-[1.8rem] md:text-[2.2rem] font-medium text-white hover:text-[#00ff81] transition-colors duration-300 leading-none break-all"
             >
               hello@scalex.lk
               <svg
@@ -89,7 +89,7 @@ export default function Footer() {
       </div>
 
       {/* ── ZONE 2: Navigation ── */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 py-14 border-b border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 py-10 border-b border-white/[0.05]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {NAV.map((group) => (
             <div key={group.label}>
@@ -114,7 +114,7 @@ export default function Footer() {
       </div>
 
       {/* ── ZONE 3: Wordmark + bottom bar ── */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-6 pb-8 border-t border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 pt-5 pb-6 border-t border-white/[0.05]">
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-2">

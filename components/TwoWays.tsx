@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 export default function TwoWays() {
   return (
-    <section className="bg-[#FAFAFA] py-28 w-full">
+    <section className="bg-[#FAFAFA] py-12 md:py-16 w-full">
       <div className="max-w-screen-xl mx-auto w-full px-6 md:px-16 lg:px-24">
         {/* Header */}
         <motion.div
-          className="mb-12"
+          className="mb-8"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -17,7 +17,7 @@ export default function TwoWays() {
           <span className="text-[11px] font-mono text-black/30 tracking-[0.22em] uppercase mb-5 block">
             The Decision
           </span>
-          <h2 className="text-4xl md:text-5xl font-medium text-black tracking-tight leading-[1.05]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight leading-[1.05]">
             Two ways this goes.
           </h2>
         </motion.div>
@@ -26,7 +26,7 @@ export default function TwoWays() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/[0.08] rounded-3xl overflow-hidden">
           {/* Path A — Standing still */}
           <motion.div
-            className="bg-[#F5F5F5] p-10 md:p-12 flex flex-col justify-between min-h-[380px]"
+            className="bg-[#F5F5F5] p-8 md:p-12 flex flex-col justify-between min-h-[320px] md:min-h-[380px]"
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function TwoWays() {
 
           {/* Path B — Working with us */}
           <motion.div
-            className="bg-[#0c0d0e] p-10 md:p-12 flex flex-col justify-between min-h-[380px] relative overflow-hidden"
+            className="bg-[#0c0d0e] p-8 md:p-12 flex flex-col justify-between min-h-[320px] md:min-h-[380px] relative overflow-hidden"
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

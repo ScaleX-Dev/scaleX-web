@@ -99,33 +99,15 @@ function CampaignFlow() {
   );
 }
 
-/* ─── Animated palette dots (Design panel) ─────────────── */
+/* ─── Static palette dots (Design panel) ─────────────── */
 function AnimatedPalette() {
-  const [tick, setTick] = useState(0);
-  const raf = useRef(0);
-  useEffect(() => {
-    let id: number;
-    const loop = () => { raf.current += 0.025; setTick(raf.current); id = requestAnimationFrame(loop); };
-    id = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(id);
-  }, []);
   return (
     <div className="srv-palette-dots flex flex-wrap gap-1.5 mb-6">
-      {PALETTE_DOTS.map((c, i) => {
-        const wave = Math.sin(tick * 1.2 + i * 0.42);
-        const scale = 1 + wave * 0.22;
-        const glow = 4 + wave * 6;
-        const glowAlpha = Math.round((0.45 + wave * 0.3) * 255).toString(16).padStart(2, "0");
-        return (
-          <div key={i} className="srv-palette-dot w-5 h-5 rounded-md flex-shrink-0"
-            style={{
-              background: c,
-              boxShadow: `0 2px ${glow}px ${c}${glowAlpha}`,
-              transform: `scale(${scale}) translateY(${-wave * 2}px)`,
-            }}
-          />
-        );
-      })}
+      {PALETTE_DOTS.map((c, i) => (
+        <div key={i} className="srv-palette-dot w-5 h-5 rounded-md flex-shrink-0"
+          style={{ background: c }}
+        />
+      ))}
     </div>
   );
 }
@@ -206,13 +188,13 @@ const Services = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#FAFAFA] px-6 md:px-14 lg:px-20 py-28 overflow-hidden">
+    <section ref={sectionRef} className="bg-[#FAFAFA] px-6 md:px-14 lg:px-20 py-12 md:py-16 overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16">
           <div>
-            <h2 className="srv-header-title text-6xl md:text-8xl lg:text-[7.5rem] font-semibold tracking-tight leading-[0.88] uppercase">
+            <h2 className="srv-header-title text-[3rem] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-semibold tracking-tight leading-[0.88] uppercase">
               Marketing
               <br />
               <span className="text-black/20">&amp; Design</span>
@@ -237,7 +219,7 @@ const Services = () => {
                   <span className="text-[10px] font-mono text-black/30 tracking-[0.18em] uppercase block mb-3">
                     Discipline 01
                   </span>
-                  <h3 className="srv-design-title text-5xl md:text-6xl font-medium text-black tracking-tight">
+                  <h3 className="srv-design-title text-4xl sm:text-5xl md:text-6xl font-medium text-black tracking-tight">
                     Design
                   </h3>
                 </div>
@@ -309,7 +291,7 @@ const Services = () => {
                   <span className="text-[10px] font-mono text-white/25 tracking-[0.18em] uppercase block mb-3">
                     Discipline 02
                   </span>
-                  <h3 className="srv-mktg-title text-5xl md:text-6xl font-medium text-white tracking-tight">
+                  <h3 className="srv-mktg-title text-4xl sm:text-5xl md:text-6xl font-medium text-white tracking-tight">
                     Marketing
                   </h3>
                 </div>
