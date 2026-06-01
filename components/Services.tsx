@@ -188,7 +188,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#FAFAFA] px-6 md:px-14 lg:px-20 py-20 md:py-28 overflow-hidden">
+    <section ref={sectionRef} className="bg-[#FAFAFA] px-6 md:px-14 lg:px-20 py-12 md:py-16 overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
 
         {/* Header */}

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ConversationCTA() {
   return (
-    <section className="bg-[#0c0d0e] py-20 md:py-28 lg:py-36 px-6 md:px-16 lg:px-24 relative overflow-hidden z-0">
+    <section className="bg-[#0c0d0e] py-16 md:py-20 px-6 md:px-16 lg:px-24 relative overflow-hidden z-0">
       {/* Subtle green ambient glow */}
       <div
         className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"

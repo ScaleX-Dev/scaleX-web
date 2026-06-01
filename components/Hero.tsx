@@ -47,7 +47,7 @@ export default function Hero() {
       />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-28 sm:pt-32 md:pt-36 pb-10 md:pb-12 max-w-screen-xl mx-auto w-full relative z-10">
+      <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-28 sm:pt-32 md:pt-36 pb-6 md:pb-8 max-w-screen-xl mx-auto w-full relative z-10">
         {/* Meta row */}
         <motion.div
           className="flex items-center justify-between mb-10 md:mb-16"

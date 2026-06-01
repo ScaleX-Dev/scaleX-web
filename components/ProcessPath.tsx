@@ -29,11 +29,11 @@ const steps = [
 
 export default function ProcessPath() {
   return (
-    <section className="bg-[#0c0d0e] py-20 md:py-28 w-full">
+    <section className="bg-[#0c0d0e] py-12 md:py-16 w-full">
       <div className="max-w-screen-xl mx-auto w-full px-6 md:px-16 lg:px-24">
         {/* Header */}
         <motion.div
-          className="mb-20"
+          className="mb-10"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

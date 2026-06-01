@@ -37,10 +37,10 @@ const clients = [
 
 export default function Clients() {
   return (
-    <section className="bg-[#FAFAFA] py-20 md:py-24 w-full">
+    <section className="bg-[#FAFAFA] py-12 md:py-16 w-full">
       <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 w-full">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 md:mb-10 pb-8 border-b border-black/[0.07] gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-6 md:mb-8 pb-6 border-b border-black/[0.07] gap-3">
           <motion.h2
             className="text-xl sm:text-2xl md:text-3xl font-medium text-black leading-snug max-w-md"
             initial={{ opacity: 0, y: 16 }}
@@ -64,7 +64,7 @@ export default function Clients() {
         </div>
 
         {/* 3-col card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16 md:mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 md:mb-14">
           {clients.map((client, i) => (
             <motion.div
               key={client.name}
