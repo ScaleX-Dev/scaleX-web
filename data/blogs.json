@@ -1,1 +1,68 @@
-[]
+[
+  {
+    "id": "kuki-beach-booking-audit",
+    "title": "Kuki Beach: where the booking was leaking",
+    "category": "AUDIT",
+    "coverImageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80&fit=crop",
+    "publisher": "Chirath Hewagamage",
+    "designation": "Founder, ScaleX",
+    "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&fit=crop&crop=face",
+    "createdAt": "2026-05-18T08:00:00.000Z",
+    "content": "<p>Kuki Beach is a boutique surf resort on the south coast of Sri Lanka. Their Instagram was doing the work — beautiful content, strong engagement, growing following. But bookings weren't moving. We ran a full conversion audit to find out why.</p><h2>What we found</h2><p>The problem wasn't awareness. It was the gap between Instagram and the booking page. Users would tap the link in bio, land on a generic homepage, and lose the thread of the story they'd just been sold on Instagram. No beach imagery above the fold. No surf-focused messaging. The booking widget was buried three scrolls deep.</p><p>We rebuilt the landing path: a campaign-specific page that continued the Instagram story, moved the booking widget front and centre, and removed every exit point between the ad and the conversion.</p><h2>The result</h2><p>Booking conversion rate went from 1.2% to 4.8% in the first 30 days. Direct booking revenue increased 5× versus the prior month. The content hadn't changed — just the path.</p>"
+  },
+  {
+    "id": "harding-hotels-audit-walkthrough",
+    "title": "Harding Hotels audit walkthrough",
+    "category": "VIDEO",
+    "coverImageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80&fit=crop",
+    "publisher": "Vishaka Wijekoon",
+    "designation": "Marketing Manager, ScaleX",
+    "authorImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&fit=crop&crop=face",
+    "createdAt": "2026-05-10T09:00:00.000Z",
+    "content": "<p>This is a full walkthrough of the marketing audit we ran for Harding Hotels — a three-property boutique hotel group targeting business travellers and weekend escapes. We recorded the session so you can follow the thinking as we go.</p><h2>What the audit covers</h2><p>We start with traffic sources — where guests are actually coming from versus where the hotel thinks they're coming from. Then we move into conversion by source, which is usually where the surprises are. Most hotel clients are over-indexed on OTA traffic and under-investing in their direct booking channel.</p><p>At Harding, 68% of bookings were coming through Booking.com. The hotel was paying 18% commission on each. We found that their direct site converted at 0.4% — versus a benchmark of 3–4% for properties with a clear brand story. That gap represented significant recoverable revenue.</p><h2>The fix</h2><p>We rebuilt the direct site story, added a rate parity comparison widget, and ran a retargeting campaign targeting OTA visitors. Direct bookings went from 12% to 31% of total revenue in 90 days.</p>"
+  },
+  {
+    "id": "instagram-website-disconnect",
+    "title": "Instagram-to-website disconnect",
+    "category": "NOTE",
+    "coverImageUrl": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=80&fit=crop",
+    "publisher": "Chirath Hewagamage",
+    "designation": "Founder, ScaleX",
+    "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&fit=crop&crop=face",
+    "createdAt": "2026-05-02T10:00:00.000Z",
+    "content": "<p>The most common conversion problem we see isn't the website. It's the gap between the social presence and what happens when someone taps through.</p><h2>The pattern</h2><p>A brand builds a strong Instagram — great visuals, clear aesthetic, consistent voice. They get strong engagement. Followers grow. Then they tap the link in bio and land on a homepage that was built two years ago, has a different visual language, and leads with a tagline that doesn't connect to anything they just saw.</p><p>The user's trust breaks in the first three seconds. They bounce. The brand blames the website. Actually the problem is the seam.</p><h2>What to fix</h2><p>The link in bio should go to a page that continues the exact story the post was telling. Same visual treatment. Same tone. A clear single action. If you're running a campaign, the page should reflect the campaign — not your general homepage.</p><p>This sounds obvious. Very few brands do it. The ones who do see 3–5× improvement in tap-to-conversion rate without changing a word of their homepage.</p>"
+  },
+  {
+    "id": "flour-dude-voice-rebuild",
+    "title": "Flour Dude voice rebuild",
+    "category": "BRAND",
+    "coverImageUrl": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&fit=crop",
+    "publisher": "Vishaka Wijekoon",
+    "designation": "Marketing Manager, ScaleX",
+    "authorImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&fit=crop&crop=face",
+    "createdAt": "2026-04-25T08:30:00.000Z",
+    "content": "<p>Flour Dude is a Colombo-based artisan bakery with a loyal following, great product, and a brand voice problem. Their content was a mix of product shots, motivational quotes, and discount announcements — three completely different tones with no connective tissue.</p><h2>The diagnosis</h2><p>After interviewing the founder and mapping what their best customers actually said about them, we found a clear through-line: Flour Dude was the place people went when they wanted to feel good about food. The product was premium but never pretentious. The founder had a dry sense of humour that came through in conversation but never made it into the content.</p><h2>The rebuild</h2><p>We created a voice guide built around three words: Real, Warm, Wry. Every content decision ran through that filter. Product shots got captions that felt like something the founder would actually say. Promotions got reframed as moments rather than discounts — &quot;Friday pick-me-up&quot; instead of &quot;20% off until Sunday.&quot;</p><h2>What happened</h2><p>Engagement rate went from 1.8% to 6.2% over 60 days. DMs from customers increased noticeably. Three wholesale accounts approached them off the back of the Instagram presence.</p>"
+  },
+  {
+    "id": "five-times-revenue-growth-strategy",
+    "title": "How we got to 5× revenue for a SaaS brand in 6 months",
+    "category": "STRATEGY",
+    "coverImageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&fit=crop",
+    "publisher": "Chirath Hewagamage",
+    "designation": "Founder, ScaleX",
+    "authorImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&fit=crop&crop=face",
+    "createdAt": "2026-04-15T09:00:00.000Z",
+    "content": "<p>The brief was simple: the product was strong, the market existed, but growth had stalled at a ceiling they couldn't break through. Six months later, revenue was 5× where it had started. Here's what moved the needle.</p><h2>Step 1: Stop targeting everyone</h2><p>The original positioning was broad — productivity software for teams. Which meant it was competing against every project management tool on the market and winning on none of the key decision points. We narrowed the ICP to three-to-fifteen person agencies who billed by the hour and lost money on scope creep.</p><p>That specificity felt risky. It wasn't. Conversion rate from trial to paid went from 8% to 23% because the messaging now spoke directly to a real problem a specific person had every week.</p><h2>Step 2: Make the case study do the work</h2><p>Instead of testimonials, we built one detailed case study showing exactly how an agency recovered $4,200 in monthly revenue using the tool. One number. One story. Linked from every ad, every email, every sales conversation. The case study page became the highest-converting page on the site.</p>"
+  },
+  {
+    "id": "paid-ads-that-dont-bleed",
+    "title": "Paid ads that don't bleed: what we changed and why",
+    "category": "CAMPAIGN",
+    "coverImageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&fit=crop",
+    "publisher": "Tinura",
+    "designation": "Growth Specialist, ScaleX",
+    "authorImage": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80&q=80&fit=crop&crop=face",
+    "createdAt": "2026-04-05T10:00:00.000Z",
+    "content": "<p>Most paid ad accounts we inherit are bleeding for the same four reasons. This post walks through the audit we run on every new account in the first week and the changes that consistently move ROAS from under 1× to 3–4× within 30 days.</p><h2>Reason 1: Ads are doing the landing page's job</h2><p>When the landing page is weak, the ad has to do everything — establish the brand, make the case, handle objections, trigger the conversion. Ads aren't built for that. They're built for one job: get the click. Fix the landing page and your existing ads immediately perform better.</p><h2>Reason 2: The audience is too broad</h2><p>Broad audiences feel safer because the numbers look bigger. They rarely perform better. A tighter audience with a message that speaks directly to them will outperform a broad audience with a generic message almost every time. The exception is retargeting — there you want coverage.</p><h2>Reason 3: Too many creatives, not enough learning</h2><p>Running 15 ad variations splits the budget too thin for the algorithm to optimise. We usually cut to 3–4 strong concepts, let them spend for at least 7 days each, then make decisions based on actual data.</p>"
+  }
+]
