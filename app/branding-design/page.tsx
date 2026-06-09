@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -92,21 +92,124 @@ function ServiceImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function ServicePattern({ tag }: { tag: string }) {
+function CollateralPattern() {
+  const [tick, setTick] = useState(0);
+  const raf = useRef(0);
+
+  useEffect(() => {
+    let id: number;
+    const loop = () => { raf.current += 0.009; setTick(raf.current); id = requestAnimationFrame(loop); };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const scanY = ((tick * 0.15) % 1) * 260 + 28;
+
+  const topDocs = [
+    { x: 65,  y: 50, w: 80, h: 100, type: "poster" },
+    { x: 170, y: 50, w: 80, h: 100, type: "deck"   },
+    { x: 275, y: 50, w: 80, h: 100, type: "brand"  },
+  ];
+  const btmDocs = [
+    { x: 65,  y: 168, w: 80, h: 50, type: "wide1" },
+    { x: 170, y: 168, w: 80, h: 50, type: "wide2" },
+    { x: 275, y: 168, w: 80, h: 50, type: "wide3" },
+  ];
+
   return (
-    <div className="w-full aspect-[4/3] rounded-2xl bg-[#111213] border border-white/[0.07] relative overflow-hidden flex flex-col items-end justify-end p-6">
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute top-0 right-0 w-40 h-40 bg-[#00ff81]/[0.06] rounded-full blur-[60px]" />
-      <span className="text-[10px] font-mono text-white/20 tracking-[0.2em] uppercase relative z-10">
-        {tag}
-      </span>
+    <div className="w-full aspect-[4/3] rounded-2xl bg-[#0c0d0e] border border-white/[0.07] relative overflow-hidden">
+      <div className="absolute inset-0" style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+      }} />
+      <div className="absolute top-0 right-0 w-48 h-48 bg-[#00ff81]/[0.07] rounded-full blur-[70px]" />
+
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 420 315" fill="none">
+        {/* Crop / registration marks */}
+        {([[24,24],[396,24],[24,291],[396,291]] as [number,number][]).map(([cx,cy],i) => (
+          <g key={`c${i}`}>
+            <line x1={cx-10} y1={cy} x2={cx+10} y2={cy} stroke="rgba(0,255,129,0.32)" strokeWidth={0.65}/>
+            <line x1={cx} y1={cy-10} x2={cx} y2={cy+10} stroke="rgba(0,255,129,0.32)" strokeWidth={0.65}/>
+            <circle cx={cx} cy={cy} r={3.5} stroke="rgba(0,255,129,0.18)" strokeWidth={0.6} fill="none"/>
+          </g>
+        ))}
+
+        {/* Top row: portrait docs */}
+        {topDocs.map((doc, i) => {
+          const p = (Math.sin(tick * 1.1 + i * 1.1) + 1) / 2;
+          const isAccent = doc.type === "brand";
+          return (
+            <g key={`td${i}`}>
+              <rect x={doc.x} y={doc.y} width={doc.w} height={doc.h} rx={3}
+                fill="rgba(255,255,255,0.04)"
+                stroke={isAccent ? `rgba(0,255,129,${0.22 + p * 0.14})` : `rgba(255,255,255,${0.09 + p * 0.04})`}
+                strokeWidth={isAccent ? 1 : 0.7}
+              />
+              {doc.type === "poster" && <>
+                <rect x={doc.x+8} y={doc.y+8} width={doc.w-16} height={30} rx={2} fill="#00ff81" opacity={0.1+p*0.05}/>
+                <line x1={doc.x+8} y1={doc.y+48} x2={doc.x+doc.w-8} y2={doc.y+48} stroke="rgba(255,255,255,0.1)" strokeWidth={1}/>
+                <line x1={doc.x+8} y1={doc.y+57} x2={doc.x+doc.w-16} y2={doc.y+57} stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
+                <line x1={doc.x+8} y1={doc.y+66} x2={doc.x+doc.w-12} y2={doc.y+66} stroke="rgba(255,255,255,0.05)" strokeWidth={1}/>
+                <circle cx={doc.x+doc.w-14} cy={doc.y+doc.h-14} r={5} fill="#00ff81" opacity={0.4+p*0.2}/>
+              </>}
+              {doc.type === "deck" && <>
+                <rect x={doc.x+8} y={doc.y+8} width={doc.w-16} height={46} rx={2} fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" strokeWidth={0.5}/>
+                <line x1={doc.x+10} y1={doc.y+62} x2={doc.x+doc.w-10} y2={doc.y+62} stroke="rgba(255,255,255,0.08)" strokeWidth={1}/>
+                <line x1={doc.x+10} y1={doc.y+71} x2={doc.x+doc.w-22} y2={doc.y+71} stroke="rgba(255,255,255,0.05)" strokeWidth={1}/>
+                <rect x={doc.x+10} y={doc.y+82} width={22} height={9} rx={1} fill="rgba(0,255,129,0.15)"/>
+              </>}
+              {doc.type === "brand" && <>
+                <circle cx={doc.x+doc.w/2} cy={doc.y+40} r={24} fill="rgba(0,255,129,0.05)" stroke="rgba(0,255,129,0.14)" strokeWidth={0.8}/>
+                <circle cx={doc.x+doc.w/2} cy={doc.y+40} r={11} fill="rgba(0,255,129,0.12)" stroke="rgba(0,255,129,0.38)" strokeWidth={1}/>
+                <circle cx={doc.x+doc.w/2} cy={doc.y+40} r={3.5} fill="#00ff81" opacity={0.75+p*0.2}/>
+                <line x1={doc.x+14} y1={doc.y+76} x2={doc.x+doc.w-14} y2={doc.y+76} stroke="rgba(255,255,255,0.1)" strokeWidth={1}/>
+                <line x1={doc.x+20} y1={doc.y+85} x2={doc.x+doc.w-20} y2={doc.y+85} stroke="rgba(255,255,255,0.06)" strokeWidth={1}/>
+              </>}
+            </g>
+          );
+        })}
+
+        {/* Bottom row: landscape docs */}
+        {btmDocs.map((doc, i) => {
+          const p = (Math.sin(tick * 1.3 + i * 0.8 + 2) + 1) / 2;
+          return (
+            <g key={`bd${i}`}>
+              <rect x={doc.x} y={doc.y} width={doc.w} height={doc.h} rx={3}
+                fill="rgba(255,255,255,0.03)"
+                stroke={`rgba(255,255,255,${0.07 + p * 0.03})`}
+                strokeWidth={0.7}
+              />
+              {doc.type === "wide1" && <>
+                <rect x={doc.x+8} y={doc.y+10} width={20} height={doc.h-20} rx={1} fill="rgba(0,255,129,0.1)"/>
+                <line x1={doc.x+34} y1={doc.y+14} x2={doc.x+doc.w-8} y2={doc.y+14} stroke="rgba(255,255,255,0.09)" strokeWidth={1}/>
+                <line x1={doc.x+34} y1={doc.y+22} x2={doc.x+doc.w-14} y2={doc.y+22} stroke="rgba(255,255,255,0.06)" strokeWidth={1}/>
+                <line x1={doc.x+34} y1={doc.y+30} x2={doc.x+doc.w-20} y2={doc.y+30} stroke="rgba(255,255,255,0.04)" strokeWidth={1}/>
+              </>}
+              {doc.type === "wide2" && <>
+                <line x1={doc.x+8} y1={doc.y+16} x2={doc.x+doc.w-8} y2={doc.y+16} stroke="rgba(255,255,255,0.1)" strokeWidth={1.5}/>
+                <line x1={doc.x+8} y1={doc.y+24} x2={doc.x+doc.w-16} y2={doc.y+24} stroke="rgba(255,255,255,0.06)" strokeWidth={1}/>
+                <rect x={doc.x+8} y={doc.y+32} width={12} height={8} rx={1} fill="#00ff81" opacity={0.28+p*0.18}/>
+              </>}
+              {doc.type === "wide3" && <>
+                <rect x={doc.x+8} y={doc.y+8} width={doc.w-16} height={doc.h-16} rx={2}
+                  fill="rgba(0,255,129,0.04)" stroke="rgba(0,255,129,0.14)" strokeWidth={0.6}/>
+                <line x1={doc.x+14} y1={doc.y+18} x2={doc.x+doc.w-14} y2={doc.y+18} stroke="rgba(255,255,255,0.08)" strokeWidth={1}/>
+                <line x1={doc.x+14} y1={doc.y+26} x2={doc.x+doc.w-22} y2={doc.y+26} stroke="rgba(255,255,255,0.05)" strokeWidth={1}/>
+              </>}
+            </g>
+          );
+        })}
+
+        {/* Scan line */}
+        <line x1={42} y1={scanY} x2={378} y2={scanY} stroke="rgba(0,255,129,0.1)" strokeWidth={1.2}/>
+        <rect x={42} y={scanY-10} width={336} height={20} fill="rgba(0,255,129,0.015)"/>
+
+        {/* Bottom-right label */}
+        <text x={386} y={302} fill="rgba(255,255,255,0.1)" fontSize="7.5"
+          textAnchor="end" fontFamily="monospace" letterSpacing="2.5">
+          COLLATERAL &amp; PRINT
+        </text>
+      </svg>
     </div>
   );
 }
@@ -422,7 +525,7 @@ export default function BrandingDesignPage() {
                 {svc.image ? (
                   <ServiceImage src={svc.image} alt={svc.imageAlt} />
                 ) : (
-                  <ServicePattern tag={svc.tag} />
+                  <CollateralPattern />
                 )}
               </div>
             </div>

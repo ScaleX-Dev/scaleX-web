@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -88,21 +88,135 @@ function ServiceImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function ServicePattern({ tag }: { tag: string }) {
+function FunnelPattern() {
+  const [tick, setTick] = useState(0);
+  const raf = useRef(0);
+
+  useEffect(() => {
+    let id: number;
+    const loop = () => { raf.current += 0.013; setTick(raf.current); id = requestAnimationFrame(loop); };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const STAGES = [
+    { x: 72,  label: "FIRST TOUCH", count: "847" },
+    { x: 175, label: "ENQUIRY",     count: "312" },
+    { x: 278, label: "QUALIFIED",   count: "94"  },
+    { x: 365, label: "CLOSED",      count: "47"  },
+  ];
+  const Y = 138;
+
+  const packets = ([0,1,2] as number[]).flatMap(ci =>
+    Array.from({ length: 3 }, (_, pi) => {
+      const phase = ((tick * 0.42 + ci * 0.33 + pi * 0.33) % 1);
+      const sx = STAGES[ci].x, ex = STAGES[ci + 1].x;
+      return { x: sx + (ex - sx) * phase, op: Math.sin(phase * Math.PI) * 0.88 };
+    })
+  );
+
   return (
-    <div className="w-full aspect-[4/3] rounded-2xl bg-[#111213] border border-white/[0.07] relative overflow-hidden flex flex-col items-end justify-end p-6">
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute top-0 right-0 w-40 h-40 bg-[#00ff81]/[0.06] rounded-full blur-[60px]" />
-      <span className="text-[10px] font-mono text-white/20 tracking-[0.2em] uppercase relative z-10">
-        {tag}
-      </span>
+    <div className="w-full aspect-[4/3] rounded-2xl bg-[#0c0d0e] border border-white/[0.07] relative overflow-hidden">
+      <div className="absolute inset-0" style={{
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+        backgroundSize: "36px 36px",
+      }} />
+      {/* Green glow on closed stage */}
+      <div className="absolute" style={{
+        right: "8%", top: "25%", width: 130, height: 130,
+        background: "radial-gradient(circle, rgba(0,255,129,0.13), transparent 70%)",
+        borderRadius: "50%",
+        filter: "blur(24px)",
+      }} />
+
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 420 315" fill="none">
+        {/* Connection lines */}
+        {([0,1,2] as number[]).map(ci => (
+          <line key={ci}
+            x1={STAGES[ci].x} y1={Y} x2={STAGES[ci+1].x} y2={Y}
+            stroke="rgba(0,255,129,0.14)" strokeWidth={0.8} strokeDasharray="4 5"
+          />
+        ))}
+
+        {/* Arrow midpoints */}
+        {([0,1,2] as number[]).map(ci => {
+          const mx = (STAGES[ci].x + STAGES[ci+1].x) / 2;
+          return (
+            <path key={`a${ci}`}
+              d={`M${mx-5} ${Y-4} L${mx} ${Y} L${mx-5} ${Y+4}`}
+              stroke="rgba(0,255,129,0.18)" strokeWidth={0.8} fill="none"
+            />
+          );
+        })}
+
+        {/* Funnel width bars (wider left → narrower right) */}
+        {STAGES.map((s, i) => {
+          const halfH = 36 - i * 7;
+          return (
+            <rect key={`bar${i}`}
+              x={s.x - 1} y={Y - halfH}
+              width={2} height={halfH * 2}
+              fill="rgba(255,255,255,0.06)" rx={1}
+            />
+          );
+        })}
+
+        {/* Broadcast rings on last stage */}
+        {[0,1,2].map(ri => {
+          const phase = ((tick * 0.52 + ri / 3) % 1);
+          return (
+            <circle key={`ring${ri}`}
+              cx={STAGES[3].x} cy={Y}
+              r={phase * 42}
+              stroke="#00ff81" strokeWidth={0.7}
+              fill="none" opacity={(1 - phase) * 0.42}
+            />
+          );
+        })}
+
+        {/* Animated lead packets */}
+        {packets.map((p, i) => (
+          <circle key={i} cx={p.x} cy={Y} r={2.2} fill="#00ff81" opacity={p.op}/>
+        ))}
+
+        {/* Stage nodes */}
+        {STAGES.map((s, i) => {
+          const pulse = (Math.sin(tick * 1.5 + i * 0.8) + 1) / 2;
+          const last = i === 3;
+          return (
+            <g key={`stg${i}`}>
+              <circle cx={s.x} cy={Y} r={20 + pulse * 7}
+                fill={last ? "#00ff81" : "white"}
+                opacity={last ? 0.07 + pulse * 0.05 : 0.025 + pulse * 0.015}
+              />
+              <circle cx={s.x} cy={Y} r={9}
+                stroke={last ? "#00ff81" : "rgba(255,255,255,0.22)"}
+                strokeWidth={last ? 1.5 : 1}
+                fill={last ? "rgba(0,255,129,0.1)" : "rgba(255,255,255,0.04)"}
+              />
+              <circle cx={s.x} cy={Y} r={3}
+                fill={last ? "#00ff81" : "rgba(255,255,255,0.58)"}
+              />
+              {/* Count above */}
+              <text x={s.x} y={Y - 24}
+                fill={last ? "#00ff81" : "rgba(255,255,255,0.32)"}
+                fontSize="10" textAnchor="middle" fontFamily="monospace"
+              >{s.count}</text>
+              {/* Label below */}
+              <text x={s.x} y={Y + 30}
+                fill={last ? "rgba(0,255,129,0.65)" : "rgba(255,255,255,0.2)"}
+                fontSize="5.8" textAnchor="middle" fontFamily="monospace" letterSpacing="0.7"
+              >{s.label}</text>
+            </g>
+          );
+        })}
+
+        {/* Bottom label */}
+        <text x={386} y={300}
+          fill="rgba(255,255,255,0.09)" fontSize="7.5"
+          textAnchor="end" fontFamily="monospace" letterSpacing="2.5"
+        >PERFORMANCE &amp; CRM</text>
+      </svg>
     </div>
   );
 }
@@ -416,7 +530,7 @@ export default function MarketingPage() {
                 {svc.image ? (
                   <ServiceImage src={svc.image} alt={svc.imageAlt} />
                 ) : (
-                  <ServicePattern tag={svc.tag} />
+                  <FunnelPattern />
                 )}
               </div>
             </div>
