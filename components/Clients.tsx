@@ -1,5 +1,6 @@
 'use client'
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const clients = [
@@ -8,7 +9,7 @@ const clients = [
     name: "Gallina Innovations",
     type: "Architecture practice.",
     initials: "GI",
-    logo: "/logos/gallina-innovations.png",
+    logo: "/Logo%20Black%20with%20BG.png",
     detail: "Thirty years in business.",
     problem:
       "Three decades of legacy work behind a digital presence that did not carry the same weight.",
@@ -18,7 +19,7 @@ const clients = [
     name: "Magnate Yachts",
     type: "Sri Lanka's leading yacht management agency.",
     initials: "MY",
-    logo: "/logos/magnate-yachts.png",
+    logo: null,
     detail: "Handles 80% of yacht and superyacht arrivals into the country.",
     problem:
       "A category-leading position in-market, a website that had not been built to reflect it.",
@@ -28,7 +29,7 @@ const clients = [
     name: "Flour Dude",
     type: "Five-star rated café and bakery.",
     initials: "FD",
-    logo: "/logos/flour-dude.png",
+    logo: "/Final%20Logo.png",
     detail: "The product had a five-star reputation.",
     problem:
       "The marketing voice could have belonged to any café.",
@@ -75,10 +76,24 @@ export default function Clients() {
               transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
             >
               {/* Logo area */}
-              <div className="h-[88px] bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center">
-                <span className="text-[13px] font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none">
-                  {client.initials}
-                </span>
+              <div className="bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center overflow-hidden">
+                {client.logo ? (
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-full h-auto"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="h-[88px] flex items-center justify-center w-full">
+                    <span className="text-[13px] font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none">
+                      {client.initials}
+                    </span>
+                  </div>
+                )}
               </div>
               {/* Content */}
               <div className="p-6">

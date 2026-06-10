@@ -3,25 +3,29 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Metadata from "@/components/Metadata";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const TEAM = [
   {
     name: "Chirath Hewagamage",
-    role: "Founder",
-    initials: "CH",
+    role: "Founder & CEO",
+    photo: "/Chirath.jpeg",
+    objectPosition: "center",
     bio: "The strategist behind the story. Obsessed with the psychology of why customers choose.",
   },
   {
-    name: "Vishaka Wijekoon",
-    role: "Social Media Marketing Manager",
-    initials: "VW",
+    name: "Vishaka Wijeykoon",
+    role: "Social Media & Content Manager",
+    photo: "/Vishaka.jpeg",
+    objectPosition: "center",
     bio: "Turns brand voice into scroll-stopping content that actually converts.",
   },
   {
-    name: "Tinura",
-    role: "Growth Partnership Specialist",
-    initials: "T",
+    name: "Tinura Abeysekara",
+    role: "Growth Partnerships Specialist",
+    photo: "/Tinura.jpeg",
+    objectPosition: "center 15%",
     bio: "Builds the relationships and systems that keep growth compounding over time.",
   },
 ];
@@ -185,11 +189,16 @@ export default function AboutUs() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: i * 0.1, ease: "easeOut" }}
               >
-                {/* Portrait placeholder */}
-                <div className="w-full aspect-[4/3] rounded-xl bg-black/[0.04] border border-black/[0.06] flex items-center justify-center mb-5 overflow-hidden relative">
-                  <span className="text-[2.5rem] font-medium text-black/[0.08] select-none">
-                    {person.initials}
-                  </span>
+                {/* Portrait */}
+                <div className="w-full aspect-[3/4] rounded-xl overflow-hidden mb-5 relative">
+                  <Image
+                    src={person.photo}
+                    alt={person.name}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: person.objectPosition }}
+                    unoptimized
+                  />
                   {/* subtle green corner accent */}
                   <div className="absolute bottom-0 left-0 w-8 h-8 bg-[#00ff81]/[0.18] rounded-tr-xl" />
                 </div>
