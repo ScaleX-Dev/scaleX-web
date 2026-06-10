@@ -76,20 +76,23 @@ export default function Clients() {
               transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
             >
               {/* Logo area */}
-              <div className="h-[88px] bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center overflow-hidden">
+              <div className="bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center overflow-hidden">
                 {client.logo ? (
                   <Image
                     src={client.logo}
                     alt={client.name}
-                    width={120}
-                    height={60}
-                    className="object-contain max-h-[60px] w-auto"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-full h-auto"
                     unoptimized
                   />
                 ) : (
-                  <span className="text-[13px] font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none">
-                    {client.initials}
-                  </span>
+                  <div className="h-[88px] flex items-center justify-center w-full">
+                    <span className="text-[13px] font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none">
+                      {client.initials}
+                    </span>
+                  </div>
                 )}
               </div>
               {/* Content */}
