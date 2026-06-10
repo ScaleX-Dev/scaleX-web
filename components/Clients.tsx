@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -31,15 +31,84 @@ const clients = [
     initials: "FD",
     logo: "/Final%20Logo.png",
     detail: "The product had a five-star reputation.",
-    problem:
-      "The marketing voice could have belonged to any café.",
+    problem: "The marketing voice could have belonged to any café.",
   },
 ];
 
 export default function Clients() {
+  const [activeCard, setActiveCard] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Track which card is closest to the container center on scroll
+  const handleScroll = useCallback(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+    const cRect = container.getBoundingClientRect();
+    const centerX = cRect.left + cRect.width / 2;
+    let closest = 0;
+    let minDist = Infinity;
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      const dist = Math.abs(r.left + r.width / 2 - centerX);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    setActiveCard(closest);
+  }, []);
+
+  // Scroll so the target card's left edge sits at scroll-padding-left (24px)
+  const scrollToCard = useCallback((index: number) => {
+    const container = carouselRef.current;
+    const card = cardRefs.current[index];
+    if (!container || !card) return;
+    const cRect = container.getBoundingClientRect();
+    const kRect = card.getBoundingClientRect();
+    container.scrollTo({
+      left: container.scrollLeft + kRect.left - cRect.left - 24,
+      behavior: "smooth",
+    });
+  }, []);
+
+  // mobile=true: fixed logo area height so all carousel cards are uniform
+  const renderCardInner = (client: typeof clients[0], mobile = false) => (
+    <>
+      <div className={`bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center overflow-hidden${mobile ? " h-48" : ""}`}>
+        {client.logo ? (
+          <Image
+            src={client.logo}
+            alt={client.name}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className={mobile ? "w-full h-full object-contain p-4" : "w-full h-auto"}
+            unoptimized
+          />
+        ) : (
+          <div className={`${mobile ? "h-48" : "h-[88px]"} flex items-center justify-center w-full`}>
+            <span className={`font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none ${mobile ? "text-3xl" : "text-[13px]"}`}>
+              {client.initials}
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="p-6">
+        <h3 className="text-[15px] font-semibold text-black mb-1 leading-snug">
+          {client.name}
+        </h3>
+        <p className="text-[13px] text-black/45 leading-snug mb-1">{client.type}</p>
+        <p className="text-[13px] text-black/35 mb-4">{client.detail}</p>
+        <p className="text-[13px] text-black/55 leading-relaxed border-t border-black/[0.06] pt-4">
+          {client.problem}
+        </p>
+      </div>
+    </>
+  );
+
   return (
     <section className="bg-[#FAFAFA] py-12 md:py-16 w-full">
       <div className="max-w-screen-xl mx-auto px-6 md:px-16 lg:px-24 w-full">
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-6 md:mb-8 pb-6 border-b border-black/[0.07] gap-3">
           <motion.h2
@@ -64,8 +133,54 @@ export default function Clients() {
           </motion.span>
         </div>
 
-        {/* 3-col card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 md:mb-14">
+        {/* ── MOBILE: horizontal snap carousel ── */}
+        <div className="md:hidden mb-10">
+          {/*
+            -mx-6 px-6: escapes section padding to go full-width, then re-adds
+            left/right padding so cards align with the content above.
+            scroll-pl-6: tells snap to honour the 24px left padding when snapping.
+          */}
+          <div
+            ref={carouselRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-pl-6 gap-3 -mx-6 px-6 pb-1"
+            style={{ scrollbarWidth: "none" } as React.CSSProperties}
+          >
+            {clients.map((client, i) => (
+              <div
+                key={client.name}
+                ref={(el) => { cardRefs.current[i] = el; }}
+                className="snap-start flex-shrink-0 w-[78vw] bg-white border border-black/[0.08] rounded-2xl overflow-hidden"
+              >
+                {renderCardInner(client, true)}
+              </div>
+            ))}
+            {/* Trailing spacer so the last card can snap fully into view */}
+            <div className="flex-shrink-0 w-6" aria-hidden="true" />
+          </div>
+
+          {/* Pagination dots + position counter */}
+          <div className="flex justify-center items-center gap-2.5 mt-5">
+            {clients.map((client, i) => (
+              <button
+                key={i}
+                onClick={() => scrollToCard(i)}
+                aria-label={`View ${client.name}`}
+                className={`rounded-full transition-all duration-300 ease-in-out ${
+                  activeCard === i
+                    ? "w-5 h-[5px] bg-black"
+                    : "w-[5px] h-[5px] bg-black/20"
+                }`}
+              />
+            ))}
+            <span className="text-[10px] font-mono text-black/25 ml-1 tabular-nums">
+              {String(activeCard + 1).padStart(2, "0")} / {String(clients.length).padStart(2, "0")}
+            </span>
+          </div>
+        </div>
+
+        {/* ── DESKTOP: 3-col grid ── */}
+        <div className="hidden md:grid grid-cols-3 gap-4 mb-10 md:mb-14">
           {clients.map((client, i) => (
             <motion.div
               key={client.name}
@@ -75,37 +190,7 @@ export default function Clients() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
             >
-              {/* Logo area */}
-              <div className="bg-black/[0.03] border-b border-black/[0.06] flex items-center justify-center overflow-hidden">
-                {client.logo ? (
-                  <Image
-                    src={client.logo}
-                    alt={client.name}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className="w-full h-auto"
-                    unoptimized
-                  />
-                ) : (
-                  <div className="h-[88px] flex items-center justify-center w-full">
-                    <span className="text-[13px] font-mono font-semibold tracking-[0.18em] text-black/30 uppercase select-none">
-                      {client.initials}
-                    </span>
-                  </div>
-                )}
-              </div>
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-[15px] font-semibold text-black mb-1 leading-snug">
-                  {client.name}
-                </h3>
-                <p className="text-[13px] text-black/45 leading-snug mb-1">{client.type}</p>
-                <p className="text-[13px] text-black/35 mb-4">{client.detail}</p>
-                <p className="text-[13px] text-black/55 leading-relaxed border-t border-black/[0.06] pt-4">
-                  {client.problem}
-                </p>
-              </div>
+              {renderCardInner(client)}
             </motion.div>
           ))}
         </div>
@@ -134,7 +219,6 @@ export default function Clients() {
             <div className="flex items-center justify-center py-7 px-4 hover:bg-black/[0.01] transition-colors duration-200 border-t sm:border-t-0 border-black/[0.08]">
               <div className="flex items-center gap-2.5 text-black/70">
                 <div className="relative w-5 h-7">
-                  {/* Custom U-F continuous stroke curve */}
                   <svg className="absolute inset-0 w-full h-full fill-none stroke-current stroke-[2.4]" viewBox="0 0 24 28">
                     <path d="M4 6c0 3.5 3 5 8 5s8-1.5 8-5M12 11V23M8 16h8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -150,7 +234,6 @@ export default function Clients() {
             <div className="flex items-center justify-center py-7 px-4 hover:bg-black/[0.01] transition-colors duration-200 border-t lg:border-t-0 border-black/[0.08]">
               <div className="flex items-center gap-2.5 text-black/70">
                 <div className="w-[22px] h-[22px] rounded-full border-[1.8px] border-current flex flex-col items-center justify-center overflow-hidden px-0.5 relative">
-                  {/* Sunrays and water contours inside circle */}
                   <svg className="w-full h-full fill-none stroke-current stroke-[1.5]" viewBox="0 0 24 24">
                     <path d="M12 4v4M8 6l2 2M16 6l-2 2" strokeLinecap="round" />
                     <path d="M4 14c4-1.5 6-1.5 10 0s4 1.5 6 0" strokeLinecap="round" />
