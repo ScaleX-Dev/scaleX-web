@@ -71,8 +71,8 @@ export default function FieldNotes() {
           </motion.div>
         </div>
 
-        {/* Grid: 1-col mobile → 2-col sm → 4-col lg */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Grid: 2-col mobile → 4-col lg */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {notes.map((note, i) => (
             <motion.div
               key={note.id}
@@ -82,38 +82,37 @@ export default function FieldNotes() {
               transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
             >
               <Link href={`/resource?id=${note.id}`} className="group block">
-                <div className="rounded-2xl border border-white/[0.07] hover:border-white/[0.16] overflow-hidden transition-colors duration-300 bg-white/[0.02]">
+                <div className="rounded-xl overflow-hidden relative aspect-[9/16] bg-white/[0.04]">
                   {/* Thumbnail */}
-                  <div className="w-full aspect-[9/16] relative overflow-hidden border-b border-white/[0.06]">
-                    {note.coverImageUrl ? (
-                      <img
-                        src={note.coverImageUrl}
-                        alt={note.title}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-white/[0.04] flex items-center justify-center">
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="opacity-20">
-                          <rect x="3" y="3" width="22" height="16" rx="2" stroke="white" strokeWidth="1.5" />
-                          <circle cx="9" cy="9" r="2" stroke="white" strokeWidth="1.5" />
-                          <path d="M3 15l5-4 4 3 4-5 9 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M7 23h14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                  {/* Content */}
-                  <div className="p-5">
+                  {note.coverImageUrl ? (
+                    <img
+                      src={note.coverImageUrl}
+                      alt={note.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" className="opacity-20">
+                        <rect x="3" y="3" width="22" height="16" rx="2" stroke="white" strokeWidth="1.5" />
+                        <circle cx="9" cy="9" r="2" stroke="white" strokeWidth="1.5" />
+                        <path d="M3 15l5-4 4 3 4-5 9 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M7 23h14" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                  )}
+                  {/* Gradient + overlay text */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
                     <span
                       className={[
-                        "text-[9px] font-mono tracking-[0.18em] uppercase px-2 py-0.5 rounded-full mb-3 inline-block",
+                        "text-[8px] font-mono tracking-[0.16em] uppercase px-1.5 py-0.5 rounded-full mb-2 inline-block",
                         TAG_STYLES[note.type] ?? TAG_STYLES["article"],
                       ].join(" ")}
                     >
                       {TYPE_LABELS[note.type] ?? note.type}
                     </span>
-                    <p className="text-[13px] font-medium text-white/80 leading-snug group-hover:text-white transition-colors duration-200">
+                    <p className="text-[11px] font-medium text-white/90 leading-snug group-hover:text-white transition-colors duration-200 line-clamp-2">
                       {note.title}
                     </p>
                   </div>

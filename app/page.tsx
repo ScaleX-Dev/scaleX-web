@@ -64,8 +64,8 @@ const LandingPage = () =>{
             />
             <Hero />
             <Clients />
-            <ProcessPath />
             <Services />
+            <ProcessPath />
             <FieldNotes />
             <TwoWays />
             <ConversationCTA />
