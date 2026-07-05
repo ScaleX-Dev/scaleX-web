@@ -9,7 +9,7 @@ const clients = [
     name: "Gallina Innovations",
     type: "Architecture practice.",
     initials: "GI",
-    logo: "/Logo%20Black%20with%20BG.png",
+    logo: "/Logo%20Black%20with%20BG.webp",
     detail: "Thirty years in business.",
     problem:
       "Three decades of legacy work behind a digital presence that did not carry the same weight.",
@@ -29,7 +29,7 @@ const clients = [
     name: "Flour Dude",
     type: "Five-star rated café and bakery.",
     initials: "FD",
-    logo: "/Final%20Logo.png",
+    logo: "/Final%20Logo.webp",
     detail: "The product had a five-star reputation.",
     problem: "The marketing voice could have belonged to any café.",
   },
@@ -80,9 +80,8 @@ export default function Clients() {
             alt={client.name}
             width={0}
             height={0}
-            sizes="100vw"
+            sizes="(max-width: 768px) 78vw, 33vw"
             className={mobile ? "w-full h-full object-contain p-4" : "w-full h-auto"}
-            unoptimized
           />
         ) : (
           <div className={`${mobile ? "h-48" : "h-[88px]"} flex items-center justify-center w-full`}>

@@ -10,21 +10,21 @@ const TEAM = [
   {
     name: "Chirath Hewagamage",
     role: "Founder & CEO",
-    photo: "/Chirath.jpeg",
+    photo: "/Chirath.webp",
     objectPosition: "center",
     bio: "The strategist behind the story. Obsessed with the psychology of why customers choose.",
   },
   {
     name: "Vishaka Wijeykoon",
     role: "Social Media & Content Manager",
-    photo: "/Vishaka.jpeg",
+    photo: "/Vishaka.webp",
     objectPosition: "center",
     bio: "Turns brand voice into scroll-stopping content that actually converts.",
   },
   {
     name: "Tinura Abeysekara",
     role: "Growth Partnerships Specialist",
-    photo: "/Tinura.jpeg",
+    photo: "/Tinura.webp",
     objectPosition: "center 15%",
     bio: "Builds the relationships and systems that keep growth compounding over time.",
   },
@@ -195,9 +195,9 @@ export default function AboutUs() {
                     src={person.photo}
                     alt={person.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"
                     style={{ objectPosition: person.objectPosition }}
-                    unoptimized
                   />
                   {/* subtle green corner accent */}
                   <div className="absolute bottom-0 left-0 w-8 h-8 bg-[#00ff81]/[0.18] rounded-tr-xl" />

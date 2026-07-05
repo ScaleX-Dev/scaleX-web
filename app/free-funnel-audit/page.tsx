@@ -143,7 +143,7 @@ function HeroSection() {
           <div className="flex flex-col items-center w-full sm:w-auto">
             <div className="relative w-full max-w-[280px] h-auto">
               <Image
-                src="/CurrentSalesFunnel.jpg"
+                src="/CurrentSalesFunnel.webp"
                 alt="Before Funnel - High Traffic, Low Conversion"
                 width={280}
                 height={400}
@@ -161,7 +161,7 @@ function HeroSection() {
           <div className="flex flex-col items-center w-full sm:w-auto">
             <div className="relative w-full max-w-[280px] h-auto">
               <Image
-                src="/AfterFunnelAudit.jpg"
+                src="/AfterFunnelAudit.webp"
                 alt="After Audit - Optimized Flow, High Conversion"
                 width={280}
                 height={400}

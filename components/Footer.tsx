@@ -46,7 +46,7 @@ export default function Footer() {
           {/* Left: Identity */}
           <div>
             <Image
-              src="/ScaleX%20Logo%20No%20BG.png"
+              src="/ScaleX%20Logo%20No%20BG.webp"
               alt="ScaleX"
               width={88}
               height={25}
