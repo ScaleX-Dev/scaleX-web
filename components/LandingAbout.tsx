@@ -81,7 +81,7 @@ const LandingAbout = () => {
         >
           We optimize
           <span className="inline-flex items-center justify-center bg-primary-green px-3 md:px-5 py-2 rounded-full mx-2 md:translate-y-[6px]">
-            <Image src="/tile_shape.png" alt="tile" width={30} height={30} className="w-6 md:w-8" />
+            <Image src="/tile_shape.webp" alt="tile" width={30} height={30} className="w-6 md:w-8" />
           </span>
           every touchpoint precisely.
         </motion.p>

@@ -20,12 +20,12 @@ const Navbar = () => {
         <div className="flex bg-[#FAFAFA]/95 backdrop-blur-md rounded-full py-3 px-5 justify-between items-center w-full max-w-screen-lg border border-black/[0.07] shadow-[0_2px_20px_rgba(0,0,0,0.06)]">
           <Link href="/" className="shrink-0">
             <Image
-              src="/ScaleX%20Logo%20No%20BG.png"
+              src="/ScaleX%20Logo%20No%20BG.webp"
               alt="ScaleX"
               width={90}
               height={26}
               style={{ height: "auto" }}
-              unoptimized
+              priority
             />
           </Link>
 
