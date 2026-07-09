@@ -1,6 +1,7 @@
 'use client'
 import React from "react";
 import Navbar from "./Navbar";
+import SignalField from "./SignalField";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -28,21 +29,17 @@ export default function Hero() {
     <div className="bg-[#FAFAFA] relative overflow-hidden min-h-screen flex flex-col z-10">
       <Navbar />
 
-      {/* Full-coverage dot grid — strong enough to read against the light bg */}
-      <div
-        className="absolute inset-0 pointer-events-none select-none z-0"
-        style={{
-          backgroundImage: "radial-gradient(rgba(0,0,0,0.08) 1.4px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      />
+      {/* Live signal field — the dot grid, responding to cursor and pulses */}
+      <div className="absolute inset-0 z-0">
+        <SignalField />
+      </div>
 
       {/* Vignette — darken edges slightly so content area pops */}
       <div
         className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
           background:
-            "radial-gradient(ellipse 90% 85% at 50% 45%, transparent 55%, rgba(0,0,0,0.06) 100%)",
+            "radial-gradient(ellipse 90% 85% at 50% 45%, transparent 55%, rgba(0,0,0,0.05) 100%)",
         }}
       />
 
@@ -50,11 +47,15 @@ export default function Hero() {
       <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-28 sm:pt-32 md:pt-36 pb-6 md:pb-8 max-w-screen-xl mx-auto w-full relative z-10">
         {/* Meta row */}
         <motion.div
-          className="flex items-center justify-between mb-10 md:mb-16"
+          className="flex items-center gap-3 mb-10 md:mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff81] opacity-60" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00c85a]" />
+          </span>
           <span className="text-[11px] font-mono text-black/35 tracking-[0.22em] uppercase">
             Est. 2023 · Sri Lanka &amp; UAE
           </span>
@@ -75,7 +76,7 @@ export default function Hero() {
                 }}
               >
                 {line.segments.map((seg, j) => (
-                  <span key={j} className={seg.muted ? "text-[#00ff81]" : "text-[#0c0d0e]"}>
+                  <span key={j} className={seg.muted ? "text-[#00c85a]" : "text-[#0c0d0e]"}>
                     {seg.text}
                   </span>
                 ))}
