@@ -1,9 +1,15 @@
 'use client'
-import React from "react";
-import Navbar from "./Navbar";
-import SignalField from "./SignalField";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import Navbar from "./Navbar";
+
+const LADDER_LINES = [
+  "You tell a story about your customers.",
+  "They see themselves in it.",
+  "They step inside it.",
+  "Then they tell it for you.",
+];
 
 const TICKER = [
   "Performance Marketing", "Brand Identity", "Web Design",
@@ -12,129 +18,201 @@ const TICKER = [
   "Email Sequences", "Brand Voice",
 ];
 
-const HEADLINE_LINES = [
-  {
-    segments: [
-      { text: "For businesses ", muted: false },
-      { text: "worth more than", muted: true },
-    ],
-  },
-  {
-    segments: [{ text: "their marketing shows.", muted: false }],
-  },
-];
+const BEAT = 1150;
 
 export default function Hero() {
+  const linesRef = useRef<(HTMLLIElement | null)[]>([]);
+  const footRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      badgeRef.current?.classList.add("hb-in");
+      subtitleRef.current?.classList.add("hs-in");
+      return;
+    }
+
+    const lines = linesRef.current;
+    const foot = footRef.current;
+
+    badgeRef.current?.classList.add("hb-in");
+
+    lines.forEach((li, i) => {
+      setTimeout(() => {
+        li?.classList.add("hl-in");
+        if (i > 0) lines[i - 1]?.classList.add("hl-dim");
+        if (i === lines.length - 1) {
+          li?.classList.add("hl-final");
+          subtitleRef.current?.classList.add("hs-in");
+          setTimeout(() => foot?.classList.add("hf-in"), 500);
+        }
+      }, 600 + i * BEAT);
+    });
+  }, []);
+
   return (
-    <div className="bg-[#FAFAFA] relative overflow-hidden min-h-screen flex flex-col z-10">
+    <div className="relative overflow-hidden min-h-screen flex flex-col z-10" style={{ background: "#0a0a0a" }}>
+      <style>{`
+        .hero-line {
+          list-style: none;
+          font-weight: 700;
+          font-size: clamp(1.9rem, 4.9vw, 4.4rem);
+          line-height: 1.18;
+          letter-spacing: -0.03em;
+          color: #f5f5f7;
+          opacity: 0;
+          transform: translateY(0.5em);
+          filter: blur(10px);
+          transition:
+            opacity 1s cubic-bezier(0.16,1,0.3,1),
+            transform 1s cubic-bezier(0.16,1,0.3,1),
+            filter 1s cubic-bezier(0.16,1,0.3,1),
+            color 0.9s ease;
+        }
+        .hero-line.hl-in  { opacity: 1; transform: translateY(0); filter: blur(0); }
+        .hero-line.hl-dim { color: rgba(245,245,247,0.32); }
+        .hero-line.hl-final { color: #00FF6D; }
+
+        .hero-foot {
+          margin-top: 60px;
+          opacity: 0;
+          transform: translateY(16px);
+          transition:
+            opacity 1s cubic-bezier(0.16,1,0.3,1) 0.2s,
+            transform 1s cubic-bezier(0.16,1,0.3,1) 0.2s;
+        }
+        .hero-foot.hf-in { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-line { transition: none; opacity: 1; transform: none; filter: none; color: rgba(245,245,247,0.32); }
+          .hero-line:last-child { color: #00FF6D; }
+          .hero-foot { transition: none; opacity: 1; transform: none; }
+        }
+        .hero-inner {
+          padding: 120px 40px 100px;
+        }
+        .hero-badge {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 48px;
+          opacity: 0;
+          transition: opacity 0.8s ease 0.1s;
+        }
+        .hero-badge.hb-in { opacity: 1; }
+        .hero-subtitle {
+          margin-top: 36px;
+          max-width: 480px;
+          opacity: 0;
+          transform: translateY(12px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .hero-subtitle.hs-in { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-badge, .hero-subtitle { transition: none; opacity: 1; transform: none; }
+        }
+        @media (max-width: 640px) {
+          .hero-inner { padding: 96px 24px 60px; }
+          .hero-line { font-size: clamp(1.6rem, 7.5vw, 2.4rem); }
+          .hero-badge { margin-bottom: 32px; }
+          .hero-foot { margin-top: 32px; }
+          .brand-row { gap: 12px; margin-bottom: 20px; }
+        }
+        @keyframes ticker-ltr { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .hero-cta {
+          display: inline-block;
+          font-weight: 500;
+          font-size: 1.05rem;
+          letter-spacing: 0.01em;
+          color: #0a0a0a;
+          background: #f5f5f7;
+          padding: 16px 34px;
+          border-radius: 999px;
+          text-decoration: none;
+          transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .hero-cta:hover { background: #00FF6D; transform: translateY(-2px); }
+        .hero-cta:focus-visible { outline: 2px solid #00FF6D; outline-offset: 4px; }
+      `}</style>
+
       <Navbar />
 
-      {/* Live signal field — the dot grid, responding to cursor and pulses */}
-      <div className="absolute inset-0 z-0">
-        <SignalField />
-      </div>
-
-      {/* Vignette — darken edges slightly so content area pops */}
+      {/* Soft radial glow */}
       <div
-        className="absolute inset-0 pointer-events-none select-none z-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 85% at 50% 45%, transparent 55%, rgba(0,0,0,0.05) 100%)",
-        }}
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 30% 45%, rgba(255,255,255,0.045), transparent 70%)" }}
       />
 
-      {/* Main content */}
-      <div className="flex-1 flex flex-col justify-center px-6 md:px-16 lg:px-24 pt-28 sm:pt-32 md:pt-36 pb-6 md:pb-8 max-w-screen-xl mx-auto w-full relative z-10">
-        {/* Meta row */}
-        <motion.div
-          className="flex items-center gap-3 mb-10 md:mb-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff81] opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00c85a]" />
+      {/* Animated ladder + foot */}
+      <div className="hero-inner flex-1 flex flex-col justify-center w-full max-w-[1200px] mx-auto relative z-10">
+        {/* Est. badge */}
+        <div ref={badgeRef} className="hero-badge">
+          <span className="relative flex h-2 w-2 shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: "#00FF6D" }} />
+            <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#00c85a" }} />
           </span>
-          <span className="text-[11px] font-mono text-black/35 tracking-[0.22em] uppercase">
+          <span style={{ fontSize: "11px", fontFamily: "monospace", color: "rgba(245,245,247,0.38)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
             Est. 2023 · Sri Lanka &amp; UAE
           </span>
-        </motion.div>
-
-        {/* Headline — line-by-line reveal */}
-        <div className="mb-14 relative">
-          {HEADLINE_LINES.map((line, i) => (
-            <div key={i} className="overflow-hidden pb-[0.14em]">
-              <motion.span
-                className="block font-medium tracking-[-0.025em] leading-[1.0] text-[2rem] xs:text-[2.4rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.25rem]"
-                initial={{ y: "108%" }}
-                animate={{ y: "0%" }}
-                transition={{
-                  duration: 0.88,
-                  delay: 0.22 + i * 0.11,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                {line.segments.map((seg, j) => (
-                  <span key={j} className={seg.muted ? "text-[#00c85a]" : "text-[#0c0d0e]"}>
-                    {seg.text}
-                  </span>
-                ))}
-              </motion.span>
-            </div>
-          ))}
         </div>
 
-        {/* Bottom row: copy + CTAs */}
-        <motion.div
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 sm:gap-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.62, ease: "easeOut" }}
-        >
-          <p className="text-black/55 max-w-sm text-[14px] md:text-base leading-relaxed">
-            A World-Class marketing, branding, and design partner for B2B and B2C
-            service businesses across Sri Lanka and the UAE. Built to close the gap
-            between the business and how it shows up online.
-          </p>
-          <div className="flex flex-wrap gap-3 shrink-0">
-            <Link href="/appointments">
-              <button className="bg-black text-white text-sm font-medium px-6 py-3 sm:px-7 sm:py-3.5 rounded-full hover:bg-[#00ff81] hover:text-black transition-all duration-300 min-h-[44px]">
-                Book a discovery call
-              </button>
-            </Link>
-            <Link href="/blogs">
-              <button className="text-black text-sm font-medium px-6 py-3 sm:px-7 sm:py-3.5 rounded-full border border-black/15 hover:border-black/35 hover:bg-black/[0.04] transition-all duration-200 min-h-[44px]">
-                See recent work →
-              </button>
-            </Link>
+        <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {LADDER_LINES.map((line, i) => (
+            <li
+              key={i}
+              ref={(el) => { linesRef.current[i] = el; }}
+              className="hero-line"
+            >
+              {line}
+            </li>
+          ))}
+        </ol>
+
+        <p ref={subtitleRef} className="hero-subtitle" style={{ fontSize: "0.95rem", lineHeight: 1.7, color: "rgba(245,245,247,0.45)" }}>
+          A World-Class marketing, branding, and design partner for B2B and B2C
+          service businesses across Sri Lanka and the UAE.
+        </p>
+
+        <div ref={footRef} className="hero-foot">
+          <div className="brand-row" style={{ display: "flex", alignItems: "center", gap: 18, marginBottom: 36 }}>
+            <Image
+              src="/ScaleX Logo No BG.webp"
+              alt="ScaleX"
+              width={110}
+              height={34}
+              style={{ height: 34, width: "auto", filter: "brightness(0) invert(1)", flexShrink: 0 }}
+              priority
+            />
+            <p style={{ fontWeight: 300, fontSize: "0.95rem", letterSpacing: "0.01em", color: "rgba(245,245,247,0.55)" }}>
+              Building brands people remember.
+            </p>
           </div>
-        </motion.div>
+          <Link href="/appointments" className="hero-cta">
+            Let&apos;s tell yours
+          </Link>
+        </div>
       </div>
 
-      {/* Bottom service ticker */}
-      <motion.div
-        className="relative z-10 border-t border-black/[0.07] py-4 overflow-hidden select-none bg-white"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 1.0 }}
+      {/* Service ticker */}
+      <div
+        className="relative z-10 overflow-hidden select-none"
+        style={{ borderTop: "1px solid rgba(245,245,247,0.08)", padding: "16px 0" }}
       >
-        <style>{`@keyframes ticker-ltr { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
-        <div
-          className="flex whitespace-nowrap"
-          style={{ animation: "ticker-ltr 32s linear infinite" }}
-        >
+        <div className="flex whitespace-nowrap" style={{ animation: "ticker-ltr 32s linear infinite" }}>
           {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((item, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-5 px-5 text-[10px] font-mono text-black/[0.38] tracking-[0.2em] uppercase"
+              className="inline-flex items-center gap-5 px-5 font-mono uppercase"
+              style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(245,245,247,0.38)" }}
             >
               {item}
-              <span className="text-[#00c85a] font-bold">·</span>
+              <span style={{ color: "#00FF6D", fontWeight: 700 }}>·</span>
             </span>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
