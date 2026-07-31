@@ -52,12 +52,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden min-h-screen flex flex-col z-10" style={{ background: "#0a0a0a" }}>
+    <div className="hero-outer relative overflow-hidden flex flex-col z-10" style={{ background: "#0a0a0a" }}>
       <style>{`
         .hero-line {
           list-style: none;
           font-weight: 700;
-          font-size: clamp(1.9rem, 4.9vw, 4.4rem);
+          font-size: clamp(1.9rem, 4.2vw, 3.8rem);
           line-height: 1.18;
           letter-spacing: -0.03em;
           color: #f5f5f7;
@@ -75,7 +75,7 @@ export default function Hero() {
         .hero-line.hl-final { color: #00FF6D; }
 
         .hero-foot {
-          margin-top: 60px;
+          margin-top: 28px;
           opacity: 0;
           transform: translateY(16px);
           transition:
@@ -90,19 +90,22 @@ export default function Hero() {
           .hero-foot { transition: none; opacity: 1; transform: none; }
         }
         .hero-inner {
-          padding: 120px 40px 100px;
+          padding: 132px 40px 40px;
+          justify-content: flex-start;
         }
+        .brand-row { display: flex; }
+
         .hero-badge {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-bottom: 48px;
+          margin-bottom: 28px;
           opacity: 0;
           transition: opacity 0.8s ease 0.1s;
         }
         .hero-badge.hb-in { opacity: 1; }
         .hero-subtitle {
-          margin-top: 36px;
+          margin-top: 20px;
           max-width: 480px;
           opacity: 0;
           transform: translateY(12px);
@@ -112,12 +115,15 @@ export default function Hero() {
         @media (prefers-reduced-motion: reduce) {
           .hero-badge, .hero-subtitle { transition: none; opacity: 1; transform: none; }
         }
+        .hero-outer { min-height: 100svh; }
         @media (max-width: 640px) {
-          .hero-inner { padding: 96px 24px 60px; }
-          .hero-line { font-size: clamp(1.6rem, 7.5vw, 2.4rem); }
-          .hero-badge { margin-bottom: 32px; }
+          .hero-outer { min-height: 100svh; }
+          .hero-inner { padding: 88px 24px 48px; justify-content: center; }
+          .hero-line { font-size: clamp(1.55rem, 7vw, 2.2rem); line-height: 1.2; }
+          .hero-badge { margin-bottom: 22px; }
+          .hero-subtitle { margin-top: 18px; }
           .hero-foot { margin-top: 32px; }
-          .brand-row { gap: 12px; margin-bottom: 20px; }
+          .brand-row { display: none; }
         }
         @keyframes ticker-ltr { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -146,37 +152,39 @@ export default function Hero() {
       />
 
       {/* Animated ladder + foot */}
-      <div className="hero-inner flex-1 flex flex-col justify-center w-full max-w-[1200px] mx-auto relative z-10">
-        {/* Est. badge */}
-        <div ref={badgeRef} className="hero-badge">
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: "#00FF6D" }} />
-            <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#00c85a" }} />
-          </span>
-          <span style={{ fontSize: "11px", fontFamily: "monospace", color: "rgba(245,245,247,0.38)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
-            Est. 2023 · Sri Lanka &amp; UAE
-          </span>
+      <div className="hero-inner flex-1 flex flex-col w-full max-w-[1200px] mx-auto relative z-10">
+        {/* Top group — badge + ladder + subtitle */}
+        <div>
+          <div ref={badgeRef} className="hero-badge">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: "#00FF6D" }} />
+              <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#00c85a" }} />
+            </span>
+            <span style={{ fontSize: "11px", fontFamily: "monospace", color: "rgba(245,245,247,0.38)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
+              Est. 2023 · Sri Lanka &amp; UAE
+            </span>
+          </div>
+
+          <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
+            {LADDER_LINES.map((line, i) => (
+              <li
+                key={i}
+                ref={(el) => { linesRef.current[i] = el; }}
+                className="hero-line"
+              >
+                {line}
+              </li>
+            ))}
+          </ol>
+
+          <p ref={subtitleRef} className="hero-subtitle" style={{ fontSize: "0.95rem", lineHeight: 1.7, color: "rgba(245,245,247,0.45)" }}>
+            A World-Class marketing, branding, and design partner for B2B and B2C
+            service businesses across Sri Lanka and the UAE.
+          </p>
         </div>
 
-        <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {LADDER_LINES.map((line, i) => (
-            <li
-              key={i}
-              ref={(el) => { linesRef.current[i] = el; }}
-              className="hero-line"
-            >
-              {line}
-            </li>
-          ))}
-        </ol>
-
-        <p ref={subtitleRef} className="hero-subtitle" style={{ fontSize: "0.95rem", lineHeight: 1.7, color: "rgba(245,245,247,0.45)" }}>
-          A World-Class marketing, branding, and design partner for B2B and B2C
-          service businesses across Sri Lanka and the UAE.
-        </p>
-
         <div ref={footRef} className="hero-foot">
-          <div className="brand-row" style={{ display: "flex", alignItems: "center", gap: 18, marginBottom: 36 }}>
+          <div className="brand-row" style={{ alignItems: "center", gap: 18, marginBottom: 20 }}>
             <Image
               src="/ScaleX Logo No BG.webp"
               alt="ScaleX"
