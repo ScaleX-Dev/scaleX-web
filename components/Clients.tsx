@@ -19,7 +19,7 @@ const clients = [
     name: "Magnate Yachts",
     type: "Sri Lanka's leading yacht management agency.",
     initials: "MY",
-    logo: null,
+    logo: "/Magnate%20Yachts%20Logo.png",
     detail: "Handles 80% of yacht and superyacht arrivals into the country.",
     problem:
       "A category-leading position in-market, a website that had not been built to reflect it.",
